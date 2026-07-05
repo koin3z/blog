@@ -35,4 +35,33 @@ one-off mistakes unless they reveal a repository-specific constraint.
 
 ## Entries
 
-No entries yet.
+## GitHub Pages deployment fails after a successful build
+
+- Last verified: 2026-07-05
+- Applies to: `.github/workflows/deploy.yaml` on GitHub-hosted Ubuntu runners.
+- Symptom: `deploy-pages` finds one `github-pages` artifact, creates the deployment, then
+  exits with `Deployment failed, try again later`. Logs may also contain Node 20 and
+  `punycode` deprecation warnings.
+- Sanitized command or workflow: the `build` job creates one `github-pages` artifact and
+  the dependent `deploy` job runs `actions/deploy-pages` for the `github-pages`
+  environment.
+- Cause: the warnings are from old action runtimes, not from the Quartz build. In the two
+  observed failures, build and artifact upload succeeded and the Pages backend changed the
+  accepted deployment to `failed` without a public error description. The precise backend
+  cause is therefore unverified.
+- Resolution: use Node 24-based `actions/deploy-pages@v5` and
+  `actions/upload-artifact@v6`, package `public` as the single tar file required by Pages,
+  and retry the Pages deployment once after 30 seconds. Keep `workflow_dispatch` for a
+  manual retry. Do not enable `ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION`; it only suppresses
+  the runtime migration and does not fix Pages.
+- Verification: local build, tar-input checks, YAML parsing, TypeScript checks, and tests
+  pass. Hosted deployment verification requires the next push/manual workflow run.
+- Failed attempts: changing content or reducing artifact size was not indicated; the two
+  failed artifacts were only about 18.5 MB and differed little from the last successful
+  18.4 MB artifact.
+- Workaround expiry/removal condition: remove the explicit package/upload steps when
+  `actions/upload-pages-artifact` publishes a Node 24 major; reconsider the retry after
+  Pages deployments are consistently reliable.
+- Related:
+  - [Research entry](research-log.md#2026-07-05--github-pages-workflow-failure-and-build-time-review)
+  - [Decision entry](decisions.md#2026-07-05--keep-correct-date-history-and-optimize-pages-deployment)

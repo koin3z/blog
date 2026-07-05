@@ -5,11 +5,20 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/deploy.yaml
+      - .node-version
+      - .npmrc
+      - attachments/**
+      - content/**
+      - package-lock.json
+      - package.json
+      - quartz/**
+      - quartz.config.ts
+      - quartz.layout.ts
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -23,31 +32,45 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Fetch all history for git info
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
           cache: npm
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
       - name: Build Quartz
         run: npm run build
-      - name: Disable Jekyll
-        run: touch public/.nojekyll
+      - name: Package artifact
+        run: >-
+          tar --dereference --hard-dereference --directory public
+          --exclude=.git --exclude=.github -cf "$RUNNER_TEMP/artifact.tar" .
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          path: public
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
   deploy:
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.retry.outputs.page_url || steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        uses: actions/deploy-pages@v5
+      - name: Wait before retrying a transient failure
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - name: Retry GitHub Pages deployment
+        id: retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
