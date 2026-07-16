@@ -1,0 +1,44 @@
+{
+  "skill_name": "knowledge-note-structuring",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "`content/identity/oauth/authorization-server.md`を、あとから認可サーバーの責任、保持する情報、2つのエンドポイントの処理と検証境界を追える個人メモに再構成してください。既存の事実、コード例、未完了箇所は失わず、今回は新しい仕様調査や事実追加をしないでください。元ファイルは変更せず、変換後のMarkdownを指定された出力先へ保存してください。",
+      "expected_output": "ブログ的な予告を使わず、主体・保持情報・処理フロー・検証・未確認事項が依存順に整理され、フロントマターと既存事実が維持されたMarkdown",
+      "files": ["content/identity/oauth/authorization-server.md"],
+      "expectations": [
+        "The output preserves the source title, date, draft value, tag, alias, and description, and has no body-level `#` heading.",
+        "The output preserves the client registration facts and JavaScript example, including `client_id`, `client_secret`, `redirect_uri`, static and dynamic registration, GET, CSRF, authorization endpoint, and token endpoint.",
+        "The `todo` heading and empty trailing bullet are not left as-is; incomplete material is represented explicitly as unresolved or requiring confirmation rather than being stated as a verified fact.",
+        "The section order establishes the authorization server's responsibilities and held registration data before the endpoint processing that uses them.",
+        "The output adds no external source, protocol requirement, endpoint behavior, or security claim absent from the source page."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "`content/cloud/oracle/vault/oci-vault-secret.md`を、OCI Vault Secretのリソースモデル、バージョン、取得、ローテーション、レプリケーションの関係を後から判断に使える個人メモへ再構成してください。既存URLと要確認事項を保持し、内容の正しさを新規調査で補完しないでください。ページ分割が必要かも判断し、元ファイルは変更せず、最終Markdownを指定された出力先へ保存してください。",
+      "expected_output": "サービス型またはハブ型の判断が明確で、状態とライフサイクル、操作、上限、未確認事項が混在せず整理されたMarkdown",
+      "files": ["content/cloud/oracle/vault/oci-vault-secret.md"],
+      "expectations": [
+        "The output preserves the source title, date, draft value, tags, alias, and all existing documentation/API URLs, and has no body-level `#` heading.",
+        "The output preserves the four source code blocks and the Obsidian image reference, including the secret metadata, generation contexts, retrieval request, and retrieval response examples.",
+        "Uncertain claims about version creation, rotation timing, and replication remain visibly uncertain, with the replication material marked as requiring confirmation.",
+        "The structure distinguishes the Secret resource, Secret versions or bundle state, content retrieval, rotation, and replication instead of leaving them as an undifferentiated operation list.",
+        "The run transcript states whether the page was kept together or split and gives a structural reason; the output does not invent new technical facts."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "`content/containers/index.md`を、コンテナがどのカーネル機能で成立し、仮想マシンやシステムコンテナとどの境界で異なるかをたどれる個人メモに再構成してください。既存事実とリンクだけを使い、重複を除きながら因果順と比較軸を明確にしてください。元ファイルは変更せず、変換後のMarkdownを指定された出力先へ保存してください。",
+      "expected_output": "概念・機構型を中心に、定義、構成要素、分離の仕組み、比較、種類、制約が一貫した軸で整理されたMarkdown",
+      "files": ["content/containers/index.md"],
+      "expectations": [
+        "The output preserves the source title, date, draft value, tag, alias, all seven external URLs, all six internal wiki links, and has no body-level `#` heading.",
+        "The output retains all named isolation and storage mechanisms: namespaces, cgroups, capabilities, seccomp, AppArmor, SELinux, UnionFS, and OverlayFS.",
+        "The section order connects the container definition and shared-kernel boundary to the supporting mechanisms before comparing virtual machines and container types.",
+        "The virtual-machine comparison and application-container versus system-container comparison remain explicit tables with stable comparison axes.",
+        "The output removes redundant restatement without adding products, mechanisms, benefits, constraints, or external sources absent from the source page."
+      ]
+    }
+  ]
+}

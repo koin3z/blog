@@ -34,6 +34,237 @@ existing entry when the same question is revisited.
 
 ## Entries
 
+## 2026-07-16 — OCI managed database service portfolio taxonomy
+
+- Status: verified
+- Question: How should the current OCI managed database services be organized so readers can select an engine first and an Oracle Database operating model second?
+- Scope: Oracle AI Database services, OCI Database with PostgreSQL, MySQL HeatWave, Oracle NoSQL Database Cloud Service, OCI Cache, and OCI Search with OpenSearch as of 2026-07-16.
+- Evidence:
+  - `content/cloud/oracle/database/index.md`: engine-level comparison and selection hub.
+  - `content/cloud/oracle/database/services/oci-oracle-database-services.md`: Oracle Database operating-model and infrastructure selection hub.
+  - `content/cloud/oracle/database/services/`: detail notes for Base Database Service, Exadata Database Service, Autonomous AI Database, Globally Distributed Database, PostgreSQL, MySQL HeatWave, NoSQL, OCI Cache, and Search with OpenSearch.
+  - [OCI Database documentation](https://docs.oracle.com/en-us/iaas/Content/Database/home.htm): current Base, Exadata, and Autonomous Oracle Database service families.
+  - [OCI Database with PostgreSQL overview](https://docs.oracle.com/en-us/iaas/Content/postgresql/overview.htm): managed PostgreSQL, decoupled storage, node, endpoint, backup, and limit model.
+  - [MySQL HeatWave documentation](https://docs.oracle.com/en-us/iaas/mysql-database/index.html): managed MySQL DB systems and optional HeatWave analytics, Lakehouse, AutoML, and GenAI processing.
+  - [Oracle NoSQL Database Cloud Service](https://docs.oracle.com/en-us/iaas/nosql-database/index.html): table, JSON, key-value, throughput-unit, consistency, and Global Active Table model.
+  - [OCI Cache overview](https://docs.oracle.com/en-us/iaas/Content/ocicache/overview.htm): current Valkey and Redis engines, non-sharded and sharded clusters, and service limits.
+  - [OCI Search with OpenSearch overview](https://docs.oracle.com/en-us/iaas/Content/search-opensearch/Concepts/ociopensearch.htm): managed search clusters, node roles, private endpoints, resizing, patching, and backup responsibilities.
+- Findings:
+  - Make database-engine and access-model compatibility the first selection boundary. Oracle Database, PostgreSQL, MySQL, NoSQL, cache, and search indexes are not deployment variants of one interchangeable service.
+  - Treat Oracle AI Database as a second-level family. Base and Exadata are co-managed, Autonomous delegates the DBMS lifecycle to Oracle, and Globally Distributed Database introduces application-visible sharding.
+  - Include OCI Cache and Search with OpenSearch in the portfolio entry point because Oracle exposes them in the database catalog, but label them as purpose-specific derived state rather than default systems of record.
+  - Group Exadata's Exascale, Dedicated, and Cloud@Customer choices in one detail note and Autonomous's Serverless, Dedicated, and Cloud@Customer choices in another. Their shared responsibility models matter more for retrieval than separate thin pages for each placement variant.
+  - Keep protection, migration, replication, security, and observability services adjacent to the engine pages. Autonomous Recovery Service, Database Migration, GoldenGate, Data Safe, and Database Management do not host the primary database engine.
+  - Service versions, regions, shapes, quotas, and hard limits are time-sensitive. Record decision-relevant limits with an as-of date and point readers to current Service Limits instead of copying region matrices.
+- Verification:
+  - Cross-checked the current Oracle product and documentation pages on 2026-07-16.
+  - Targeted Prettier checks and `git diff --check` passed for the overview, detail pages, and Oracle index.
+  - `npx quartz build` parsed 142 Markdown inputs and emitted 487 files successfully.
+- Open questions: Region availability, preview features, version support, and service limits must be revalidated for the target tenancy at design time.
+- Related:
+  - [Decision entry](decisions.md#2026-07-16--use-an-engine-first-oci-database-service-hierarchy)
+
+## 2026-07-16 — Personal knowledge-note structure patterns
+
+- Status: verified
+- Question: How should article-like technical explanations be abstracted into a reusable
+  structure for personal Obsidian notes without importing blog narration?
+- Scope: two public reference articles, the repository's Markdown rules, existing protocol,
+  service-lifecycle, concept, comparison, and hub pages, and a project-local Codex skill.
+- Evidence:
+  - [PostgreSQL internal data structures article](https://zenn.dev/calloc134/articles/postgres-internal-mvcc-index):
+    orders observable behavior, internal state, algorithms, and implementation differences by
+    conceptual dependency.
+  - [OAuth/OIDC article](https://zenn.dev/calloc134/articles/5e8da6c491e720): orders purpose,
+    actors, artifacts, normal flows, variants, attacks, and mitigations by trust and data flow.
+  - `.agents/skills/knowledge-note-structuring/SKILL.md`: resulting transformation workflow.
+  - `.agents/skills/knowledge-note-structuring/references/structure-patterns.md`: archetypes,
+    source abstraction, dependency map, and structural checks.
+- Findings:
+  - Reuse dependency order rather than article headings or voice. Introduce boundaries and
+    components before flows, and abstract rules before examples or implementation evidence.
+  - Define each note with one retrieval question and one primary organizing axis. Select a
+    concept/mechanism, protocol/flow, product/service, comparison/selection, or
+    procedure/investigation archetype; combine them only with a clear primary type.
+  - Convert blog hooks, rhetorical questions, reader guidance, and recaps into scope,
+    noun-phrase headings, minimal scenarios, decision rules, or omit them.
+  - Give each fact one primary representation. A table owns stable mappings and comparisons;
+    adjacent prose should add causes, exceptions, or consequences instead of restating rows.
+  - Preserve uncertainty, evidence, frontmatter, aliases, links, and stable URLs. Keep a page
+    together when it answers one retrieval question; use a stable hub plus detail notes when
+    readers need selection before implementation or sections have independent update cycles.
+- Verification:
+  - Tested OAuth authorization-server, OCI Vault Secret, and container overview pages with and
+    without the skill, without changing the source pages.
+  - Iteration 1 found one skill-side regression: a mechanism table was repeated as adjacent
+    bullets. After adding the one-primary-representation rule, iteration 2 passed all 15 formal
+    assertions in both configurations and removed the duplicate material.
+  - Frontmatter, URLs, wiki links, code blocks, images, named mechanisms, uncertainty markers,
+    comparison tables, and dependency order were checked. The static review is generated from
+    `.agents/skills/knowledge-note-structuring-workspace/iteration-2/`.
+- Open questions:
+  - Human review is still needed to judge whether the explicit retrieval question, archetype,
+    and split rationale make the skill outputs more useful than the already strong baseline.
+  - The skill description has not been optimized with trigger-query evaluation.
+- Related:
+  - [Decision entry](decisions.md#2026-07-16--structure-notes-by-retrieval-question-and-dependency)
+
+## 2026-07-16 — OCI and Oracle AI service portfolio taxonomy
+
+- Status: verified
+- Question: How should the current OCI and adjacent Oracle AI offerings be separated into
+  infrastructure, model and agent services, data platforms, database AI, prebuilt AI, and
+  application-embedded AI?
+- Scope: OCI AI Infrastructure, OCI Enterprise AI and Generative AI, Oracle AI Data Platform,
+  OCI Data Science, Oracle AI Database, OCI AI Services, Digital Assistant, MySQL HeatWave AI,
+  and Fusion AI Agent Studio as of 2026-07-16.
+- Evidence:
+  - [OCI Generative AI documentation](https://docs.oracle.com/en-us/iaas/Content/generative-ai/):
+    current Enterprise AI platform scope, including models, Enterprise AI Agents, Responses API,
+    tools, memory, guardrails, and hosted agent applications.
+  - [OCI Enterprise AI](https://www.oracle.com/artificial-intelligence/enterprise-ai/): current
+    product umbrella for building, deploying, and governing production agents.
+  - [Oracle AI Data Platform](https://www.oracle.com/ai-data-platform/): lakehouse, catalog,
+    semantic context, workbench, model/agent lifecycle, and governance scope.
+  - [OCI Data Science overview](https://docs.oracle.com/en-us/iaas/Content/data-science/using/overview.htm):
+    notebook, training, jobs, pipelines, model catalog, and HTTP model deployment lifecycle.
+  - [Oracle AI Database 26ai AI, ML, and analytics](https://docs.oracle.com/en/database/oracle/oracle-database/26/ai.html):
+    AI Vector Search, Select AI, machine learning, and database agent documentation.
+  - [Oracle AI Database Private Agent Factory](https://docs.oracle.com/en/database/oracle/agent-factory/index.html):
+    database-centered no-code agent and workflow platform.
+  - [OCI AI Services](https://www.oracle.com/artificial-intelligence/ai-services/): current
+    prebuilt Language, Speech, Vision, and Document Understanding services plus Digital Assistant.
+  - [OCI GPU Compute](https://www.oracle.com/cloud/compute/gpu/): GPU VM, bare metal,
+    Supercluster, and RDMA cluster-networking foundation.
+  - [Fusion AI Agent Studio overview](https://docs.oracle.com/en/cloud/saas/fusion-ai/26b/aiaas/overview.html):
+    Fusion-native agent design, validation, deployment, tools, APIs, and knowledge access.
+  - `content/cloud/oracle/database/services/oci-oracle-database-services.md`: current OCI Oracle Database
+    deployment models and operating responsibility boundaries.
+- Findings:
+  - Treat OCI AI as a layered portfolio: AI infrastructure; managed models and general-purpose
+    agents; governed data and ML platforms; database-native AI; prebuilt perception/language
+    services; and embedded application AI.
+  - The older `OCI AI Agent Platform` product link now redirects to OCI Enterprise AI. Current OCI
+    documentation places Enterprise AI Agents within OCI Generative AI, so these names should not
+    be presented as independent parallel platforms without a date and branding note.
+  - Distinguish four agent-building scopes: OCI Enterprise AI for general custom agentic
+    applications, Oracle AI Data Platform for governed data-centric agents, Fusion AI Agent Studio
+    for Fusion business workflows, and Oracle AI Database Private Agent Factory for agents close
+    to database data. Oracle Digital Assistant remains relevant for structured conversational bot
+    and channel use cases.
+  - Oracle AI Database is both an AI-enabled data engine and a deployment family. Vector Search,
+    Select AI, in-database ML, and agent capabilities are separate from the OCI infrastructure
+    choices such as Autonomous AI Database, Base Database Service, and Exadata Database Service.
+  - OCI Language, Speech, Vision, Document Understanding, Data Labeling, and Data Science reduce
+    the need to build every model from scratch. The standalone OCI Anomaly Detection service is no
+    longer available; current anomaly detection and forecasting guidance is exposed through OCI
+    Data Science Operators. Do not copy the retired service from older portfolio diagrams.
+  - MySQL HeatWave GenAI/AutoML and Fusion AI Agent Studio are adjacent Oracle Cloud offerings,
+    not substitutes for the OCI Enterprise AI developer platform. Label them separately when the
+    scope is strictly OCI core services.
+- Verification: Cross-checked current Oracle product and documentation pages on 2026-07-16,
+  compared the database layer with the repository's verified OCI Database service taxonomy, and
+  ran fresh-reader checks across the overview, agent, and service-selection pages. Targeted
+  Prettier checks, `git diff --check`, and a Quartz production build also passed (132 inputs, 468
+  outputs).
+- Open questions: Model availability, regions, preview/limited-availability features, service
+  names, and licensing change frequently. Verify them in the target tenancy and current service
+  documentation before architecture or procurement decisions. The AI Data Platform product page
+  explicitly marks some Agent Hub functionality as coming soon.
+- Resulting pages:
+  - `content/cloud/oracle/ai/index.md`: portfolio map and selection hub.
+  - `content/cloud/oracle/ai/`: detail pages for infrastructure, Enterprise AI, AI Data Platform,
+    Data Science, AI Database, prebuilt AI services, agent platforms, application AI, and MySQL
+    HeatWave AI.
+
+## 2026-07-16 — Oracle Database migration method taxonomy
+
+- Status: verified
+- Question: How should the Oracle Database notes separate migration methods from the tools and services that orchestrate them?
+- Scope: Data Pump, Transportable Tablespaces, RMAN, PDB operations, Data Guard, GoldenGate, AutoUpgrade, Zero Downtime Migration, and OCI Database Migration.
+- Evidence:
+  - `content/cloud/oracle/database/migration/oci-oracledb-migration.md`: migration method and orchestration overview.
+  - `content/cloud/oracle/database/migration/oracledb-data-pump.md`, `oracledb-transportable-tablespaces.md`, `oracledb-data-guard.md`, `oracledb-goldengate.md`, and `oracledb-pdb-migration.md`: method-specific notes.
+  - `content/cloud/oracle/database/maintenance/oracledb-autoupgrade.md`, `content/cloud/oracle/database/migration/oci-zero-downtime-migration.md`, and `content/cloud/oracle/database/migration/oci-database-migration-service.md`: automation and managed-service notes.
+  - [Oracle AI Databaseのアップグレードと移行](https://speakerdeck.com/oracle4engineer/oracle-database-upgrade-migration-jp): source taxonomy and method-selection factors.
+  - [Zero Downtime Migration 26.1](https://docs.oracle.com/en/database/oracle/zero-downtime-migration/26.1/zdmug/introduction-to-zero-downtime-migration.html): current physical, logical, hybrid, and PDB workflows.
+  - [OCI Database Migration overview](https://docs.oracle.com/en-us/iaas/database-migration/doc/overview.html): current managed-service role.
+- Findings:
+  - Separate the data-movement or replication method from its orchestration layer. ZDM and OCI Database Migration combine underlying Oracle technologies; they are not additional data formats.
+  - Model online migration as initial load plus change synchronization. Data Pump or RMAN can instantiate the target while GoldenGate or Data Guard carries later changes.
+  - Keep RMAN in the existing backup note and add its physical-migration role there instead of duplicating backup and restore guidance.
+  - Avoid static support matrices and fixed version or licensing claims in the overview. Link current Oracle documentation and require source/target validation at implementation time.
+- Verification:
+  - Targeted Prettier checks, `git diff --check`, and the Quartz production build passed after the migration pages and cross-links were added.
+- Open questions: Source and target support, licensing, and cloud-service availability remain time-sensitive and must be checked for each migration project.
+- Related:
+  - [Decision entry](decisions.md#2026-07-16--separate-oracle-database-migration-methods-from-orchestration)
+
+## 2026-07-15 — OCI Base Database Service backup methods
+
+- Status: verified
+- Question: How should the OCI Oracle Database backup note distinguish Recovery Service, unmanaged RMAN, and other backup methods using current Base Database Service behavior?
+- Scope: Base Database Service managed backups, Autonomous Recovery Service RCV/ZRCV terminology, RMAN to Object Storage, local FRA, Data Pump, and standby backup offload.
+- Evidence:
+  - `content/cloud/oracle/database/backup/oci-oracledb-backup.md`: stable overview and selection guide.
+  - `content/cloud/oracle/database/backup/oci-oracledb-backup-zrcv.md`: Recovery Service, real-time data protection, retention, and immutability.
+  - `content/cloud/oracle/database/backup/oci-oracledb-backup-rman.md`: user-managed RMAN design and recovery dependencies.
+  - `content/cloud/oracle/database/backup/oci-oracledb-backup-other-methods.md`: managed Object Storage, local FRA, Data Pump, and standby backup roles.
+  - [Base Database Service backup and recovery](https://docs.oracle.com/en/cloud/paas/base-database/backup-recover/index.html): managed destination behavior, Object Storage schedule and retention, local storage, and unmanaged RMAN guidance.
+  - [Configure automatic backups](https://docs.oracle.com/en/cloud/paas/base-database/backup-db/index.html): current destination availability conditions and on-demand backup behavior.
+  - [Recovery Service terminology](https://docs.oracle.com/en-us/iaas/recovery-service/doc/recovery-service-concepts.html): Level 0/1, real-time data protection, and Virtual Level 0 definitions.
+  - [RMAN backup to Object Storage](https://docs.oracle.com/en/cloud/paas/base-database/backup-rman/index.html): backup module, SBT, encryption, and required backup contents.
+- Findings:
+  - Keep the moved backup page as the hub, preserve its former URL through an alias, and place implementation detail in three sibling notes.
+  - Treat RCV/ZRCV as shorthand for Recovery Service without/with the extra-cost real-time data protection feature, not as unrelated products.
+  - Do not publish a static list of regions where Recovery Service is the only Console destination. Oracle changed the rollout conditions in 2025 and 2026, so direct readers to the current Console and documentation.
+  - Managed Object Storage currently uses weekly Level 0, daily Level 1, and archived redo log backups at a minimum 60-minute frequency, with 7/15/30/45/60-day retention choices.
+  - Treat Data Pump as a logical export and Data Guard as availability/replication; neither replaces a recoverable physical backup history.
+- Verification:
+  - All four backup notes, the Oracle index, and the two Codex knowledge files passed targeted Prettier checks.
+  - `git diff --check` passed.
+  - `npx quartz build` parsed 113 Markdown inputs and emitted 430 files successfully, including all three new detail pages.
+- Open questions: Database-service-specific behavior outside Base Database Service should be verified before expanding these notes to Autonomous, Exadata, or multicloud deployments.
+- Related:
+  - [Decision entry](decisions.md#2026-07-15--split-the-oci-database-backup-note-by-reader-intent)
+
+## 2026-07-07 — OCI Oracle Database service taxonomy
+
+- Status: verified
+- Question: Which current OCI Oracle Database deployment models should an advanced service
+  overview distinguish?
+- Scope: Base Database Service, Exadata Database Service, Autonomous AI Database,
+  Cloud@Customer, globally distributed variants, and adjacent multicloud models.
+- Evidence:
+  - `content/cloud/oracle/database/services/oci-oracle-database-services.md`: resulting service map,
+    responsibility boundaries, selection criteria, and official source links.
+  - [Base Database Service](https://docs.oracle.com/en/cloud/paas/base-database/about/): current
+    VM, edition, RAC, version, maintenance, backup, and support model.
+  - [Exadata Database Service on Exascale Infrastructure](https://docs.oracle.com/en-us/iaas/exadb-xs/doc/overview-exadb-xs-service.html):
+    shared physical infrastructure, VM cluster scaling, and Exascale storage architecture.
+  - [Autonomous responsibility model](https://docs.oracle.com/en/cloud/paas/autonomous-database/shared-responsibility-model.html):
+    Oracle-managed DBMS lifecycle versus customer-owned application, identity, network, and
+    data responsibilities.
+- Findings:
+  - Treat co-managed versus Autonomous as the first decision boundary; `Dedicated` describes
+    resource isolation, not who operates the DBMS.
+  - Include ExaDB-XS alongside Base and dedicated Exadata. It is a shared-infrastructure
+    Exadata service with customer-managed guest/database layers, not an Autonomous tier.
+  - ExaDB-XS storage differs materially by database generation: 26ai uses Exascale Smart
+    Storage without database-file ASM, while 19c uses Exascale block storage with ASM.
+  - Model public cloud versus Cloud@Customer separately from the operational model. Both
+    co-managed and Autonomous offerings can use customer-data-center Exadata.
+  - Treat globally distributed services as sharded application/data architectures rather
+    than ordinary cross-region standby options.
+- Verification:
+  - Opened every official documentation URL listed in the article on 2026-07-07.
+  - `npx prettier --check content/cloud/oracle/database/services/oci-oracle-database-services.md content/cloud/oracle/index.md`
+    passed.
+  - `npx quartz build` parsed 110 Markdown inputs and emitted 424 files successfully.
+- Open questions:
+  - ExaDB-XS and multicloud regional availability and feature matrices are time-sensitive;
+    verify them at design time rather than copying a static region list into content.
+
 ## 2026-07-05 — GitHub Pages workflow failure and build-time review
 
 - Status: partial (local changes verified; the next GitHub-hosted deployment is pending)

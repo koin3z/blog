@@ -17,6 +17,9 @@ docs/codex/*.log
 docs/codex/*.local.*
 docs/codex/*-raw.*
 
+# Skill evaluation workspaces
+.agents/skills/*-workspace/
+
 # Secret-bearing local files
 .env
 .env.*
