@@ -1,7 +1,7 @@
 ---
 title: container
 date: 2025-11-21
-modified: 2026-06-02
+modified: 2026-07-21
 draft: false
 tags:
   - containers
@@ -144,14 +144,20 @@ Dockerが「アプリケーションをイメージ化して実行する」こ�
 - ステートフルなデータをコンテナ内だけに置くと、再作成時に失われる
 - LinuxコンテナとWindowsコンテナは前提とするカーネルが異なるため、同じものとして扱えない
 
-## 関連する概念
+## 関連メモ
 
-- [[containers/docker]]
-- [[containers/docker-image]]
-- [[containers/docker-container]]
-- [[containers/docker-volume]]
-- [[containers/docker-network]]
-- [[containers/open-container-initiative]]
+- Docker
+  - [[containers/docker|Docker Engine、Image、Registry、Container]]
+  - [[containers/docker/image-build|Docker イメージの作成と動作確認]]
+- Kubernetes
+  - [[containers/kubernetes/networking|Kubernetes Service と Ingress]]
+- 仕様とRegistry
+  - [[containers/open-container-initiative|Open Container Initiative]]
+  - [[containers/ghcr|GitHub Container Registry]]
+- Linux の基盤機能
+  - [[linux/namespaces/index|Linux Namespace]]
+  - [[linux/cgroup|cgroup]]
+  - [[linux/capability|Linux Capability]]
 
 ## 参照リンク
 

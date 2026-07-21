@@ -1,13 +1,12 @@
 ---
 title: Security Compliance
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-21
 draft: false
 tags:
   - security/compliance
 aliases:
   - memos/security-compliance
-  - memos/security-compliance/index
 description: セキュリティ初学者が法令、規格、認証、監査報告書、フレームワークを学ぶための入口。
 ---
 
@@ -58,7 +57,6 @@ flowchart LR
 | 業界標準 | [[security/compliance/pci-dss|PCI DSS]] | 決済カードのアカウントデータを保護できているか |
 | 保証報告書 | [[security/compliance/soc2|SOC 2]] | 対象期間中にサービス組織の統制が有効だったか |
 | 国内の認証制度 | [[security/compliance/privacy-mark|プライバシーマーク]] | 個人情報保護マネジメントシステムを運用しているか |
-| 運用・技術 | [[security/compliance/cvss|CVSS]]、[[security/compliance/sbom|SBOM]]、[[security/compliance/pqc-alg|PQC]] | 脆弱性・供給網・暗号移行をどう管理するか |
 
 ## 業務別の読み順
 
@@ -76,13 +74,6 @@ flowchart LR
 3. [[security/compliance/fips|FIPS 140-3]] とクラウド事業者の責任共有モデル
 4. [[security/compliance/soc2|SOC 2]] の対象範囲、例外、補完的利用者企業統制を確認する
 
-### 脆弱性・ソフトウェア供給網
-
-1. [[security/compliance/cvss|CVSS]] で技術的深刻度を読む
-2. 資産重要度、悪用実績、露出、補完統制を加えて対応優先度を決める
-3. [[security/compliance/sbom|SBOM]] で利用コンポーネントを特定し、影響確認につなげる
-4. [[security/compliance/pqc-alg|PQC]] を暗号資産棚卸しと長期移行計画に反映する
-
 ## 初学者が最初に確認する質問
 
 - これは法令、契約、規格、認証、監査報告書、ガイドラインのどれか
@@ -94,3 +85,8 @@ flowchart LR
 - 不適合や例外を誰が承認し、いつ見直すか
 - インシデント時の報告先と期限は何か
 - 現行版、移行期限、契約上の追加条件を確認したか
+
+## 関連領域
+
+- [[security/index|セキュリティメモの全体像]]
+  - 脆弱性管理、ソフトウェア供給網、暗号技術は、制度の適用判断と分けて整理する

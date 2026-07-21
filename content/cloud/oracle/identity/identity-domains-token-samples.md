@@ -1,7 +1,7 @@
 ---
 title: Identity Domains で生成されるトークンサンプル
 date: 2025-11-23
-modified: 2025-11-23
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/identity
@@ -9,10 +9,9 @@ tags:
   - identity/oidc
 aliases:
   - cloud/oracle/idcs-token
-description: Identity Domains で生成されるトークンサンプル
+  - cloud/oracle/identity/idcs-token
+description: OCI Identity Domains が発行する Access Token、ID Token、UserInfo、認証トークンのサンプルを整理する。
 ---
-
-OCI IAM Identity Domains で発行されるトークンのサンプル
 
 ## Access Token
 

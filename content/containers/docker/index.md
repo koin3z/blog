@@ -1,16 +1,26 @@
 ---
 title: Docker
 date: 2025-11-21
-modified: 2025-11-21
+modified: 2026-07-21
 draft: false
 tags:
   - containers/docker
 aliases:
   - memos/containers/docker
-description: Docker についてのまとめ
+  - containers/docker-cli
+  - memos/containers/docker-cli
+  - containers/docker-container
+  - memos/containers/docker-container
+  - containers/docker-image
+  - memos/containers/docker-image
+  - containers/docker-network
+  - memos/containers/docker-network
+  - containers/docker-volume
+  - memos/containers/docker-volume
+description: Docker Engine、Image、Registry、Container、CLI と Linux の基盤機能の関係を整理する。
 ---
 
-## Dockerとは
+## Docker とは
 
 > コンテナ仮想化を用いて[アプリケーション](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2 "アプリケーションソフトウェア")を開発・配置・実行するためのオープンプラットフォーム
 > https://ja.wikipedia.org/wiki/Docker
@@ -131,6 +141,46 @@ docker container run -i -t ubuntu /bin/bash
    - コンテナに接続し，アプリケーションを実行
    - 標準入力・標準出力・エラーを記録，表示する
 
+## Docker CLI
+
+### `docker container`
+
+```text
+→ docker container --help
+Usage:  docker container COMMAND
+
+Manage containers
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  exec        Execute a command in a running container
+  export      Export a container's filesystem as a tar archive
+  inspect     Display detailed information on one or more containers
+  kill        Kill one or more running containers
+  logs        Fetch the logs of a container
+  ls          List containers
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  prune       Remove all stopped containers
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  run         Create and run a new container from an image
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker container COMMAND --help' for more information on a command.
+```
+
 ## 使用される技術
 
 - Dockerはカーネルが持つ機能を利用している
@@ -175,6 +225,10 @@ docker container run -i -t ubuntu /bin/bash
   - vfs
   - DeviceMapper
   - overlay2（現在の推奨ドライバ）
+
+## 関連メモ
+
+- [[containers/docker/image-build|Docker イメージの作成と動作確認]]
 
 ## 参照リンク
 

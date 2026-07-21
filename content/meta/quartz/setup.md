@@ -7,6 +7,7 @@ tags:
   - meta/quartz
 aliases:
   - quartz/setup
+description: Quartz のローカルプレビューを起動する最小手順。
 ---
 
 ローカル環境の立ち上げ

@@ -1,12 +1,13 @@
 ---
 title: Spec Kit
 date: 2026-04-04
-modified: 2026-04-04
+modified: 2026-07-21
 draft: false
 tags:
   - ai/coding-agents
 aliases:
   - memos/ai-agent/speckit
+  - ai/agents/speckit
 description: Spec Kit による仕様駆動の開発ワークフローを整理する。
 ---
 

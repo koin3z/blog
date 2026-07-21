@@ -1,7 +1,7 @@
 ---
 title: Linux 特殊パーミッション
 date: 2026-06-07
-modified: 2026-06-07
+modified: 2026-07-21
 draft: false
 tags:
   - linux/security
@@ -9,8 +9,6 @@ aliases:
   - memos/permission
 description: setuid、setgid、sticky bit の基本と確認方法を整理する。
 ---
-
-# Linux 特殊パーミッション：setuid / setgid / sticky bit
 
 ## 全体像
 

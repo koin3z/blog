@@ -1,7 +1,7 @@
 ---
 title: ID-JAG（Identity Assertion JWT Authorization Grant）
 date: 2026-07-03
-modified: 2026-07-03
+modified: 2026-07-21
 draft: false
 tags:
   - identity/oauth
@@ -11,6 +11,7 @@ aliases:
   - Identity Assertion JWT Authorization Grant
   - Cross-App Access
   - XAA
+  - identity/oauth/id-jag
 description: ID-JAG の目的、トークン交換フロー、JWT の構造、導入時の注意点、MCP との関係を整理する。
 ---
 

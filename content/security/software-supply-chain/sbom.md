@@ -1,12 +1,12 @@
 ---
 title: SBOM
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-21
 draft: false
 tags:
-  - security/compliance
   - security/supply-chain
 aliases:
+  - security/compliance/sbom
   - memos/sbom
   - memos/security-compliance/sbom
 description: SBOM の目的、主要形式、生成・配布・利用のライフサイクルと限界を整理する。

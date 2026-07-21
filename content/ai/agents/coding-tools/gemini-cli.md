@@ -1,13 +1,16 @@
 ---
 title: Gemini CLI
 date: 2025-12-07
-modified: 2025-12-07
+modified: 2026-07-21
 draft: false
 tags:
   - ai/coding-agents
 aliases:
   - memos/gemini-cli
   - memos/ai-agent/coding-tools/gemini-cli
+  - ai/agents/coding-tools/gemini-cli-mcp
+  - memos/gemini-cli-mcp
+  - memos/ai-agent/coding-tools/gemini-cli-mcp
 description: Gemini CLI のプロンプト、コンテキストファイル、MCP 連携、設定構成を整理する。
 ---
 
@@ -112,6 +115,8 @@ https://geminicli.com/docs/reference/configuration/#settings-files
 - 設定ファイル
 
 ## Claude Clode と比較しての Gemini Cli の思想について
+
+Doc: [MCP servers with the Gemini CLI](https://geminicli.com/docs/tools/mcp-server/)
 
 - Claude Codeの `skills/` や `agents/` は，基本的に「高度なプロンプト（自然言語の指示）の集まり」
   - 仕組み:

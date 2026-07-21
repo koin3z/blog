@@ -1,14 +1,14 @@
 ---
 title: OCI Vault
 date: 2025-12-13
-modified: 2025-12-13
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/vault
   - security/cryptography
 aliases:
   - cloud/oracle/oci-vault
-description: OCI Vault 概要
+description: OCI Vault のVault、マスター暗号化キー、シークレット、エンドポイント、バックアップ、レプリケーションを整理する。
 ---
 
 ## 概要
@@ -28,7 +28,7 @@ description: OCI Vault 概要
     - マルチテナントのHSMパーティションを使用。コスト効率が良く、一般的な用途向け。
 - 以下２種類のクレデンシャルを管理できる
   - マスター暗号化キー（[[cloud/oracle/vault/oci-vault-mek]]）
-  - シークレット（）
+  - シークレット（[[cloud/oracle/vault/oci-vault-secret]]）
 
 ## マスター暗号化キー (MEK)
 

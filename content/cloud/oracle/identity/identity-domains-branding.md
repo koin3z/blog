@@ -1,12 +1,13 @@
 ---
 title: Identity Domainsで設定できるログイン画面デザイン
 date: 2025-11-24
-modified: 2025-11-24
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/identity
 aliases:
   - cloud/oracle/idce-branding
+  - cloud/oracle/identity/idce-branding
 description: OCI Identity Domains で設定できるログイン画面デザインとブランディングを整理する。
 ---
 

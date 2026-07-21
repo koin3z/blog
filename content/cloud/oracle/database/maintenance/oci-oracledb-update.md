@@ -1,7 +1,7 @@
 ---
 title: OCI における Oracle Database のアップデート／アップグレード
 date: 2026-01-09
-modified: 2026-07-16
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/database
@@ -114,7 +114,7 @@ Doc: [Using AutoUpgrade for Oracle Database Upgrades](https://docs.oracle.com/en
 | --- | --- | --- |
 | OCI コンソール／API | Database と DB システムの更新、アップグレードを OCI 管理ワークフローで実行する | 利用可能なバージョン、プリチェック、履歴、失敗時のロールバック可否を OCI が管理する。一般提供リリースの Database アップグレードでは原則としてこの経路を使う |
 | [[cloud/oracle/database/maintenance/oracledb-autoupgrade\|AutoUpgrade]] | 事前解析、fixup、upgrade、post-upgrade 検証、non-CDB→PDB、unplug-plug upgrade、patching を自動化する | OCI 管理ワークフローの外で実行できることと、Base Database Service でその操作がサポートされることは別 |
-| Real Application Testing（RAT） | Database Replay と SQL Performance Analyzer で更新前後の回帰を評価する | 契約形態、機能、キャプチャ元、リプレイ先に応じて利用権を確認する |
+| [[cloud/oracle/database/performance/oracledb-performance#ワークロードの検証と計画安定化\|Real Application Testing（RAT）]] | Database Replay と SQL Performance Analyzer で更新前後の回帰を評価する | 契約形態、機能、キャプチャ元、リプレイ先に応じて利用権を確認する |
 
 ### Real Application Testing のライセンス
 

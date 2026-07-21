@@ -1,14 +1,14 @@
 ---
 title: OCI Vault マスター暗号化キー
 date: 2025-12-13
-modified: 2025-12-13
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/vault
   - security/cryptography
 aliases:
   - cloud/oracle/oci-vault-mek
-description: OCI Vault マスター暗号化キー
+description: OCI Vault のマスター暗号化キー、Key Version、BYOK、暗号化、署名、エクスポート操作を整理する。
 ---
 
 ## 概要

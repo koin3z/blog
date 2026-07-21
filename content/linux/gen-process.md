@@ -1,11 +1,12 @@
 ---
 title: Linuxのプロセス生成
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-21
 draft: false
 tags:
   - linux/processes
-description: このページの内容についての簡単な説明
+aliases: []
+description: Linux でプロセスを生成・置換する fork、clone、posix_spawn、exec の役割を整理する。
 ---
 
 プロセスを生成する方法

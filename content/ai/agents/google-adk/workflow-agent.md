@@ -1,13 +1,14 @@
 ---
-title: Workflow Agent
+title: Google ADK Workflow Agent
 date: 2026-03-29
-modified: 2026-03-29
+modified: 2026-07-21
 draft: false
 tags:
-  - ai/agents
+  - ai/agents/google-adk
 aliases:
   - memos/ai-agent/workflow-agent
-description: Workflow Agent の種類、順次実行、条件分岐、ループなどの構成を整理する。
+  - ai/agents/workflow-agent
+description: Google ADK Workflow Agent の順次実行、並列実行、ループによる構成を整理する。
 ---
 
 ## Workflow Agent

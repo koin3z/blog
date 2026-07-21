@@ -1,7 +1,7 @@
 ---
 title: Linux Capability
 date: 2026-06-07
-modified: 2026-06-07
+modified: 2026-07-21
 draft: false
 tags:
   - linux/security
@@ -10,8 +10,6 @@ aliases:
   - memos/capability
 description: Linux Capability の基本、setuid root との違い、ping のファイルケイパビリティ、プロセス上の確認方法を整理する。
 ---
-
-# Linux Capability
 
 ## 1. なぜ Capability が必要か
 

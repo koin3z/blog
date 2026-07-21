@@ -1,13 +1,14 @@
 ---
-title: bookmark
+title: User Namespace With a Pod（CloudNative Days Winter 2024）
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-21
 draft: false
 tags:
   - type/bookmark
   - containers/kubernetes
   - linux/namespaces
-description: このページの内容についての簡単な説明
+aliases: []
+description: Kubernetes Pod で User Namespace を使い、コンテナとNodeのUID・GIDを分離する仕組みの講演メモ。
 url: https://speakerdeck.com/pfn/cloudnative-days-2024-usernamespace-with-a-pod
 ---
 

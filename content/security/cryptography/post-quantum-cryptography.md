@@ -1,12 +1,12 @@
 ---
-title: PQCアルゴリズム
+title: 耐量子計算機暗号（PQC）
 date: 2026-05-24
-modified: 2026-07-02
+modified: 2026-07-21
 draft: false
 tags:
-  - security/compliance
   - security/cryptography
 aliases:
+  - security/compliance/pqc-alg
   - memos/pqc-alg
   - memos/security-compliance/pqc-alg
 description: 耐量子計算機暗号の脅威、NIST標準、暗号資産棚卸しと移行の進め方を整理する。

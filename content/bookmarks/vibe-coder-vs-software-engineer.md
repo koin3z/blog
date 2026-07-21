@@ -1,11 +1,13 @@
 ---
 title: Vibe Coder vs Software Engineer
 date: 2026-06-28
+modified: 2026-07-21
 draft: false
 tags:
   - type/bookmark
   - ai/coding-agents
-description: null
+aliases: []
+description: Vibe Coding とソフトウェアエンジニアリングが担うライフサイクル上の責任範囲を比較した記事のメモ。
 url: https://yusufaytas.com/vibe-coder-vs-software-engineer
 ---
 

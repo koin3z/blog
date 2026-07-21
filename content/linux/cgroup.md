@@ -1,7 +1,7 @@
 ---
 title: cgroup（Control Groups）
 date: 2026-06-07
-modified: 2026-06-07
+modified: 2026-07-21
 draft: false
 tags:
   - linux/cgroups
@@ -11,8 +11,6 @@ aliases:
   - memos/cgroup
 description: Linux cgroup の基本、cgroup v1/v2 の構成差分、v2 のファイル構成、systemd・Docker・Kubernetes との関係を整理する。
 ---
-
-# cgroup（Control Groups）
 
 ## 1. cgroup とは何か
 

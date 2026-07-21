@@ -1,13 +1,16 @@
 ---
 title: Oracle Access Governance
 date: 2026-04-19
-modified: 2026-04-19
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/identity
   - security/compliance
 aliases:
   - cloud/oracle/access-governance-overview
+  - cloud/oracle/access-governance/access-governance-overview
+  - cloud/oracle/access-governance-api
+  - cloud/oracle/access-governance/access-governance-api
 description: Oracle Access Governance の要素、アクセスレビュー、ロール、キャンペーンを整理する。
 ---
 

@@ -1,13 +1,14 @@
 ---
-title: Custom Agent
+title: Google ADK Custom Agent
 date: 2026-03-30
-modified: 2026-03-30
+modified: 2026-07-21
 draft: false
 tags:
-  - ai/agents
+  - ai/agents/google-adk
 aliases:
   - memos/ai-agent/custom-agent
-description: カスタムエージェントの InvocationContext、Event、Action、実装パターンを整理する。
+  - ai/agents/custom-agent
+description: Google ADK Custom Agent の InvocationContext、Event、Action、実装パターンを整理する。
 ---
 
 ## カスタム・エージェント

@@ -7,6 +7,7 @@ tags:
   - meta/quartz
 aliases:
   - quartz/callouts
+description: Quartz と Obsidian の Callout 記法、折りたたみ、ネスト、独自デザインを整理する。
 ---
 
 > [!abstruct] 参照リンク

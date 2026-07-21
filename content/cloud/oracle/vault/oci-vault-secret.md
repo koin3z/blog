@@ -1,14 +1,14 @@
 ---
 title: OCI Vault シークレット
 date: 2025-12-13
-modified: 2025-12-13
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/vault
   - security/cryptography
 aliases:
   - cloud/oracle/oci-vault-secret
-description: OCI Vault シークレット
+description: OCI Vault シークレットの更新、ローテーション、取得、レプリケーションを整理する。
 ---
 
 ## 概要

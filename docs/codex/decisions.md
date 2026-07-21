@@ -33,6 +33,47 @@ decisions that future Codex runs should preserve or consciously revisit.
 
 ## Decisions
 
+## 2026-07-21 — Use topic hubs while preserving document-role branches
+
+- Status: accepted
+- Context: The repository initially had 145 Markdown pages, no outgoing links from the root
+  page, and 61 pages with no incoming page link. Top-level directories mixed technical subject
+  areas with document roles, while product-specific and protocol-specific notes were sometimes
+  stored in broad catch-all folders.
+- Decision:
+  - Keep technical branches organized by subject: `ai/`, `cloud/`, `containers/`,
+    `development/`, `identity/`, `linux/`, and `security/`.
+  - Keep `articles/`, `bookmarks/`, and `meta/` as document-role branches because their retrieval
+    question is the type or maintenance status of the document rather than its technical topic.
+  - Use a hub when it answers a selection or navigation question. Do not add an index to every
+    directory when the parent hub already provides the required path.
+  - Place framework-specific notes under the framework, protocol extensions under the protocol
+    role they extend, product notes under the product family, and security notes under the
+    operational question they answer.
+  - Consolidate empty or very thin pages when they answer the same retrieval question, and retain
+    each former canonical path in `aliases`.
+  - Preserve the existing reader-intent hierarchy under `cloud/oracle/database/`, including the
+    current performance and storage notes.
+- Alternatives considered:
+  - A single axis for every top-level directory was rejected because authored articles,
+    bookmarks, and site-maintenance notes have a useful document-role boundary independent of
+    subject taxonomy.
+  - Keeping all existing paths was rejected because generic agent, compliance, and container
+    folders obscured product and task boundaries.
+  - Creating an index in every directory was rejected because thin indexes would duplicate
+    parent navigation without answering a new retrieval question.
+- Consequences: The root page and subject hubs provide a stable selection path, detail pages sit
+  behind the nearest useful product or task boundary, and published URLs moved by this change
+  continue to resolve through alias redirects. Draft-only site-maintenance notes remain outside
+  the public navigation.
+- Evidence and verification: See the related research entry. Static content audits found no
+  broken or ambiguous internal target and no alias collision. TypeScript, changed-file Prettier,
+  `git diff --check`, and the Quartz production build passed with Node.js 22.16.0.
+- Supersedes:
+- Superseded by:
+- Related:
+  - [Research entry](research-log.md#2026-07-21--repository-wide-content-taxonomy-and-link-audit)
+
 ## 2026-07-16 — Group OCI Database notes by reader intent
 
 - Status: accepted

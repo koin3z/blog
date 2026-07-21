@@ -1,41 +1,24 @@
 ---
 title: Oracle Cloud
+date: 2025-07-11
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci
-description: Oracle Cloud Infrastructure と関連サービスのメモ。
+aliases: []
+description: OCI と関連する Oracle Cloud サービスを AI、Identity、Database、Storage、Container、Functions、Vault に分類する。
 ---
 
-Oracle Cloud Infrastructure と関連サービスについての検証メモをまとめます。
+Oracle Cloud Infrastructure と関連サービスのメモを分野別にまとめる。
 
-- [[cloud/oracle/ai/index|OCI・Oracle AI サービス全体像]]
-- [[cloud/oracle/access-governance/access-governance-overview]]
-- [[cloud/oracle/vault/oci-vault]]
-- [[cloud/oracle/containers/ocir]]
-- [[cloud/oracle/database/index|OCI データベースサービス概要]]
-  - [[cloud/oracle/database/services/oci-oracle-database-services|OCI Oracle Database サービス概要]]
-    - [[cloud/oracle/database/services/oci-base-database-service]]
-    - [[cloud/oracle/database/services/oci-exadata-database-service]]
-    - [[cloud/oracle/database/services/oci-autonomous-ai-database]]
-    - [[cloud/oracle/database/services/oci-globally-distributed-database]]
-  - [[cloud/oracle/database/services/oci-database-with-postgresql]]
-  - [[cloud/oracle/database/services/mysql-heatwave]]
-  - [[cloud/oracle/database/services/oci-nosql-database]]
-  - [[cloud/oracle/database/services/oci-cache]]
-  - [[cloud/oracle/database/services/oci-search-with-opensearch]]
-- [[cloud/oracle/database/backup/oci-oracledb-backup]]
-  - [[cloud/oracle/database/backup/oci-oracledb-backup-zrcv]]
-  - [[cloud/oracle/database/backup/oci-oracledb-backup-rman]]
-  - [[cloud/oracle/database/backup/oci-oracledb-backup-other-methods]]
-- [[cloud/oracle/database/maintenance/oci-oracledb-update]]
-  - [[cloud/oracle/database/maintenance/oracledb-autoupgrade]]
-- [[cloud/oracle/database/migration/oci-oracledb-migration]]
-  - [[cloud/oracle/database/migration/oracledb-data-pump]]
-  - [[cloud/oracle/database/migration/oracledb-transportable-tablespaces]]
-  - [[cloud/oracle/database/migration/oracledb-pdb-migration]]
-  - [[cloud/oracle/database/migration/oracledb-data-guard]]
-  - [[cloud/oracle/database/migration/oracledb-goldengate]]
-  - [[cloud/oracle/database/migration/oci-zero-downtime-migration]]
-  - [[cloud/oracle/database/migration/oci-database-migration-service]]
-- [[cloud/oracle/database/security/oracledb-tde]]
-- [[cloud/oracle/database/maintenance/patch]]
+## 分野別の導線
+
+| 分野                    | 入口                                                                   | 対象                                         |
+| ----------------------- | ---------------------------------------------------------------------- | -------------------------------------------- |
+| AI                      | [[cloud/oracle/ai/index\|OCI・Oracle AI サービス全体像]]               | OCI と関連する Oracle AI サービス            |
+| Identity とアクセス管理 | [[cloud/oracle/identity/index\|OCI Identity と Access Governance]]     | Identity Domains と Oracle Access Governance |
+| データベース            | [[cloud/oracle/database/index\|OCI データベースサービス概要]]          | データモデルと運用モデルによるサービス選択   |
+| ストレージ              | [[cloud/oracle/storage/oci-block-volume\|OCI Block Volume]]            | ブロックストレージの構成、性能、データ保護   |
+| コンテナ                | [[cloud/oracle/containers/ocir\|Oracle Cloud Infrastructure Registry]] | コンテナイメージの保管と利用                 |
+| Functions               | [[cloud/oracle/functions/fn-cli\|Fn CLI]]                              | Fn Project CLI の導入と実行環境              |
+| 鍵とシークレット        | [[cloud/oracle/vault/oci-vault\|OCI Vault]]                            | 鍵、シークレット、暗号化                     |

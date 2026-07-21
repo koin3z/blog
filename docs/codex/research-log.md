@@ -34,6 +34,177 @@ existing entry when the same question is revisited.
 
 ## Entries
 
+## 2026-07-21 — Repository-wide content taxonomy and link audit
+
+- Status: verified
+- Question: How should the current pages be grouped so a reader can move from the root to a
+  technical topic, product family, protocol role, or document type without relying on the file
+  tree?
+- Scope: All Markdown pages under `content/`, including the existing Oracle Database performance
+  and OCI Block Volume work present in the worktree. The inventory contained 145 pages before
+  restructuring and 147 pages after consolidation, moves, and new hubs.
+- Evidence:
+  - `content/index.md`: root selection hub for subject areas and document-role branches.
+  - `content/ai/index.md`, `content/cloud/oracle/index.md`, `content/containers/index.md`,
+    `content/development/index.md`, `content/identity/index.md`, `content/linux/index.md`, and
+    `content/security/index.md`: subject navigation boundaries.
+  - `content/articles/index.md`, `content/bookmarks/index.md`, and `content/meta/index.md`:
+    document-role navigation boundaries.
+  - `content/ai/agents/google-adk/`, `content/identity/oauth/grant-types/`,
+    `content/cloud/oracle/identity/`, `content/containers/docker/`,
+    `content/security/vulnerability-management/`, `content/security/software-supply-chain/`, and
+    `content/security/cryptography/`: resulting product, protocol-role, and operational groupings.
+- Findings:
+  - The repository needs two explicit top-level axes. Technical notes are retrieved by subject,
+    while articles, bookmarks, and site-maintenance notes are retrieved by document role.
+  - Google ADK pages belong under the framework, ID-JAG belongs with OAuth grant types, Oracle
+    Access Governance belongs with Oracle Identity, and CVSS, SBOM, and post-quantum cryptography
+    answer different security questions than compliance standards.
+  - Docker command stubs and image-build notes answered two retrieval questions and were more
+    useful as a Docker hub plus one image-build procedure. The empty Access Governance API note
+    and the Gemini CLI MCP stub were likewise folded into their owning notes.
+  - The nearly empty Kubernetes Service and Ingress pages answered one networking-selection
+    question and were consolidated into `content/containers/kubernetes/networking.md`.
+  - Former canonical paths were preserved as aliases, while body links were updated to current
+    canonical paths.
+  - After restructuring, every published page is reachable from the root. Draft-only Quartz and
+    Obsidian setup notes remain discoverable through the draft `meta/index.md` source file rather
+    than public navigation.
+- Verification:
+  - Parsed all 147 frontmatter blocks and checked required fields, field order, dates, body H1
+    usage, internal page and anchor targets, local resources, aliases, and hub reachability.
+  - Found no broken or ambiguous internal target, no invalid anchor, no alias collision, and no
+    body link that still uses a moved canonical path.
+  - TypeScript, changed-file Prettier, and `git diff --check` passed with Node.js 22.16.0.
+  - `npm run build` parsed 147 inputs, filtered 3 drafts, and emitted 549 files with Node.js
+    22.16.0.
+  - The repository-wide `npm run check` reached the Prettier stage but remains nonzero because
+    the unchanged `CODE_OF_CONDUCT.md`, `content/cloud/oracle/ai/index.md`, and
+    `content/linux/mount.md` were already outside Prettier's expected format.
+- Open questions:
+  - Existing time-sensitive technical claims were not re-researched as part of this structural
+    change and retain their current verification state.
+  - Several intentionally thin or draft notes remain candidates for later factual expansion.
+  - The current Oracle Database performance and storage placement should be revisited only if
+    those notes later develop a distinct retrieval question or update cycle.
+- Related:
+  - [Decision entry](decisions.md#2026-07-21--use-topic-hubs-while-preserving-document-role-branches)
+
+## 2026-07-21 — Storage performance metrics and OCI Block Volume measurement
+
+- Status: verified
+- Question: How should IOPS, throughput, latency, I/O size, and queue depth be related so
+  storage specifications and benchmark results can be compared without mixing measurement
+  layers?
+- Scope: General block-storage performance concepts, Oracle Database workload examples,
+  `fio` measurement conditions, OCI Block Volume performance and Monitoring metrics, and the
+  June 2026 Performance SLA terms as of 2026-07-21.
+- Evidence:
+  - `content/cloud/oracle/database/performance/storage-performance.md`: resulting concept
+    map, equations, workload matrix, measurement workflow, and diagnostic table.
+  - `content/cloud/oracle/storage/oci-block-volume.md`: resulting product note for resource
+    boundaries, VPU/GB performance levels, effective-performance constraints, SLA scope,
+    Monitoring, autotuning, and data protection.
+  - [OCI Block Volume Performance](https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumeperformance.htm):
+    performance levels, VPU/GB scaling, per-volume and per-instance limits, shape effects,
+    and Performance SLA conditions.
+  - [Oracle PaaS and IaaS Public Cloud Services Pillar Document, June 2026](https://www.oracle.com/contracts/docs/paas_iaas_pub_cld_srvs_pillar_4021422.pdf?download=false):
+    current Block Volume Availability, Manageability, and Performance SLA definitions,
+    eligibility conditions, exclusions, credit tiers, and claims process.
+  - [OCI Block Volume metrics](https://docs.oracle.com/en-us/iaas/Content/Block/References/volumemetrics-reference.htm):
+    interval counters, guaranteed-performance metrics, throttling, and measurement scope.
+  - [OCI FIO examples](https://docs.oracle.com/en-us/iaas/Content/Block/References/samplefiocommandslinux.htm)
+    and [fio documentation](https://fio.readthedocs.io/en/latest/fio_doc.html): distinct IOPS,
+    throughput, and latency profiles; I/O-depth behavior; output semantics; and destructive
+    write-test cautions.
+- Findings:
+  - For the same measurement layer, throughput is approximately IOPS multiplied by average
+    I/O size. Maximum IOPS and maximum throughput normally describe different I/O sizes and
+    need not be reached simultaneously.
+  - In steady state, outstanding I/O is approximately IOPS multiplied by average latency.
+    Increasing queue depth can expose concurrency, but after saturation it mainly increases
+    latency, so percentile latency must be evaluated with IOPS.
+  - Application or database logical I/O, OS block-device I/O, and storage-service I/O are
+    different measurements because caches and lower layers can absorb, split, or merge
+    requests.
+  - OCI performance settings determine IOPS/GB and throughput/GB; volume size scales total
+    performance up to per-volume limits, while the Compute shape, attachment, and network can
+    impose lower aggregate limits.
+  - VPU/GB is a provisioned performance and billing setting rather than observed I/O. At 10
+    VPU/GB and above, Oracle publishes formulas for IOPS/GB, KBPS/GB, and per-volume limits;
+    the 0 VPU/GB Lower Cost level uses separate fixed characteristics.
+  - The June 2026 Performance SLA uses 4 KiB IOPS for a single raw, unformatted volume. Its
+    monthly commitment is 99.9%, based on time below 90% of Oracle's published minimum IOPS;
+    Lower Cost, throughput, latency, filesystems, databases, and application response time are
+    not included in that calculation.
+  - Performance SLA eligibility also depends on attachment type and, for paravirtualized
+    attachments, VM core count. Ultra High Performance separately requires a supported shape
+    and multipath-enabled attachment and has lower paravirtualized and boot-volume limits.
+  - `VolumeReadOps`, `VolumeWriteOps`, and actual throughput are interval measurements and
+    must be normalized for rate comparisons. `VolumeGuaranteedVPUsPerGB` and
+    `VolumeGuaranteedIOPS` are interval-average gauges and must not be rate-converted, while
+    `VolumeGuaranteedThroughput` is megabytes per interval and needs rate conversion for an
+    MB/s comparison. The `oci_blockstore` namespace has no direct observed latency metric.
+  - Read-only benchmarks can still affect production load. Write benchmarks overwrite raw
+    devices and ordinary test files, so destructive profiles belong only on disposable test
+    storage.
+- Verification:
+  - Independent technical and note-structure reviews found no remaining material error after
+    correcting dimensionally inconsistent formulas, Oracle commit semantics, `fio` output
+    interpretation, VPU/GB calculation order, SLA idle-load interpretation, Monitoring rate
+    conversion, and Ultra High Performance attachment conditions.
+  - Targeted Prettier checks and `git diff --check` passed.
+  - A Quartz production build parsed 145 Markdown inputs and emitted 531 files with the
+    bundled Node.js 24.14.0 runtime; the new page and both internal backlinks were present.
+  - The repository-specified Node.js 22.16.0 was unavailable. System Node.js 26.5.0 exhausted
+    its default heap during the same build, so exact 22.16.0 behavior remains unverified.
+- Open questions: Revalidate current Block Volume limits, supported attachment and shape
+  combinations, the customer's order and Rate Card, and the latest Pillar Document for the
+  target tenancy and workload.
+
+## 2026-07-21 — Oracle Database performance features and OCI management boundary
+
+- Status: verified
+- Question: How should AWR, ASH, ADDM, SQL Tuning Set, advisors, regression testing,
+  and plan stabilization be related, and which parts of OCI Database Management are
+  database-native versus OCI-native?
+- Scope: Oracle Database 19c through 26ai concepts, OCI Database Management, Operations
+  Insights, and licensing boundaries as of 2026-07-21.
+- Evidence:
+  - `content/cloud/oracle/database/performance/oracledb-performance.md`: resulting feature
+    map, comparison tables, responsibility boundary, storage layers, and licensing gates.
+  - [Oracle Database Performance Tuning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgdba/performance-tuning-overview.html): AWR, ASH, ADDM, DB Time, and advisor relationships.
+  - [SQL Tuning Set documentation](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/managing-sql-tuning-sets.html): STS contents, capture sources, consumers, and transport behavior.
+  - [Database Management feature support matrix](https://docs.oracle.com/en-us/iaas/database-management/doc/database-management-feature-support-matrix.html): edition, version, deployment, and Basic/Full gates.
+  - [Database Management metrics](https://docs.oracle.com/en-us/iaas/database-management/doc/database-management-metrics.html): OCI Monitoring namespaces and retention boundary.
+  - [Operations Insights overview](https://docs.oracle.com/en-us/iaas/operations-insights/doc/operations-insights.html) and [AWR Hub](https://docs.oracle.com/en-us/iaas/operations-insights/doc/awr-hub.html): long-term warehouse and detailed AWR storage.
+  - [Oracle AI Database Licensing Information](https://docs.oracle.com/en/database/oracle/oracle-database/26/dblic/Licensing-Information.html): pack, option, edition, and cloud-offering entitlements.
+- Findings:
+  - AWR is the database-wide historical repository, ASH is high-frequency active-session
+    sampling, STS is a selected reusable SQL workload object, and ADDM analyzes AWR rather
+    than STS.
+  - SPA evaluates SQL independently from an STS. Database Replay preserves request timing,
+    concurrency, and transaction dependencies to test a system workload.
+  - Database Management is not merely a host UI. It invokes and visualizes database-engine
+    features while adding OCI connectivity, IAM, managed resources, Monitoring metrics,
+    alarms, fleet views, jobs, and APIs.
+  - Keep five storage responsibilities distinct: source-database AWR, source-database
+    advisor results, OCI Monitoring metrics, the Operations Insights warehouse, and the AWR
+    Hub Warehouse.
+  - Database pack entitlements, Database Management service pricing, edition/version
+    support, and Operations Insights subscriptions are independent gates and must all be
+    checked.
+- Verification:
+  - Cross-checked official Oracle documentation and completed independent technical and
+    note-structure reviews on 2026-07-21.
+  - Targeted Prettier checks, `git diff --check`, internal-link inspection, and a Quartz
+    production build over 143 Markdown inputs passed.
+  - The repository-specified Node.js 22.16.0 was unavailable locally and could not be
+    downloaded because of network connectivity. The successful build used the bundled
+    Node.js 24.14.0 runtime, so exact 22.16.0 behavior remains unverified.
+- Open questions: Revalidate edition/version support, cloud-offering inclusion, regional
+  availability, prices, and contract terms at design time.
+
 ## 2026-07-16 — OCI managed database service portfolio taxonomy
 
 - Status: verified

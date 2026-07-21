@@ -1,17 +1,16 @@
 ---
-title: LLM API形式
+title: LLM API 形式
 date: 2026-05-12
-modified: 2026-05-12
+modified: 2026-07-21
 draft: false
 tags:
   - ai/llm
 aliases:
   - memos/llm-api
   - memos/ai-agent/llm-api
-description: 3つの主要なLLM API形式（OpenAI Chat Completions、OpenAI Responses API、Anthropic Messages API）について
+  - ai/agents/llm-api
+description: OpenAI Chat Completions、OpenAI Responses、Anthropic Messages の形式と状態管理を比較する。
 ---
-
-3つの主要なLLM API形式（OpenAI Chat Completions、OpenAI Responses API、Anthropic Messages API）について
 
 ## 概要
 

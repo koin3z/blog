@@ -1,7 +1,7 @@
 ---
 title: OCI データベースサービス概要
 date: 2026-07-16
-modified: 2026-07-16
+modified: 2026-07-21
 draft: false
 tags:
   - cloud/oci/database
@@ -88,6 +88,8 @@ Oracle AI Database では、SQL 互換性だけでなく、DBMS の運用主体�
 - [[cloud/oracle/database/backup/oci-oracledb-backup|OCI Oracle Database バックアップ]]
 - [[cloud/oracle/database/migration/oci-oracledb-migration|OCI Oracle Database 移行概要]]
 - [[cloud/oracle/database/maintenance/oci-oracledb-update|OCI における Oracle Database のアップデート／アップグレード]]
+- [[cloud/oracle/database/performance/oracledb-performance|Oracle Database パフォーマンス診断・チューニング機能]]
+- [[cloud/oracle/database/performance/storage-performance|ストレージ性能のIOPS、スループット、レイテンシ]]
 - [[cloud/oracle/database/security/oracledb-tde|Oracle Database TDE]]
 
 ## 参照リンク

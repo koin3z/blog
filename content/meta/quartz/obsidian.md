@@ -7,6 +7,7 @@ tags:
   - meta/quartz
 aliases:
   - quartz/obsidian
+description: Quartz で扱う Obsidian、CommonMark、GitHub Flavored Markdown、LaTeX の記法メモ。
 ---
 
 ## サポートされている記法
