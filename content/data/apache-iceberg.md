@@ -55,6 +55,10 @@ table identifier
                     └── delete files／deletion vectors
 ```
 
+table identifierからdata fileへ到達するには、catalogからmanifest filesまでを1段ずつ経由する必要があり、途中の段を飛ばして直接ファイル集合を特定することはできない。
+
+![[attachments/iceberg-metadata-hierarchy.png|560]]
+
 ### Catalog
 
 - `catalog.namespace.table`のようなtable identifierを解決する入口
@@ -153,6 +157,10 @@ Spec: [Optimistic concurrency](https://iceberg.apache.org/spec/#optimistic-concu
 
 Atomicなのは、table metadataの切替と、そこから到達できるfile集合の論理的な公開である。
 事前に書いたfile群を1つのstorage transactionで保存するわけではない。
+
+CAS(compare-and-swap)が失敗するのは、base versionを固定した後に他のwriterが先にcommitした場合である。
+
+![[attachments/iceberg-commit-flow.png|780]]
 
 ### 競合の扱い
 

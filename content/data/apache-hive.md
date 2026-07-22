@@ -69,6 +69,10 @@ Hive-on-SparkはHive 4で削除されたが、SparkがHive MetastoreやHive互�
 5. 実行基盤が対象ファイルを読み、Tezのtaskを実行する
 6. HiveServer2が結果または出力テーブルをクライアントへ返す
 
+6段階のうち、実際にファイルを読み書きするのは実行基盤だけで、それ以前の段階はメタデータの取得と計画作成に専念する。
+
+![[attachments/hive-query-flow.png|780]]
+
 初期HiveはHiveQLをMapReduce jobへ変換した。
 MapReduceは処理段階ごとにjob起動と中間ファイルを必要とするため、対話的なSQLでは遅延が大きくなりやすかった。
 Tezは複数段を1つのDAGとして計画し、job起動と不要な中間書き出しを減らした。

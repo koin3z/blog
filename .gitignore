@@ -9,6 +9,9 @@ private/
 .replit
 replit.nix
 
+# Claude Code local instructions
+CLAUDE.local.md
+
 # Codex local/raw working material
 .codex-local/
 docs/codex/raw/

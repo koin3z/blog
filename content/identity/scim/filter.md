@@ -1,7 +1,7 @@
 ---
 title: SCIM 2.0 Filter
 date: 2026-04-04
-modified: 2026-04-04
+modified: 2026-07-22
 draft: false
 tags:
   - identity/scim
@@ -24,6 +24,10 @@ description: SCIM 2.0 Filter の構文と例を整理する。
 
 - SCIMクライアントがSCIMサーバー（IdPやプロビジョニング先のSaaSなど）に対してHTTP GETリクエストを送信する際、URLのクエリパラメータとして `filter=` の後に検索条件の文字列を付与
 - サーバー側のパーサー（構文解析プログラム）は、この文字列の規則を読み取り、データベースへのクエリに変換して適切な結果を返却する
+
+リクエストとレスポンスの往復は次のようになる。
+
+![[attachments/scim-filter-request-flow.png|720]]
 
 ## 構文
 
@@ -50,6 +54,10 @@ userName eq "bjensen"
   - 検索したい具体的なデータ
   - 文字列（String）の場合は、必ずダブルクォーテーション `"` で囲む必要がある。
   - 数値や真偽値（`true`/`false`）の場合は引用符は不要
+
+フィルターは属性名・演算子・値の3要素に分解できる。
+
+![[attachments/scim-filter-anatomy.png|680]]
 
 ### 比較演算子
 
@@ -86,6 +94,10 @@ userType eq "Employee" and (title co "Manager" or title co "VP")
 			[title co "Manager"]      [title co "VP"]
 
 ```
+
+この式は、`and`/`or`を内部ノード、各比較条件をリーフとする評価木として解釈される。
+
+![[attachments/scim-filter-and-or-tree.png|640]]
 
 ※ `not` は条件を反転させる（例： `not (userName eq "admin")` ）。
 

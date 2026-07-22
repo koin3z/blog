@@ -1,7 +1,7 @@
 ---
 title: Linux namespace
 date: 2026-06-07
-modified: 2026-06-28
+modified: 2026-07-22
 draft: false
 tags:
   - linux/namespaces
@@ -32,6 +32,10 @@ Linux namespace は、カーネルが管理するグローバルな資源を抽�
 | IPC       | System V IPC と POSIX メッセージキュー                             | [IPC namespace](./ipc-namespace.md)         |
 | Cgroup    | cgroup 階層のルートの見え方                                        | [Cgroup namespace](./cgroup-namespace.md)   |
 | Time      | `CLOCK_MONOTONIC` と `CLOCK_BOOTTIME` のオフセット                 | [Time namespace](./time-namespace.md)       |
+
+8種類の namespace は、それぞれ異なる資源を分離する独立した種別であり、互いに包含関係を持たない。
+
+![[attachments/linux-namespace-mindmap.png|760]]
 
 ## Namespace を操作する方法
 

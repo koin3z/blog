@@ -21,6 +21,10 @@ description: データウェアハウス、データレイク、レイクハウ�
 
 ## 責任の層
 
+中核となる5層は、右の層が左の層の機能の上に構築される依存関係を持つ。
+
+![[attachments/data-platform-core-layers.png|760]]
+
 Doc: [Apache Iceberg documentation](https://iceberg.apache.org/docs/latest/)
 
 | 層                                      | 主な責任                                                           | 管理するもの                                               | 代表例                                                                             | 単独では管理しないもの                |
@@ -83,6 +87,10 @@ Paper: [Lakehouse: A New Generation of Open Platforms that Unify Data Warehousin
   - レイクハウスそのものの定義ではなく、実行エンジン、カタログ、セキュリティ、運用を別途組み合わせる
 - 「1つのデータを複数エンジンで使う」構成でも、各エンジンの読み取りと書き込みの対応範囲が同じとは限らない
   - 形式バージョン、DDL、`UPDATE`／`DELETE`／`MERGE`、削除ファイル、カタログ、コミット、認可の対応を個別に確認する
+
+DWHからレイクハウスへの変遷は、各段階が前段階で表面化した制約を解決する形で進んだ。
+
+![[attachments/data-platform-evolution.png|760]]
 
 ## アーキテクチャの比較
 
