@@ -33,6 +33,41 @@ decisions that future Codex runs should preserve or consciously revisit.
 
 ## Decisions
 
+## 2026-07-22 — Add a cross-vendor data-platform subject branch
+
+- Status: accepted
+- Context: Data-platform terms appeared only inside vendor-specific pages, while Hive, open
+  table formats, catalogs, and query engines have independent responsibilities and update
+  cycles. Combining their history, selection criteria, and Iceberg internals in one page would
+  also mix several retrieval questions.
+- Decision:
+  - Use `content/data/index.md` as the top-level map for responsibility layers, historical
+    transitions, and terminology.
+  - Keep Hive and the Hive Metastore in `content/data/apache-hive.md`, compare open table formats
+    in `content/data/open-table-formats.md`, and explain Iceberg internals in
+    `content/data/apache-iceberg.md`.
+  - Distinguish storage, file format, table format, catalog, and execution engine rather than
+    treating a lakehouse product as one indivisible component.
+  - Keep vendor-specific product notes under `content/cloud/` and link them to the cross-vendor
+    concepts they implement.
+- Alternatives considered:
+  - One long page was rejected because the stable terminology map, product comparison, and
+    Iceberg metadata mechanisms answer different questions.
+  - Placing the material under the Oracle branch was rejected because Apache projects and the
+    table-format comparison are not Oracle-specific.
+  - A thin lakehouse-only page was rejected because it would not explain the file, table,
+    catalog, and engine boundaries needed to evaluate products.
+- Consequences: The root gains a `data/` subject branch. General format and catalog behavior
+  belongs in this branch, while current product compatibility remains in vendor pages or clearly
+  dated product examples. No aliases are needed because all four paths are new.
+- Evidence and verification: See the related research entry. The new pages were checked against
+  current Apache and vendor documentation, formatted with Prettier, and rendered by a Quartz
+  production build.
+- Supersedes:
+- Superseded by:
+- Related:
+  - [Research entry](research-log.md#2026-07-22--hive-open-table-formats-and-iceberg-responsibility-boundaries)
+
 ## 2026-07-21 — Use topic hubs while preserving document-role branches
 
 - Status: accepted

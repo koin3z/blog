@@ -1,7 +1,7 @@
 ---
 title: Oracle AI Data Platform
 date: 2026-07-16
-modified: 2026-07-16
+modified: 2026-07-22
 draft: false
 tags:
   - cloud/oci/ai
@@ -17,22 +17,29 @@ Oracle AI Data Platform は、enterprise data を収集・整理し、analytics�
 
 ### Data lakehouse
 
-Object Storage と open table format を使い、raw data から curated data までを medallion architecture で管理する。
+Object Storageと[[data/open-table-formats|オープンテーブルフォーマット]]を使い、raw dataからcurated dataまでを[[data/index|レイクハウス]]のmedallion architectureで管理する。
 
 - **Bronze**：source に近い raw / landed data
 - **Silver**：clean、standardize、join、quality check 済み data
 - **Gold**：analytics、ML、agent が利用する curated data product
 
+[Workbenchのtable](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/tables.html)はDelta Lakeを主なtransactional table formatとして使う。
+Delta Uniformは、Delta tableからIceberg／Hudi互換metadataを生成する。
+Platform全体が外部Iceberg／Delta tableを参照する経路とは、metadataとcommitのownerが異なる。
+
 Spark による分散処理と、Autonomous AI Database / SQL による serving を組み合わせる。すべての data を一か所へ copy することが目的ではなく、external catalog、zero-copy query、replication を要件に応じて使い分ける。
 
 ### Master Catalog と semantic context
 
-Master Catalog は table、file、model、feature、knowledge base、agent などの asset を登録し、technical metadata と business meaning を結び付ける。
+[Master Catalog](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/manage-master-catalog.html)はstandard catalogとexternal catalogを収容する最上位containerであり、table、file、model、feature、knowledge base、agentなどのassetを登録し、technical metadataとbusiness meaningを結び付ける。
+
+- standard catalogは、配下assetのmetadata lifecycleを管理する
+- external catalogでは外部sourceがmetadata lifecycleを管理し、Master Catalogは同期したmetadataを保持する
 
 - Autonomous AI Database、Object Storage、third-party source の external catalog
 - business glossary、taxonomy、ontology、synonym
 - lineage、ownership、tag、custom property
-- asset ごとの discovery、version、access control
+- asset種別に応じたdiscovery、versioning、access control
 
 agent が column name だけでなく business term、metric、relationship を理解するには、prompt engineering より先に catalog と semantic definition の品質を上げる必要がある。
 
@@ -42,7 +49,7 @@ Workbench は data engineer、data scientist、AI developer が共同作業す�
 
 - Spark-powered notebook
 - data preparation と workflow orchestration
-- experiment、model training、model registry
+- [Machine Learning](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/machine-learning.html)と[Models](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/models.html)によるexperiment、model training、model registry（Preview）
 - low-code / code-first の agent development
 - catalog asset を利用する RAG、SQL、MCP、prompt 管理
 - workspace と role による分離
@@ -51,7 +58,9 @@ Workbench は data engineer、data scientist、AI developer が共同作業す�
 
 Workbench では、catalog asset と semantic context を使う low-code / code-first agent を構築できる。agent、model、knowledge base、tool を data asset と同じ governance boundary で扱う方向性が示されている。
 
-[product page](https://www.oracle.com/ai-data-platform/) には Agent Hub を含む一部機能が `coming soon` と明記されている。agent registry、A2A、MCP integration などの詳細な availability を target tenancy と current documentation で確認し、roadmap item を current GA capability として設計に組み込まない。
+[Workbench User Guide](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/toc.htm)には、remote MCP tool、A2A deployment、agent deployment、monitoringの手順がある。
+[Product page](https://www.oracle.com/ai-data-platform/)で`coming soon`とされるAgent Hubの統合UIや一部機能、PreviewのML／Modelsとはavailabilityを分ける。
+Target tenancyとcurrent documentationで各機能の状態を確認し、roadmap itemをcurrent GA capabilityとして設計に組み込まない。
 
 Catalog で access policy や ownership を定義しても、実行時の authorization は source Database、serving endpoint、connector、MCP server、tool 側でも必ず強制する。catalog で見えることと、agent が実 data を読み書きできることを同一視しない。
 
@@ -81,3 +90,9 @@ Catalog で access policy や ownership を定義しても、実行時の author
 - [Oracle AI Data Platform](https://www.oracle.com/ai-data-platform/)
 - [Overview of Oracle AI Data Platform and Workbench](https://docs.oracle.com/en/cloud/paas/ai-data-platform/aidug/overview-oracle-ai-data-platform.html)
 - [Oracle AI Data Platform Workbench Guides](https://docs.oracle.com/en/cloud/paas/ai-data-platform/books.html)
+
+## 関連ページ
+
+- [[data/index|データ基盤の構成要素]]
+- [[data/open-table-formats|オープンテーブルフォーマット]]
+- [[data/apache-iceberg|Apache Iceberg]]

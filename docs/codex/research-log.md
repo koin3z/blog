@@ -34,6 +34,78 @@ existing entry when the same question is revisited.
 
 ## Entries
 
+## 2026-07-22 — Hive, open table formats, and Iceberg responsibility boundaries
+
+- Status: verified
+- Question: How should Hive, the Hive Metastore, open table formats, Iceberg, catalogs, engines,
+  and lakehouse products be related without collapsing them into one product category?
+- Scope: The historical transition from data warehouses through Hadoop and data lakes to
+  lakehouse architectures; Apache Hive; Apache Iceberg internals; Delta Lake, Apache Hudi, and
+  Apache Paimon comparison axes; and representative cloud-product integrations as of
+  2026-07-22.
+- Evidence:
+  - `content/data/index.md`: responsibility-layer map, architectural history, terminology, and
+    navigation.
+  - `content/data/apache-hive.md`: Hive, Hive Metastore, legacy directory layout, and current
+    ACID and Iceberg integration boundaries.
+  - `content/data/open-table-formats.md`: file-format versus table-format boundary, common
+    mechanisms, and format-selection axes.
+  - `content/data/apache-iceberg.md`: metadata hierarchy, read and commit paths, evolution,
+    catalog choices, and maintenance requirements.
+  - [Apache Hive documentation](https://hive.apache.org/docs/latest/): current architecture,
+    metastore, transactions, and Iceberg integration.
+  - [Apache Iceberg specification](https://iceberg.apache.org/spec/): metadata hierarchy,
+    snapshots, manifests, schema field IDs, partition specifications, and format versions.
+  - [Apache Iceberg reliability documentation](https://iceberg.apache.org/docs/latest/reliability/):
+    optimistic concurrency, atomic metadata replacement, retry, and orphan-file behavior.
+  - [Delta Lake protocol](https://github.com/delta-io/delta/blob/master/PROTOCOL.md),
+    [Apache Hudi technical specifications](https://hudi.apache.org/learn/tech-specs/), and
+    [Apache Paimon concepts](https://paimon.apache.org/docs/master/concepts/): comparison design
+    centers and protocol boundaries.
+- Findings:
+  - Apache Hive is a SQL data-warehouse system, the Hive Metastore is a metadata service, and
+    Hive-style directory partitioning is a legacy table-layout convention. They must not be
+    treated as one table format.
+  - Parquet and ORC define individual data-file structure. Open table formats define table state,
+    file membership, snapshots, evolution, and concurrent-update rules above those files.
+  - An Iceberg table resolves through a catalog to metadata JSON, a snapshot, a manifest list,
+    manifests, and data or delete files. A snapshot is a metadata reference, not a full copy of
+    the table.
+  - Iceberg commits publish a new metadata pointer using optimistic concurrency. Logical
+    visibility is atomic at the table boundary, but failed attempts can leave orphan files that
+    require maintenance.
+  - Iceberg catalogs may use Hive Metastore, JDBC, REST, cloud-managed catalogs, or other catalog
+    implementations; an RDBMS-backed catalog is therefore compatible with Iceberg. With
+    HiveCatalog, the Hive Metastore table entry primarily resolves the current metadata location;
+    Iceberg partitions and file membership are not represented as legacy Hive partition objects.
+  - The filesystem commit scheme based on atomic rename is deprecated in the current Iceberg
+    specification and unsafe on object stores and local filesystems. Object-store deployments
+    need a catalog or metastore that can atomically compare and swap the current metadata pointer.
+  - Flat-namespace object storage commonly emulates rename with copy and delete, but hierarchical
+    namespace services and S3 Express directory buckets provide scoped exceptions. Storage
+    semantics must be checked rather than inferred from the object-store category.
+  - Format support is not a binary product label. Readers must verify read and write support,
+    format version, catalog type, DDL and DML coverage, maintenance ownership, and cross-engine
+    interoperability.
+  - Time travel preserves reachable table history for a retention period but is not a backup
+    against storage loss, accidental expiration, or catalog loss.
+  - Managed-product support must be separated by management path. BigQuery-managed Iceberg,
+    multi-engine REST catalogs, Unity Catalog managed tables, foreign read-only tables, and
+    generated compatibility metadata have different commit owners despite sharing a format name.
+- Verification:
+  - The four-page split and cross-links were reviewed against the repository's retrieval-question
+    and dependency-order guidelines.
+  - Targeted Prettier checks, `git diff --check`, internal-target checks, and a Quartz production
+    build passed with the bundled Node.js 24.14.0 runtime.
+  - The repository-specified Node.js 22.16.0 was unavailable, so exact 22.16.0 behavior remains
+    unverified.
+- Open questions:
+  - Cloud-product and engine compatibility changes independently of the open table format and
+    must be rechecked for a target release and catalog combination.
+  - No live multi-engine read/write interoperability test was performed.
+- Related:
+  - [Decision entry](decisions.md#2026-07-22--add-a-cross-vendor-data-platform-subject-branch)
+
 ## 2026-07-21 — Repository-wide content taxonomy and link audit
 
 - Status: verified

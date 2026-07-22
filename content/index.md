@@ -1,7 +1,7 @@
 ---
 title: Notes
 date: 2025-07-11
-modified: 2026-07-21
+modified: 2026-07-22
 draft: false
 tags: []
 aliases: []
@@ -13,6 +13,7 @@ description: 技術メモ、検証記録、記事下書きを整理した個人�
 | 分野         | 主な対象                                                            | 入口                                 |
 | ------------ | ------------------------------------------------------------------- | ------------------------------------ |
 | AI           | LLM API、AI エージェント、コーディングツール、ローカル LLM          | [[ai/index\|AI]]                     |
+| データ基盤   | DWH、データレイク、レイクハウス、Hive、オープンテーブルフォーマット | [[data/index\|データ基盤]]           |
 | Oracle Cloud | OCI の AI、Database、Identity、Storage、Vault、Container、Functions | [[cloud/oracle/index\|Oracle Cloud]] |
 | コンテナ     | コンテナの仕組み、Docker、Kubernetes、OCI 仕様、Registry            | [[containers/index\|コンテナ]]       |
 | 開発環境     | Editor、Python、Node.js、Frontend                                   | [[development/index\|開発環境]]      |
