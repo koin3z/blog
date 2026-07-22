@@ -1,7 +1,7 @@
 ---
 title: ISMAP
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -31,16 +31,7 @@ ISMAP（Information system Security Management and Assessment Program）は、�
 
 ISO/IEC 27001 認証は登録の必須条件ではない。ISMAP は ISO 認証をそのまま置き換えた制度でもない。
 
-```mermaid
-flowchart LR
-    CSP["クラウドサービス事業者<br/>統制を整備・運用"] --> AUD["登録監査機関<br/>事業者の言明を監査"]
-    AUD --> APP["事業者が監査結果を添えて申請"]
-    APP --> COM["ISMAP 運営委員会<br/>申請を審査"]
-    COM --> LIST["クラウドサービスリストへ登録"]
-    LIST --> GOV["政府機関等<br/>業務・情報の影響度と登録範囲を確認して調達"]
-    LIST --> CONT["変更・インシデント・更新へ継続対応"]
-    CONT --> CSP
-```
+![[attachments/ismap-registration.png|880]]
 
 ## 管理基準
 

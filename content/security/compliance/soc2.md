@@ -1,7 +1,7 @@
 ---
 title: SOC 2
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -69,16 +69,7 @@ Type 2 の対象期間は報告書に記載される。「必ず6か月」など
 
 主要クラウドやデータセンターが carve-out されている場合、その事業者の報告書や責任共有を別途確認する。
 
-```mermaid
-flowchart LR
-    SO["サービス組織<br/>システム記述・統制"] --> CPA["独立した CPA<br/>統制を評価"]
-    SUB["下位サービス組織"] -->|"Inclusive: 関連統制を評価対象に含める"| CPA
-    SUB -->|"Carve-out: 直接評価から外す"| SEP["別の報告書・契約・責任共有を確認"]
-    CPA --> REP["SOC 2 報告書<br/>意見・範囲・期間・テスト・例外"]
-    REP --> USER["利用企業がレビュー"]
-    USER --> CUEC["CUEC を自社で実装・運用"]
-    SEP --> USER
-```
+![[attachments/soc2-carveout.png|820]]
 
 ## よくある誤解
 

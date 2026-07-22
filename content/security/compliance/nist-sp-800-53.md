@@ -1,7 +1,7 @@
 ---
 title: NIST SP 800-53
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -28,20 +28,7 @@ NIST SP 800-53 Rev. 5 は、情報システムと組織のためのセキュリ�
 | SP 800-37  | Risk Management Framework（RMF）のライフサイクル   |
 | OSCAL      | カタログ、プロファイル、評価情報などの機械可読形式 |
 
-```mermaid
-flowchart LR
-    RMF["SP 800-37<br/>RMF のライフサイクル"] --> S["システムを分類しベースラインを選ぶ"]
-    B["SP 800-53B<br/>Low・Moderate・High のベースライン"] --> S
-    C["SP 800-53<br/>統制・統制強化のカタログ"] --> T["Tailoring<br/>追加・除外・パラメータ決定"]
-    S --> T
-    T --> I["統制を実装し証跡を作る"]
-    A["SP 800-53A<br/>評価手順"] --> E["統制を評価"]
-    I --> E
-    E --> RMF
-    O["OSCAL<br/>情報を機械可読化"] -.-> C
-    O -.-> T
-    O -.-> E
-```
+![[attachments/nist-800-53-relationship.png|880]]
 
 ## 主な統制ファミリー
 

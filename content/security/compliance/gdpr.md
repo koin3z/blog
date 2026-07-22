@@ -1,7 +1,7 @@
 ---
 title: GDPR
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -73,16 +73,7 @@ Controller は、個人の権利と自由へのリスクが生じる可能性が
 本人への高いリスクが見込まれる場合は、原則として本人にも不当な遅延なく通知する。72時間は調査完了の
 猶予ではないため、段階的報告、意思決定記録、契約上のより短い通知期限を手順へ組み込む。
 
-```mermaid
-flowchart LR
-    DS["Data Subject<br/>本人"] -->|"個人データ・権利要求"| C["Controller<br/>目的と手段を決定"]
-    C -->|"Article 28 契約・処理指示"| P["Processor<br/>指示に基づき処理"]
-    P -->|"再委託条件・監督"| SP["Sub-processor"]
-    SP -->|"侵害を連絡"| P
-    P -->|"不当な遅延なく侵害を通知"| C
-    C -->|"リスクを評価し、必要なら72時間以内を目標に通知"| SA["Supervisory Authority<br/>監督機関"]
-    C -->|"高いリスクが見込まれる場合に通知"| DS
-```
+![[attachments/gdpr-breach-notification.png|780]]
 
 ## よくある誤解
 

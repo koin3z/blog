@@ -1,7 +1,7 @@
 ---
 title: ISO/IEC 27001
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -45,18 +45,7 @@ Statement of Applicability（SoA、適用宣言書）には、必要な管理策
 管理策を除外した理由を記載する。Annex A の全管理策を無条件に導入するのではなく、リスク、法令、契約、
 独自管理策を踏まえて必要性を決める。
 
-```mermaid
-flowchart LR
-    A["ISMS の適用範囲"] --> B["リスクを特定・分析・評価"]
-    B --> C["低減・回避・移転／共有・受容を選ぶ"]
-    C --> D["必要な管理策を決定"]
-    E["法令・契約・Annex A・独自管理策"] --> D
-    D --> SOA["SoA<br/>採用・除外理由と実装状況を記録"]
-    SOA --> F["管理策を実装・運用"]
-    F --> G["監視・内部監査・マネジメントレビュー"]
-    G --> H["不適合の是正・継続的改善"]
-    H --> B
-```
+![[attachments/iso27001-isms-cycle.png|860]]
 
 ## 認証の読み方
 

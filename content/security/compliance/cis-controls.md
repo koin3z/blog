@@ -1,7 +1,7 @@
 ---
 title: CIS Controls
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -32,15 +32,7 @@ IG は組織の優劣を表す認証レベルではない。資産、データ�
 
 IG は累積的であり、IG2 は IG1 を、IG3 は IG1 と IG2 を含む。
 
-```mermaid
-flowchart LR
-    A["IG1<br/>基本的なサイバー衛生"] -->|"IG1 を含めて強化"| B["IG2<br/>複数部門・機微データ・規制へ対応"]
-    B -->|"IG1・IG2 を含めて高度化"| C["IG3<br/>高い機密性・可用性・標的型攻撃へ対応"]
-    D["資産・データ・脅威・規制・利用可能な資源"] --> E{"必要な IG を選ぶ"}
-    E --> A
-    E --> B
-    E --> C
-```
+![[attachments/cis-ig-nesting.png|860]]
 
 ## 18のControl
 

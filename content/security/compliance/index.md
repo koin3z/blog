@@ -1,7 +1,7 @@
 ---
 title: Security Compliance
 date: 2026-07-01
-modified: 2026-07-21
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -21,17 +21,7 @@ description: セキュリティ初学者が法令、規格、認証、監査報�
 
 制度名を覚えることが目的ではない。適用範囲を起点に、要求、統制、証跡、評価をつなげて考える。
 
-```mermaid
-flowchart LR
-    A["事業・データ・地域・関係者を確認"] --> B["適用される法令・契約・規格を特定"]
-    B --> C["要求事項を統制へ落とし込む"]
-    C --> D["統制を実装・運用する"]
-    D --> E["証跡を収集する"]
-    E --> F["自己点検・監査・顧客評価"]
-    F --> G["不備の是正・リスク受容"]
-    G --> H["法改正・事業変更・事故を反映"]
-    H --> A
-```
+![[attachments/compliance-index-cycle.png|760]]
 
 ## 最初に読むページ
 

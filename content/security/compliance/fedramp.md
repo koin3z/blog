@@ -1,7 +1,7 @@
 ---
 title: FedRAMP
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -30,15 +30,7 @@ FedRAMP Certification は、クラウドサービスの評価資料が機関の 
 - **Independent Assessor / 3PAO**: 独立評価を行う
 - **FedRAMP**: 共通ルール、レビュー、Marketplace、再利用の仕組みを運営する
 
-```mermaid
-flowchart LR
-    CSP["CSP<br/>統制を実装し証拠を作る"] -->|"評価資料"| A["Independent Assessor / 3PAO<br/>独立評価"]
-    A -->|"評価結果"| F["FedRAMP<br/>レビュー・Certification・Marketplace"]
-    F -->|"再利用可能な評価資料"| AG["Federal Agency"]
-    CSP -->|"サービス境界・顧客責任"| AG
-    AG -->|"機関固有の用途・追加統制・リスクを評価"| ATO{"各機関が ATO を判断"}
-    F -.->|"ATO 自体は発行しない"| ATO
-```
+![[attachments/fedramp-authorization.png|880]]
 
 ## 2026年の重要な変更
 

@@ -1,7 +1,7 @@
 ---
 title: PCI DSS
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -75,21 +75,7 @@ Environment（CDE）のセキュリティへ影響し得る組織・システム
 トークン化や外部決済画面を使っても、自社の責任が必ずゼロになるわけではない。実装方式と SAQ の
 適格条件を確認する。
 
-```mermaid
-flowchart TD
-    A["決済データフローを作成"] --> B["CHD・SAD の保存・処理・送信箇所を特定"]
-    B --> C["CDE 本体"]
-    B --> D["接続システム・認証基盤・管理端末"]
-    B --> E["委託先・セキュリティサービス"]
-    C --> F["PCI DSS のスコープを確定"]
-    D --> F
-    E --> F
-    S["ネットワーク分離"] -->|"有効性を検証できた範囲を分離"| F
-    F --> G["12の要求を実装・運用し証跡を保持"]
-    G --> H["SAQ / ROC・AOC・ASV Scan などで検証"]
-    H --> I["重要変更時にデータフローとスコープを再確認"]
-    I --> A
-```
+![[attachments/pci-scoping-flow.png|620]]
 
 ## 参照リンク
 

@@ -1,7 +1,7 @@
 ---
 title: FIPSとFIPS 140-3
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -38,17 +38,7 @@ FIPS 140-3 は暗号モジュールのセキュリティ要求を定める。暗
 承認済みアルゴリズムを実装したことや、アルゴリズム証明書を持つことだけでは、製品やモジュールが
 FIPS 140-3 validated とはいえない。
 
-```mermaid
-flowchart LR
-    AI["暗号アルゴリズム実装"] --> CAVP["CAVP<br/>アルゴリズムをテスト"]
-    CAVP --> AC["アルゴリズム証明書"]
-    M["暗号モジュール<br/>境界・役割・鍵管理・自己テストなど"] --> CMVP["CMVP<br/>FIPS 140-3 に対して検証"]
-    AC --> CMVP
-    CMVP --> MC["暗号モジュール証明書"]
-    MC --> V["製品の版・実行環境・証明書状態を照合"]
-    V --> O["Security Policy に従い<br/>承認済みモードで運用"]
-    AC -.->|"これだけでは FIPS 140-3 validated ではない"| V
-```
+![[attachments/fips-cmvp-cavp.png|880]]
 
 ## 製品選定時の確認
 

@@ -1,7 +1,7 @@
 ---
 title: NIST Cybersecurity Framework
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -33,15 +33,7 @@ CSF は達成すべき高水準の成果を示すが、個別製品や実装方�
 CSF 1.1 の5機能に、CSF 2.0 で Govern が加わった。セキュリティを技術部門だけの課題ではなく、
 企業リスクとして扱う意図が明確になっている。
 
-```mermaid
-flowchart LR
-    G["Govern<br/>方針・役割・リスク戦略・監督"] --> I["Identify<br/>資産とリスクを把握"]
-    G --> P["Protect<br/>事故の可能性と影響を抑制"]
-    G --> D["Detect<br/>異常や攻撃を発見"]
-    G --> R["Respond<br/>分析・連絡・封じ込め"]
-    G --> RC["Recover<br/>復旧・教訓反映"]
-    I --> P --> D --> R --> RC --> I
-```
+![[attachments/nist-csf-functions.png|780]]
 
 ## Core、Profiles、Tiers
 

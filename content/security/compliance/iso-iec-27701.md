@@ -1,7 +1,7 @@
 ---
 title: ISO/IEC 27701
 date: 2026-07-01
-modified: 2026-07-02
+modified: 2026-07-22
 draft: false
 tags:
   - security/compliance
@@ -28,17 +28,7 @@ ISO/IEC 27701 は、Privacy Information Management System（PIMS）を確立、�
 同じ組織でも、サービスや処理目的によって Controller と Processor の両方になり得る。役割を契約名称だけで
 決めず、実際に誰が目的・手段を決めるかを確認する。
 
-```mermaid
-flowchart LR
-    DS["本人"] -->|"PII・権利要求"| C["PII Controller<br/>目的と手段を決定"]
-    C -->|"契約・処理指示"| P["PII Processor<br/>指示に基づき処理"]
-    P -->|"再委託条件・監督"| SP["Sub-processor"]
-    L["各法域の法令・契約"] --> C
-    L --> P
-    PIMS["PIMS<br/>方針・リスク・統制・証跡・改善"] --> C
-    PIMS --> P
-    C -->|"通知・同意・権利対応"| DS
-```
+![[attachments/iso27701-roles.png|780]]
 
 ## PIMSで管理する内容
 
