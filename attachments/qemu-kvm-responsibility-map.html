@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QEMU/KVM responsibility map</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="880"
+      data-height="360"
+      class="relative h-[360px] w-[880px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="ゲストOSのCPU実行をKVM、仮想デバイスと機械構成をQEMU、VMの定義と操作をlibvirtとvirt-managerが担う関係図"
+    >
+      <svg
+        class="absolute inset-0 h-full w-full text-[#64748B]"
+        viewBox="0 0 880 360"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M330 114h76" stroke="currentColor" stroke-width="3" />
+        <path d="m405 107 12 7-12 7z" fill="currentColor" />
+        <path d="M330 244h76" stroke="currentColor" stroke-width="3" />
+        <path d="m405 237 12 7-12 7z" fill="currentColor" />
+        <path d="M642 114h76" stroke="currentColor" stroke-width="3" />
+        <path d="m717 107 12 7-12 7z" fill="currentColor" />
+        <path d="M642 244h76" stroke="currentColor" stroke-width="3" />
+        <path d="m717 237 12 7-12 7z" fill="currentColor" />
+        <path d="M180 168v18h226" stroke="currentColor" stroke-width="3" />
+        <path d="m405 179 12 7-12 7z" fill="currentColor" />
+      </svg>
+
+      <article
+        class="absolute top-[68px] left-[28px] w-[302px] rounded-2xl bg-[#1D4ED8] px-5 py-4 text-white"
+      >
+        <h2 class="text-[24px] leading-tight font-bold">ゲストOS</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">
+          vCPUを実行し、仮想ディスクやNICを使う
+        </p>
+      </article>
+
+      <article
+        class="absolute top-[198px] left-[28px] w-[302px] rounded-2xl bg-[#047857] px-5 py-4 text-white"
+      >
+        <h2 class="text-[24px] leading-tight font-bold">libvirt / virt-manager</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">
+          VMの定義、作成、起動、監視を管理する
+        </p>
+      </article>
+
+      <article
+        class="absolute top-[68px] left-[418px] w-[224px] rounded-2xl bg-[#6D28D9] px-5 py-4 text-white"
+      >
+        <h2 class="text-[24px] leading-tight font-bold">KVM</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">CPU実行を支援し、必要時に戻す</p>
+      </article>
+
+      <article
+        class="absolute top-[198px] left-[418px] w-[224px] rounded-2xl bg-[#B45309] px-5 py-4 text-white"
+      >
+        <h2 class="text-[24px] leading-tight font-bold">QEMU</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">仮想マシンと仮想デバイスを用意する</p>
+      </article>
+
+      <article
+        class="absolute top-[68px] left-[730px] w-[122px] rounded-xl border-2 border-[#60A5FA] bg-[#DBEAFE] px-3 py-4 text-center text-[#1E3A8A]"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">実CPU</h2>
+        <p class="mt-2 text-[16px] leading-snug font-medium">実行</p>
+      </article>
+
+      <article
+        class="absolute top-[198px] left-[730px] w-[122px] rounded-xl border-2 border-[#FDBA74] bg-[#FFEDD5] px-3 py-4 text-center text-[#78350F]"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">実資源</h2>
+        <p class="mt-2 text-[16px] leading-snug font-medium">I/O</p>
+      </article>
+
+      <div
+        class="absolute top-[22px] left-[379px] rounded-lg bg-[#EDE9FE] px-3 py-1.5 text-[16px] font-bold text-[#4C1D95]"
+      >
+        CPU経路
+      </div>
+      <div
+        class="absolute top-[292px] left-[366px] rounded-lg bg-[#FFEDD5] px-3 py-1.5 text-[16px] font-bold text-[#78350F]"
+      >
+        構成・デバイス経路
+      </div>
+    </main>
+  </body>
+</html>

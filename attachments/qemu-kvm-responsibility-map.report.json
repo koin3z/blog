@@ -1,0 +1,258 @@
+{
+  "success": true,
+  "input": "qemu-kvm-responsibility-map.html",
+  "output": "qemu-kvm-responsibility-map.png",
+  "generatedAt": "2026-07-26T12:43:41.697Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 1
+  },
+  "contract": {
+    "width": 880,
+    "height": 360
+  },
+  "png": {
+    "width": 880,
+    "height": 360,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 163424,
+    "translucentPixels": 1532,
+    "opaquePixels": 151844,
+    "transparentRatio": 0.515859,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 4,
+    "outerBandPixels": 9856,
+    "outerTransparentPixels": 9856,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 880,
+      "height": 360,
+      "scrollWidth": 880,
+      "scrollHeight": 360
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "ゲストOSのCPU実行をKVM、仮想デバイスと機械構成をQEMU、VMの定義と操作をlibvirtとvirt-managerが担う関係図",
+    "directTextElements": [
+      {
+        "tag": "h2",
+        "text": "ゲストOS",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "vCPUを実行し、仮想ディスクやNICを使う",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "libvirt / virt-manager",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "VMの定義、作成、起動、監視を管理する",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "KVM",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "CPU実行を支援し、必要時に戻す",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "QEMU",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "仮想マシンと仮想デバイスを用意する",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "実CPU",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "実行",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "実資源",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "I/O",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "CPU経路",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "構成・デバイス経路",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "880",
+      "dataHeight": "360",
+      "width": 880,
+      "height": 360,
+      "left": 0,
+      "top": 0,
+      "right": 880,
+      "bottom": 360,
+      "scrollWidth": 880,
+      "scrollHeight": 360,
+      "viewportWidth": 880,
+      "viewportHeight": 360,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 880,
+      "bottom": 360,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 880x360",
+      "passed": true,
+      "evidence": "actual=880x360"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=163424, opaque=151844"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=4px, transparent=9856/9856, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=163424/316800, ratio=0.515859"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

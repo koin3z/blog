@@ -19,6 +19,7 @@ description: Linux のプロセス、ファイルシステム、分離、資源�
 | 資源の使用量     | CPU、メモリ、I/O、プロセス数をグループ単位で制御 | [[linux/cgroup\|cgroup]]                       |
 | 特権             | root 権限を操作単位へ分割                        | [[linux/capability\|Linux Capability]]         |
 | ファイル権限     | setuid、setgid、sticky bit による実行・共有条件  | [[linux/permission\|Linux 特殊パーミッション]] |
+| 仮想化           | ゲストOSと仮想ハードウェアをホスト上で実行する   | [[linux/qemu-kvm\|QEMU/KVMの役割分担]]         |
 
 ## コンテナとの関係
 
