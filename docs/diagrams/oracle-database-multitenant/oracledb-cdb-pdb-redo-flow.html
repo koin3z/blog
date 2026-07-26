@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oracle Database PDB redo and recovery flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="1080"
+      data-height="520"
+      class="relative h-[520px] w-[1080px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="PDB AとPDB Bの更新が、共有SGA内のredo log bufferへ集まり、LGWRによってCDB共通のonline redo logへ書き込まれ、ARCHによってarchived redo logになる。PDB単位の回復では共有archiveから対象PDBのredoを選び、対象PDBのdatafileへ適用する一方、他PDBのdatafileは変更しない。"
+    >
+      <svg
+        class="absolute inset-0 h-full w-full text-[#64748B]"
+        viewBox="0 0 1080 520"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M208 122h38c18 0 30 12 30 30v24" stroke="currentColor" stroke-width="3" />
+        <path d="M208 282h38c18 0 30-12 30-30v-50" stroke="currentColor" stroke-width="3" />
+        <path d="M264 176h16" stroke="currentColor" stroke-width="3" />
+        <path d="m279 168 13 8-13 8z" fill="currentColor" />
+
+        <path d="M492 196h39" stroke="currentColor" stroke-width="3" />
+        <path d="m530 188 13 8-13 8z" fill="currentColor" />
+        <path d="M735 196h61" stroke="currentColor" stroke-width="3" />
+        <path d="m795 188 13 8-13 8z" fill="currentColor" />
+
+        <path d="M935 272v93" stroke="currentColor" stroke-width="3" />
+        <path d="m927 364 8 13 8-13z" fill="currentColor" />
+        <path d="M802 441H716" stroke="currentColor" stroke-width="3" />
+        <path d="m717 433-13 8 13 8z" fill="currentColor" />
+      </svg>
+
+      <div
+        class="absolute top-[18px] left-[18px] rounded-full bg-[#1D4ED8] px-5 py-2 text-[18px] leading-none font-bold text-white"
+      >
+        更新時：複数 PDB の REDO は一つの流れへ集約
+      </div>
+
+      <article
+        class="absolute top-[80px] left-[18px] h-[104px] w-[190px] rounded-2xl border-2 border-[#047857] bg-[#ECFDF5] px-5 py-4 text-[#064E3B]"
+      >
+        <p class="text-[17px] leading-none font-bold text-emerald-700">PDB A</p>
+        <h2 class="mt-3 text-[21px] leading-none font-bold">Transaction</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">data block を更新</p>
+      </article>
+
+      <article
+        class="absolute top-[240px] left-[18px] h-[104px] w-[190px] rounded-2xl border-2 border-[#047857] bg-[#ECFDF5] px-5 py-4 text-[#064E3B]"
+      >
+        <p class="text-[17px] leading-none font-bold text-emerald-700">PDB B</p>
+        <h2 class="mt-3 text-[21px] leading-none font-bold">Transaction</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">data block を更新</p>
+      </article>
+
+      <article
+        class="absolute top-[120px] left-[292px] h-[152px] w-[200px] rounded-2xl border-2 border-[#1D4ED8] bg-blue-50 px-5 py-4 text-[#1E3A8A]"
+      >
+        <p class="text-[17px] leading-none font-bold text-blue-700">SHARED SGA</p>
+        <h2 class="mt-3 text-[21px] leading-tight font-bold">REDO log buffer</h2>
+        <p class="mt-3 text-[17px] leading-snug font-medium">PDB ID 付き</p>
+      </article>
+
+      <article
+        class="absolute top-[120px] left-[543px] h-[152px] w-[192px] rounded-2xl border-2 border-[#1D4ED8] bg-[#1D4ED8] px-5 py-4 text-white"
+      >
+        <p class="text-[17px] leading-none font-bold text-blue-100">LGWR</p>
+        <h2 class="mt-3 text-[21px] leading-tight font-bold">Online REDO log</h2>
+        <p class="mt-3 text-[17px] leading-snug font-medium">CDB 共通</p>
+      </article>
+
+      <article
+        class="absolute top-[120px] left-[808px] h-[152px] w-[254px] rounded-2xl border-2 border-violet-500 bg-violet-50 px-5 py-4 text-[#4C1D95]"
+      >
+        <p class="text-[17px] leading-none font-bold text-violet-700">ARCH / LOG SWITCH</p>
+        <h2 class="mt-3 text-[21px] leading-tight font-bold">Archived REDO log</h2>
+        <p class="mt-3 text-[17px] leading-snug font-medium">複数 PDB の REDO を含む</p>
+      </article>
+
+      <div
+        class="absolute top-[344px] left-[18px] rounded-full bg-[#B45309] px-5 py-2 text-[18px] leading-none font-bold text-white"
+      >
+        PDB 回復時：共有 REDO から対象を選んで適用
+      </div>
+
+      <article
+        class="absolute top-[382px] left-[802px] h-[118px] w-[224px] rounded-2xl border-2 border-amber-500 bg-amber-50 px-5 py-4 text-[#78350F]"
+      >
+        <p class="text-[17px] leading-none font-bold text-amber-700">RMAN / RECOVERY</p>
+        <h2 class="mt-3 text-[20px] leading-tight font-bold">対象 PDB の REDO を選択</h2>
+      </article>
+
+      <article
+        class="absolute top-[382px] left-[510px] h-[118px] w-[194px] rounded-2xl border-2 border-[#047857] bg-[#047857] px-5 py-4 text-white"
+      >
+        <p class="text-[17px] leading-none font-bold text-emerald-100">TARGET</p>
+        <h2 class="mt-3 text-[20px] leading-tight font-bold">PDB A datafiles</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">REDO を適用</p>
+      </article>
+
+      <article
+        class="absolute top-[382px] left-[232px] h-[118px] w-[194px] rounded-2xl border-2 border-slate-400 bg-slate-50 px-5 py-4 text-slate-700"
+      >
+        <p class="text-[17px] leading-none font-bold text-slate-600">OTHER PDB</p>
+        <h2 class="mt-3 text-[20px] leading-tight font-bold">PDB B datafiles</h2>
+        <p class="mt-2 text-[17px] leading-snug font-medium">回復対象外</p>
+      </article>
+    </main>
+  </body>
+</html>

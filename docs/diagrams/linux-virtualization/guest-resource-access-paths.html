@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ゲストOSのCPU・メモリ・I/O経路</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="980"
+      data-height="770"
+      class="relative h-[770px] w-[980px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="ゲストOSにおけるCPU実行、メモリアドレス変換、virtio I/Oの経路を3列で示す図"
+    >
+      <section class="relative h-full w-full" aria-label="CPU、メモリ、I/Oの経路">
+        <p
+          class="absolute top-[12px] left-[28px] text-[20px] leading-tight font-bold text-slate-800"
+        >
+          CPU・メモリ・I/Oは、同じ「VMMを一回通る」経路ではない
+        </p>
+
+        <article
+          class="absolute top-[59px] left-[28px] h-[680px] w-[288px] rounded-2xl border-2 border-[#93C5FD] bg-[#F8FBFF] px-4 py-4"
+        >
+          <div
+            class="rounded-lg bg-[#1D4ED8] px-3 py-2 text-center text-[20px] font-bold text-white"
+          >
+            CPU の実行
+          </div>
+          <p class="mt-3 text-center text-[16px] leading-tight text-slate-600">
+            大半のゲスト命令はCPU上で直接実行
+          </p>
+          <div
+            class="mt-4 rounded-xl border border-[#BFDBFE] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            ゲスト scheduler<br /><span class="text-[16px] font-medium text-slate-600"
+              >プロセス → vCPU</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#1D4ED8]">↓</div>
+          <div
+            class="rounded-xl border border-[#BFDBFE] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            QEMU の vCPU thread<br /><span class="text-[16px] font-medium text-slate-600"
+              >KVM_RUN を呼ぶ</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#1D4ED8]">↓</div>
+          <div
+            class="rounded-xl border border-[#BFDBFE] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            物理CPUで<br />VMX non-root 実行
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#6D28D9]">↓</div>
+          <div
+            class="rounded-xl border border-[#DDD6FE] bg-[#F5F3FF] px-3 py-2 text-center text-[17px] font-bold text-[#5B21B6]"
+          >
+            捕捉が必要な時だけ VM exit<br /><span class="text-[16px] font-medium"
+              >KVM、必要なら QEMU が処理</span
+            >
+          </div>
+          <p class="mt-3 text-center text-[16px] leading-tight text-slate-600">
+            ホスト scheduler は vCPU thread → pCPU を割り当てる
+          </p>
+        </article>
+
+        <article
+          class="absolute top-[59px] left-[346px] h-[680px] w-[288px] rounded-2xl border-2 border-[#A7F3D0] bg-[#F6FFFC] px-4 py-4"
+        >
+          <div
+            class="rounded-lg bg-[#047857] px-3 py-2 text-center text-[20px] font-bold text-white"
+          >
+            メモリの変換
+          </div>
+          <p class="mt-3 text-center text-[16px] leading-tight text-slate-600">
+            ゲストの「物理」はホストの物理ではない
+          </p>
+          <div
+            class="mt-5 rounded-xl border border-[#99F6E4] bg-white px-3 py-2 text-center text-[19px] font-bold"
+          >
+            GVA<br /><span class="text-[16px] font-medium text-slate-600"
+              >Guest Virtual Address</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#047857]">
+            ↓ ゲスト page table
+          </div>
+          <div
+            class="rounded-xl border border-[#99F6E4] bg-white px-3 py-2 text-center text-[19px] font-bold"
+          >
+            GPA<br /><span class="text-[16px] font-medium text-slate-600"
+              >Guest Physical Address</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#047857]">↓ EPT / NPT</div>
+          <div
+            class="rounded-xl border border-[#99F6E4] bg-white px-3 py-2 text-center text-[19px] font-bold"
+          >
+            HPA<br /><span class="text-[16px] font-medium text-slate-600"
+              >Host Physical Address</span
+            >
+          </div>
+          <p
+            class="mt-5 rounded-xl bg-[#DCFCE7] px-3 py-2 text-center text-[17px] leading-snug text-[#166534]"
+          >
+            ゲストkernelが管理するのは主に<br />GVA → GPA。GPA → HPA はVMM/CPU側。
+          </p>
+        </article>
+
+        <article
+          class="absolute top-[59px] left-[664px] h-[680px] w-[288px] rounded-2xl border-2 border-[#FCD34D] bg-[#FFFCF2] px-4 py-4"
+        >
+          <div
+            class="rounded-lg bg-[#B45309] px-3 py-2 text-center text-[20px] font-bold text-white"
+          >
+            virtio I/O の往復
+          </div>
+          <p class="mt-3 text-center text-[16px] leading-tight text-slate-600">
+            デバイス要求はbackendへ受け渡す
+          </p>
+          <div
+            class="mt-4 rounded-xl border border-[#FDE68A] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            ゲストアプリの read / send<br /><span class="text-[16px] font-medium text-slate-600"
+              >→ ゲストkernel / driver</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#B45309]">↓</div>
+          <div
+            class="rounded-xl border border-[#FDE68A] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            virtqueue に descriptor<br /><span class="text-[16px] font-medium text-slate-600"
+              >または MMIO / PIO</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#B45309]">↓</div>
+          <div
+            class="rounded-xl border border-[#FDE68A] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            QEMU / vhost backend<br /><span class="text-[16px] font-medium text-slate-600"
+              >ホストkernel・ファイル・NICへ</span
+            >
+          </div>
+          <div class="my-2 text-center text-[22px] font-bold text-[#B45309]">↑</div>
+          <div
+            class="rounded-xl border border-[#FDE68A] bg-white px-3 py-2 text-center text-[18px] font-bold"
+          >
+            used ring を更新<br /><span class="text-[16px] font-medium text-slate-600"
+              >仮想割り込みでゲストへ通知</span
+            >
+          </div>
+          <p class="mt-3 text-center text-[16px] leading-tight text-slate-600">
+            これは guest syscall の逐語翻訳ではない
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

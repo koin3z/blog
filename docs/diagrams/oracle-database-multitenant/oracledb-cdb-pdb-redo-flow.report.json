@@ -1,0 +1,324 @@
+{
+  "success": true,
+  "input": "oracledb-cdb-pdb-redo-flow.html",
+  "output": "oracledb-cdb-pdb-redo-flow.png",
+  "generatedAt": "2026-07-26T05:55:12.035Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1080,
+    "height": 520
+  },
+  "png": {
+    "width": 2160,
+    "height": 1040,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1288360,
+    "translucentPixels": 2382,
+    "opaquePixels": 955658,
+    "transparentRatio": 0.573522,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 11,
+    "outerBandPixels": 69916,
+    "outerTransparentPixels": 69916,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1080,
+      "height": 520,
+      "scrollWidth": 1080,
+      "scrollHeight": 520
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "PDB AとPDB Bの更新が、共有SGA内のredo log bufferへ集まり、LGWRによってCDB共通のonline redo logへ書き込まれ、ARCHによってarchived redo logになる。PDB単位の回復では共有archiveから対象PDBのredoを選び、対象PDBのdatafileへ適用する一方、他PDBのdatafileは変更しない。",
+    "directTextElements": [
+      {
+        "tag": "div",
+        "text": "更新時：複数 PDB の REDO は一つの流れへ集約",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "PDB A",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Transaction",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "data block を更新",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PDB B",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Transaction",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "data block を更新",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "SHARED SGA",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "REDO log buffer",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "PDB ID 付き",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "LGWR",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Online REDO log",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "CDB 共通",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "ARCH / LOG SWITCH",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Archived REDO log",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "複数 PDB の REDO を含む",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "PDB 回復時：共有 REDO から対象を選んで適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "RMAN / RECOVERY",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "対象 PDB の REDO を選択",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "TARGET",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "PDB A datafiles",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "REDO を適用",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "OTHER PDB",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "PDB B datafiles",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "回復対象外",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1080",
+      "dataHeight": "520",
+      "width": 1080,
+      "height": 520,
+      "left": 0,
+      "top": 0,
+      "right": 1080,
+      "bottom": 520,
+      "scrollWidth": 1080,
+      "scrollHeight": 520,
+      "viewportWidth": 1080,
+      "viewportHeight": 520,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1080,
+      "bottom": 520,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 2160x1040",
+      "passed": true,
+      "evidence": "actual=2160x1040"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1288360, opaque=955658"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=11px, transparent=69916/69916, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1288360/2246400, ratio=0.573522"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

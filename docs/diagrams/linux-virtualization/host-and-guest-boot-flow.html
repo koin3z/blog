@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>物理ホストとゲストの起動</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="860"
+      data-height="548"
+      class="relative h-[548px] w-[860px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="物理ホストの起動後にQEMUとKVMが仮想マシンを構成し、ゲストが独自にファームウェアからPID 1まで起動する流れ"
+    >
+      <section class="relative h-full w-full" aria-label="ホストとゲストの起動の関係">
+        <p
+          class="absolute top-[12px] left-[28px] text-[20px] leading-tight font-bold text-slate-800"
+        >
+          ゲストの起動は、起動済みのホストが仮想マシンを組み立てた後に始まる
+        </p>
+
+        <div
+          class="absolute top-[59px] left-[28px] rounded-full bg-[#DBEAFE] px-3 py-1 text-[16px] font-bold text-[#1D4ED8]"
+        >
+          先に起動する: 物理ホスト
+        </div>
+        <div
+          class="absolute top-[352px] left-[28px] rounded-full bg-[#CCFBF1] px-3 py-1 text-[16px] font-bold text-[#047857]"
+        >
+          その後に起動する: ゲストOS
+        </div>
+
+        <svg
+          class="absolute inset-0 h-full w-full text-[#64748B]"
+          viewBox="0 0 860 548"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M208 150h29" stroke="currentColor" stroke-width="3" />
+          <path d="m236 143 12 7-12 7z" fill="currentColor" />
+          <path d="M408 150h29" stroke="currentColor" stroke-width="3" />
+          <path d="m436 143 12 7-12 7z" fill="currentColor" />
+          <path d="M608 150h29" stroke="currentColor" stroke-width="3" />
+          <path d="m636 143 12 7-12 7z" fill="currentColor" />
+
+          <path d="M430 205v51" stroke="#6D28D9" stroke-width="3" />
+          <path d="m423 255 7 12 7-12z" fill="#6D28D9" />
+
+          <path d="M208 443h29" stroke="currentColor" stroke-width="3" />
+          <path d="m236 436 12 7-12 7z" fill="currentColor" />
+          <path d="M408 443h29" stroke="currentColor" stroke-width="3" />
+          <path d="m436 436 12 7-12 7z" fill="currentColor" />
+          <path d="M608 443h29" stroke="currentColor" stroke-width="3" />
+          <path d="m636 436 12 7-12 7z" fill="currentColor" />
+        </svg>
+
+        <article
+          class="absolute top-[97px] left-[28px] h-[106px] w-[180px] rounded-xl border-2 border-[#93C5FD] bg-[#EFF6FF] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#1D4ED8]">1. ファームウェア</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            CPU reset →<br />UEFI / BIOS
+          </h2>
+        </article>
+        <article
+          class="absolute top-[97px] left-[228px] h-[106px] w-[180px] rounded-xl border-2 border-[#93C5FD] bg-[#EFF6FF] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#1D4ED8]">2. OSを読み込む</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            boot loader<br />または EFI stub
+          </h2>
+        </article>
+        <article
+          class="absolute top-[97px] left-[428px] h-[106px] w-[180px] rounded-xl border-2 border-[#93C5FD] bg-[#EFF6FF] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#1D4ED8]">3. OSの核</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            ホスト Linux<br />カーネル初期化
+          </h2>
+        </article>
+        <article
+          class="absolute top-[97px] left-[628px] h-[106px] w-[204px] rounded-xl border-2 border-[#93C5FD] bg-[#EFF6FF] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#1D4ED8]">4. ユーザー空間</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            ホスト PID 1<br />サービスを起動
+          </h2>
+        </article>
+
+        <article
+          class="absolute top-[268px] left-[164px] h-[75px] w-[532px] rounded-xl border-2 border-[#C4B5FD] bg-[#F5F3FF] px-4 py-3 text-center"
+        >
+          <p class="text-[17px] leading-tight font-bold text-[#5B21B6]">
+            QEMU + KVM がゲスト用の vCPU・メモリ・デバイスを用意
+          </p>
+          <p class="mt-1 text-[16px] leading-tight text-slate-600">
+            ここで初めて、ゲストから見える仮想マシンができる
+          </p>
+        </article>
+
+        <article
+          class="absolute top-[390px] left-[28px] h-[106px] w-[180px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">1. 仮想ハードウェア</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            仮想 vCPU<br />リセットから開始
+          </h2>
+        </article>
+        <article
+          class="absolute top-[390px] left-[228px] h-[106px] w-[180px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">2. ゲスト用の入口</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            ゲスト firmware<br />→ boot loader
+          </h2>
+        </article>
+        <article
+          class="absolute top-[390px] left-[428px] h-[106px] w-[180px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">3. 独立したOS</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            ゲスト Linux<br />カーネル初期化
+          </h2>
+        </article>
+        <article
+          class="absolute top-[390px] left-[628px] h-[106px] w-[204px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-3 py-3"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">4. 別のユーザー空間</p>
+          <h2 class="mt-1 text-[19px] leading-tight font-bold text-slate-800">
+            ゲスト PID 1<br />ゲストのサービス
+          </h2>
+        </article>
+
+        <p class="absolute right-[28px] bottom-[17px] text-[16px] text-slate-600">
+          ※ QEMU の direct kernel boot では一部を短縮できる
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

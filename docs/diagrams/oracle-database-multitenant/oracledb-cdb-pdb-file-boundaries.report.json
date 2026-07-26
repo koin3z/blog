@@ -1,0 +1,414 @@
+{
+  "success": true,
+  "input": "oracledb-cdb-pdb-file-boundaries.html",
+  "output": "oracledb-cdb-pdb-file-boundaries.png",
+  "generatedAt": "2026-07-26T05:54:32.027Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1080,
+    "height": 680
+  },
+  "png": {
+    "width": 2160,
+    "height": 1360,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 941244,
+    "translucentPixels": 7537,
+    "opaquePixels": 1988819,
+    "transparentRatio": 0.320413,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 14,
+    "outerBandPixels": 97776,
+    "outerTransparentPixels": 93600,
+    "outerTransparentRatio": 0.95729
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1080,
+      "height": 680,
+      "scrollWidth": 1080,
+      "scrollHeight": 680
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "一つのCDBで共有されるDatabase instance、control file、online redo log、SPFILEと、CDB root、PDB seed、各PDBが個別に持つdatafile、tempfile、dictionaryの境界を示す。UNDOはlocalまたはshared、TDE keystoreはunitedまたはisolatedの構成によって境界が変わる。",
+    "directTextElements": [
+      {
+        "tag": "div",
+        "text": "1 CDB の管理境界",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "CDB 全体で共有：PDB ごとの実体は持たない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "Database instance",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "SGA・process を共有",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PDB 専用 runtime なし",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Control file",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "論理 file set は 1 つ",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "multiplex = 冗長 copy",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Online REDO log",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "全 PDB の変更を記録",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PDB 専用 log はない",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "SPFILE / PFILE",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "instance 起動用に 1 つ",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PDB 別の file はない",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "コンテナごとに分離：root、seed、各 PDB が自分の file set を持つ",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "ROOT CONTAINER",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "CDB$ROOT",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "SYSTEM / SYSAUX",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "datafiles・tempfile",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "共通 metadata",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "SEED CONTAINER",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "PDB$SEED",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "SYSTEM / SYSAUX",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "datafiles・tempfile",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "新規 PDB 用 template",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PLUGGABLE DATABASE",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "PDB A",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "SYSTEM / SYSAUX",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "user datafiles・tempfile",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "schema・業務 data",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "PLUGGABLE DATABASE",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "PDB B",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "SYSTEM / SYSAUX",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "user datafiles・tempfile",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "schema・業務 data",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "構成で境界が変わる：二値の「共有／分離」では決められない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "UNDO tablespace",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "local：各 container ／ shared：instance 単位で全 container が利用",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "TDE keystore",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "united：keystore 共有 ／ isolated：PDB 固有 keystore",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1080",
+      "dataHeight": "680",
+      "width": 1080,
+      "height": 680,
+      "left": 0,
+      "top": 0,
+      "right": 1080,
+      "bottom": 680,
+      "scrollWidth": 1080,
+      "scrollHeight": 680,
+      "viewportWidth": 1080,
+      "viewportHeight": 680,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1080,
+      "bottom": 680,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 2160x1360",
+      "passed": true,
+      "evidence": "actual=2160x1360"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=941244, opaque=1988819"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=14px, transparent=93600/97776, ratio=0.95729"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=941244/2937600, ratio=0.320413"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

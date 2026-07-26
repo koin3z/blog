@@ -1,0 +1,354 @@
+{
+  "success": true,
+  "input": "host-and-guest-boot-flow.html",
+  "output": "host-and-guest-boot-flow.png",
+  "generatedAt": "2026-07-26T10:50:01.736Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 860,
+    "height": 548
+  },
+  "png": {
+    "width": 1720,
+    "height": 1096,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1013497,
+    "translucentPixels": 15183,
+    "opaquePixels": 856440,
+    "transparentRatio": 0.53763,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 11,
+    "outerBandPixels": 61468,
+    "outerTransparentPixels": 61468,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 860,
+      "height": 548,
+      "scrollWidth": 860,
+      "scrollHeight": 548
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "物理ホストの起動後にQEMUとKVMが仮想マシンを構成し、ゲストが独自にファームウェアからPID 1まで起動する流れ",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "ゲストの起動は、起動済みのホストが仮想マシンを組み立てた後に始まる",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "div",
+        "text": "先に起動する: 物理ホスト",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "その後に起動する: ゲストOS",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "1. ファームウェア",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "CPU reset →",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "UEFI / BIOS",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "2. OSを読み込む",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "boot loader",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "または EFI stub",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "3. OSの核",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ホスト Linux",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "カーネル初期化",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "4. ユーザー空間",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ホスト PID 1",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "サービスを起動",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "QEMU + KVM がゲスト用の vCPU・メモリ・デバイスを用意",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "p",
+        "text": "ここで初めて、ゲストから見える仮想マシンができる",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "1. 仮想ハードウェア",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "仮想 vCPU",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "リセットから開始",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "2. ゲスト用の入口",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ゲスト firmware",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "→ boot loader",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "3. 独立したOS",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ゲスト Linux",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "カーネル初期化",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "4. 別のユーザー空間",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ゲスト PID 1",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "ゲストのサービス",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "※ QEMU の direct kernel boot では一部を短縮できる",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "860",
+      "dataHeight": "548",
+      "width": 860,
+      "height": 548,
+      "left": 0,
+      "top": 0,
+      "right": 860,
+      "bottom": 548,
+      "scrollWidth": 860,
+      "scrollHeight": 548,
+      "viewportWidth": 860,
+      "viewportHeight": 548,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 860,
+      "bottom": 548,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1720x1096",
+      "passed": true,
+      "evidence": "actual=1720x1096"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1013497, opaque=856440"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=11px, transparent=61468/61468, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1013497/1885120, ratio=0.53763"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

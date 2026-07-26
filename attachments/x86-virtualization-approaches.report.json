@@ -1,0 +1,313 @@
+{
+  "success": true,
+  "input": "x86-virtualization-approaches.html",
+  "output": "x86-virtualization-approaches.png",
+  "generatedAt": "2026-07-26T11:14:23.338Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 940,
+    "height": 430
+  },
+  "png": {
+    "width": 1880,
+    "height": 860,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 643142,
+    "translucentPixels": 1026,
+    "opaquePixels": 972632,
+    "transparentRatio": 0.397787,
+    "cornerAlpha": [0, 0, 0, 0],
+    "outerBandSize": 9,
+    "outerBandPixels": 48996,
+    "outerTransparentPixels": 48996,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 940,
+      "height": 430,
+      "scrollWidth": 940,
+      "scrollHeight": 430
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "バイナリトランスレーションと準仮想化はゲストOSをどう扱うかの方式であり、VMXはそれを支援するCPU実行機構であることを示す比較図",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "ゲストOSをどう動かすか",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "CPUがどう支援するか",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "完全仮想化のソフトウェア技法",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "バイナリ変換",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "ゲストOS：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "変更しない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "VMM：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "問題命令を置き換える",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "trapできない命令を補う",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "ゲストとの協調",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "準仮想化",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "ゲストOS：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "変更する",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "操作：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "hypercallで依頼",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "VMMの存在を知る",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "Intel VT-xの実行機構",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "VMX mode",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "ゲスト：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "non-rootで実行",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "VMM：",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "rootで処理",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "必要時だけVM exit",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "VMXは前2者と同列の方式ではなく、VMMがゲストを制御しやすくするハードウェア支援である。",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "940",
+      "dataHeight": "430",
+      "width": 940,
+      "height": 430,
+      "left": 0,
+      "top": 0,
+      "right": 940,
+      "bottom": 430,
+      "scrollWidth": 940,
+      "scrollHeight": 430,
+      "viewportWidth": 940,
+      "viewportHeight": 430,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 940,
+      "bottom": 430,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1880x860",
+      "passed": true,
+      "evidence": "actual=1880x860"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=643142, opaque=972632"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=9px, transparent=48996/48996, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=643142/1616800, ratio=0.397787"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

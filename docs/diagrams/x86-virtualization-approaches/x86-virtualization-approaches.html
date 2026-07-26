@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>x86 仮想化方式の比較</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="940"
+      data-height="430"
+      class="relative h-[430px] w-[940px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="バイナリトランスレーションと準仮想化はゲストOSをどう扱うかの方式であり、VMXはそれを支援するCPU実行機構であることを示す比較図"
+    >
+      <section class="relative h-full w-full" aria-label="x86仮想化の方式とCPU支援">
+        <div class="absolute top-[20px] left-[24px] flex items-center gap-3" aria-hidden="true">
+          <span class="h-[2px] w-[72px] bg-[#1D4ED8]"></span>
+          <p class="rounded-lg bg-[#DBEAFE] px-3 py-1.5 text-[18px] font-bold text-[#1E3A8A]">
+            ゲストOSをどう動かすか
+          </p>
+        </div>
+        <div class="absolute top-[20px] left-[645px] flex items-center gap-3" aria-hidden="true">
+          <p class="rounded-lg bg-[#EDE9FE] px-3 py-1.5 text-[18px] font-bold text-[#4C1D95]">
+            CPUがどう支援するか
+          </p>
+          <span class="h-[2px] w-[58px] bg-[#6D28D9]"></span>
+        </div>
+
+        <svg
+          class="absolute inset-0 h-full w-full text-[#64748B]"
+          viewBox="0 0 940 430"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M600 72v274" stroke="currentColor" stroke-width="2" stroke-dasharray="7 7" />
+        </svg>
+
+        <article
+          class="absolute top-[82px] left-[24px] h-[270px] w-[276px] rounded-2xl border-2 border-[#1D4ED8] bg-[#DBEAFE] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold tracking-wide text-[#1E3A8A]">
+            完全仮想化のソフトウェア技法
+          </p>
+          <h2 class="mt-2 text-[25px] leading-tight font-bold text-[#1E3A8A]">バイナリ変換</h2>
+          <div class="mt-5 grid gap-3 text-[18px] leading-snug text-[#1E3A8A]">
+            <p><span class="font-bold">ゲストOS：</span>変更しない</p>
+            <p><span class="font-bold">VMM：</span>問題命令を置き換える</p>
+            <p class="rounded-xl bg-white px-3 py-2 font-medium">trapできない命令を補う</p>
+          </div>
+        </article>
+
+        <article
+          class="absolute top-[82px] left-[358px] h-[270px] w-[226px] rounded-2xl border-2 border-[#047857] bg-[#CCFBF1] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold tracking-wide text-[#134E4A]">ゲストとの協調</p>
+          <h2 class="mt-2 text-[25px] leading-tight font-bold text-[#134E4A]">準仮想化</h2>
+          <div class="mt-5 grid gap-3 text-[18px] leading-snug text-[#134E4A]">
+            <p><span class="font-bold">ゲストOS：</span>変更する</p>
+            <p><span class="font-bold">操作：</span>hypercallで依頼</p>
+            <p class="rounded-xl bg-white px-3 py-2 font-medium">VMMの存在を知る</p>
+          </div>
+        </article>
+
+        <article
+          class="absolute top-[82px] left-[666px] h-[270px] w-[250px] rounded-2xl border-2 border-[#6D28D9] bg-[#EDE9FE] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold tracking-wide text-[#4C1D95]">Intel VT-xの実行機構</p>
+          <h2 class="mt-2 text-[25px] leading-tight font-bold text-[#4C1D95]">VMX mode</h2>
+          <div class="mt-5 grid gap-3 text-[18px] leading-snug text-[#4C1D95]">
+            <p><span class="font-bold">ゲスト：</span>non-rootで実行</p>
+            <p><span class="font-bold">VMM：</span>rootで処理</p>
+            <p class="rounded-xl bg-white px-3 py-2 font-medium">必要時だけVM exit</p>
+          </div>
+        </article>
+
+        <p
+          class="absolute top-[370px] left-[24px] rounded-lg bg-[#EDE9FE] px-3 py-1 text-[16px] font-bold text-[#4C1D95]"
+        >
+          VMXは前2者と同列の方式ではなく、VMMがゲストを制御しやすくするハードウェア支援である。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

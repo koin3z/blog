@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VMX modeと特権リング</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="900"
+      data-height="564"
+      class="relative h-[564px] w-[900px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="VMX rootとVMX non-rootを横軸、CPL 0とCPL 3を縦軸にして、ホストのKVMとQEMU、ゲストカーネルとゲストアプリの位置を示す図"
+    >
+      <section class="relative h-full w-full" aria-label="VMXモードとCPLの二軸">
+        <p
+          class="absolute top-[12px] left-[28px] text-[19px] leading-tight font-bold text-slate-800"
+        >
+          VMX mode は「どのマシンか」、ring は「その中での権限」を表す別軸
+        </p>
+
+        <div
+          class="absolute top-[60px] left-[174px] w-[319px] rounded-t-xl bg-[#EDE9FE] py-2 text-center text-[18px] font-bold text-[#5B21B6]"
+        >
+          VMX root — ホストの実行状態
+        </div>
+        <div
+          class="absolute top-[60px] left-[521px] w-[351px] rounded-t-xl bg-[#CCFBF1] py-2 text-center text-[18px] font-bold text-[#047857]"
+        >
+          VMX non-root — ゲストの実行状態
+        </div>
+
+        <div
+          class="absolute top-[127px] left-[28px] flex h-[163px] w-[122px] flex-col justify-center rounded-xl bg-[#E2E8F0] px-3 text-center"
+        >
+          <p class="text-[18px] font-bold text-slate-800">CPL 0</p>
+          <p class="mt-1 text-[16px] leading-tight text-slate-600">カーネル<br />特権</p>
+        </div>
+        <div
+          class="absolute top-[310px] left-[28px] flex h-[163px] w-[122px] flex-col justify-center rounded-xl bg-[#E2E8F0] px-3 text-center"
+        >
+          <p class="text-[18px] font-bold text-slate-800">CPL 3</p>
+          <p class="mt-1 text-[16px] leading-tight text-slate-600">ユーザー<br />権限</p>
+        </div>
+
+        <article
+          class="absolute top-[127px] left-[174px] h-[163px] w-[319px] rounded-xl border-2 border-[#C4B5FD] bg-[#F5F3FF] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold text-[#5B21B6]">ホストのカーネル空間</p>
+          <h2 class="mt-2 text-[23px] leading-tight font-bold text-slate-800">
+            Linux kernel + KVM
+          </h2>
+          <p class="mt-3 text-[17px] leading-snug text-slate-600">
+            VM entry / exit、割り込み、メモリ仮想化を担う
+          </p>
+        </article>
+        <article
+          class="absolute top-[310px] left-[174px] h-[163px] w-[319px] rounded-xl border-2 border-[#C4B5FD] bg-[#F5F3FF] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold text-[#5B21B6]">ホストのユーザー空間</p>
+          <h2 class="mt-2 text-[23px] leading-tight font-bold text-slate-800">QEMU / libvirt</h2>
+          <p class="mt-3 text-[17px] leading-snug text-slate-600">
+            仮想デバイス、ファームウェア、VMのライフサイクル
+          </p>
+        </article>
+        <article
+          class="absolute top-[127px] left-[521px] h-[163px] w-[351px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">ゲストのカーネル空間</p>
+          <h2 class="mt-2 text-[23px] leading-tight font-bold text-slate-800">
+            ゲスト Linux kernel
+          </h2>
+          <p class="mt-3 text-[17px] leading-snug text-slate-600">
+            ゲストのプロセス・仮想メモリ・仮想デバイスを管理
+          </p>
+        </article>
+        <article
+          class="absolute top-[310px] left-[521px] h-[163px] w-[351px] rounded-xl border-2 border-[#5EEAD4] bg-[#F0FDFA] px-5 py-5"
+        >
+          <p class="text-[16px] font-bold text-[#047857]">ゲストのユーザー空間</p>
+          <h2 class="mt-2 text-[23px] leading-tight font-bold text-slate-800">
+            ゲストアプリケーション
+          </h2>
+          <p class="mt-3 text-[17px] leading-snug text-slate-600">
+            通常の system call は右列の中で完結する
+          </p>
+        </article>
+
+        <svg
+          class="absolute inset-0 h-full w-full text-[#475569]"
+          viewBox="0 0 900 564"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M696 310v-16" stroke="#047857" stroke-width="3" />
+          <path d="m689 295 7-12 7 12z" fill="#047857" />
+          <path d="M334 310v-16" stroke="#6D28D9" stroke-width="3" />
+          <path d="m327 295 7-12 7 12z" fill="#6D28D9" />
+        </svg>
+        <div
+          class="absolute top-[281px] left-[723px] rounded bg-white/90 px-2 py-0.5 text-[16px] font-bold text-[#047857]"
+        >
+          system call
+        </div>
+        <div
+          class="absolute top-[281px] left-[248px] rounded bg-white/90 px-2 py-0.5 text-[16px] font-bold text-[#5B21B6]"
+        >
+          KVM_RUN
+        </div>
+
+        <div
+          class="absolute top-[495px] left-[28px] right-[28px] rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-center leading-tight text-slate-700"
+        >
+          <p class="text-[16px]">
+            通常: app → guest kernel（system call） / 捕捉時: guest ↔ KVM（VM exit / entry）
+          </p>
+          <p class="mt-1 text-[16px]">
+            「ring -1」は便宜上の呼び名。VMX root / non-root を ring 0〜3 の番号に置き換えない。
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
