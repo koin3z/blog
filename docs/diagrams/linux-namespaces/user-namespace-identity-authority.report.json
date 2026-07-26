@@ -1,0 +1,288 @@
+{
+  "success": true,
+  "input": "user-namespace-identity-authority.html",
+  "output": "user-namespace-identity-authority.png",
+  "generatedAt": "2026-07-24T01:41:12.577Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1600,
+    "height": 660
+  },
+  "png": {
+    "width": 3200,
+    "height": 1320,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1422899,
+    "translucentPixels": 1629,
+    "opaquePixels": 2799472,
+    "transparentRatio": 0.336861,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 14,
+    "outerBandPixels": 125776,
+    "outerTransparentPixels": 125776,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1600,
+      "height": 660,
+      "scrollWidth": 1600,
+      "scrollHeight": 660
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "子User namespace内のUID 0が親User namespaceのUID 1000へ対応する例と、内側のcapabilityがそのUser namespaceの所有資源には有効だが、初期User namespaceが管理するホスト資源には及ばないことを示す図",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "子User namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "内側から見たID",
+        "fontSize": 30,
+        "effectiveFontSize": 30
+      },
+      {
+        "tag": "p",
+        "text": "プロセスの表示",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "UID 0",
+        "fontSize": 34,
+        "effectiveFontSize": 34
+      },
+      {
+        "tag": "p",
+        "text": "このnamespace内ではroot",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "uid_map",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "code",
+        "text": "0 1000 1",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "親User namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "外側で使うID",
+        "fontSize": 30,
+        "effectiveFontSize": 30
+      },
+      {
+        "tag": "p",
+        "text": "同じプロセスの対応先",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "UID 1000",
+        "fontSize": 34,
+        "effectiveFontSize": 34
+      },
+      {
+        "tag": "p",
+        "text": "一般ユーザーの例",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "CAPABILITYが有効",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "このUser namespaceが所有する資源",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "後から作るMount namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "後から作るNetwork namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "CAPABILITYが及ばない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "初期User namespaceが管理する資源",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "内側のUID 0だけでは、ホスト全体のroot権限やカーネルモジュール操作を得られない",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1600",
+      "dataHeight": "660",
+      "width": 1600,
+      "height": 660,
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 660,
+      "scrollWidth": 1600,
+      "scrollHeight": 660,
+      "viewportWidth": 1600,
+      "viewportHeight": 660,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 660,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 3200x1320",
+      "passed": true,
+      "evidence": "actual=3200x1320"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1422899, opaque=2799472"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=14px, transparent=125776/125776, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1422899/4224000, ratio=0.336861"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

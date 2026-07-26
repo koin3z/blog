@@ -33,6 +33,56 @@ decisions that future Codex runs should preserve or consciously revisit.
 
 ## Decisions
 
+## 2026-07-23 — Use a project-local HTML and Tailwind diagram skill
+
+- Status: accepted
+- Context: Technical notes need diagrams that remain editable after generation, can follow an
+  attached composition reference, and can be published as fixed-size PNG files without an
+  accidental white canvas or runtime network dependency.
+- Decision:
+  - Keep `.agents/skills/diagram-generator-html-tailwind/` as the project-local workflow for
+    architecture, comparison, flow, timeline, layer, and progression diagrams that require PNG
+    output.
+  - Produce an editable HTML source, a transparent PNG, and a JSON inspection report from one
+    fixed `#diagram` canvas.
+  - Use Tailwind utility classes and inline SVG, a pinned vendored Tailwind 4.3.3 browser runtime,
+    and Playwright-only rendering with blocked external and local subresources.
+  - Require DOM checks for canvas dimensions, accessibility, font size, clipping, overflow, and
+    full-canvas backgrounds, plus decoded PNG checks for dimensions and outer-band transparency.
+  - Inspect attached reference images for structure and hierarchy, but do not embed them in the
+    generated HTML.
+  - Use a content-fit, flat composition as the default. Do not add a figure-wide title band,
+    slide preset, large shadow, gradient, decorative icon set, or unused whitespace unless the
+    request or information structure requires it.
+  - Do not finish diagrams with only white, gray, and Ink surfaces. Start with one chromatic
+    primary hue and its tints; use multiple balanced hues only when categories, stages, states,
+    responsibilities, or an attached reference make those distinctions useful. White and Ink
+    remain available as text colors, and color must not be the only semantic cue.
+  - Keep the CSS canvas near the intended display size and use renderer scale for a higher-density
+    PNG instead of enlarging the logical layout.
+- Alternatives considered:
+  - Mermaid was rejected for layouts that require controlled card composition, annotation
+    placement, and exact PNG dimensions.
+  - Raster image generation was rejected as the primary workflow because it does not preserve an
+    editable technical source or deterministic labels.
+  - Direct SVG generation remains useful for SVG-first deliverables but does not replace the
+    requested HTML and Tailwind source.
+  - Live CDN rendering and an uninspected Chrome command fallback were rejected because they
+    weaken reproducibility, resource isolation, and verification.
+- Consequences: Future HTML/Tailwind diagram work should start from the bundled template or
+  pattern references, keep the outer canvas transparent and close to the content bounds, and
+  repeat rendering until the report succeeds. Palette choices should reuse the documented
+  strong/tint pairs instead of falling back to grayscale cards or introducing arbitrary rainbow
+  colors. A `.skill` package can distribute the workflow without including its evaluation
+  workspace.
+- Evidence and verification: See the related research entry. The renderer self-test covers base,
+  2×, blocked-resource, and opaque-background cases; the original three evaluations and four
+  compact design samples produced valid transparent PNGs with successful reports.
+- Supersedes:
+- Superseded by:
+- Related:
+  - [Research entry](research-log.md#2026-07-23--deterministic-html-and-tailwind-diagram-rendering)
+
 ## 2026-07-22 — Add a cross-vendor data-platform subject branch
 
 - Status: accepted

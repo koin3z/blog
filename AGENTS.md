@@ -62,69 +62,22 @@ Dependencies are pinned in `package-lock.json`.
 - Give Markdown files descriptive names. Use kebab-case for English slugs; topic-specific names and Japanese titles are also acceptable.
 - A directory-local Prettier configuration takes precedence. For example, in `content/cloud/oracle/database/`, do not wrap prose paragraphs or list items; follow that directory's `.prettierrc`.
 
-## Markdown Content Guidelines
+### Learning Note Lifecycle
 
-Write pages under `content/` as technical notes for later retrieval and decision-making.
-Prioritize a structure that makes facts, conditions, and reasons easy to find over a polished article-like presentation.
+Learning notes move through the following phases.
 
-Use the following pages as style references:
-
-- `content/identity/oauth/authorization-server.md`
-- `content/cloud/oracle/vault/oci-vault-secret.md`
-
-Do not copy typos, inconsistent notation, or unfinished parts from those pages.
-This specification takes precedence.
-
-### Frontmatter
-
-- Order fields as `title`, `date`, `modified`, `draft`, `tags`, `aliases`, and `description` by default.
-- Write `description` as one sentence describing the page's subject. Do not repeat only the title.
-- Use `date` for the creation date and `modified` for the last content change.
-- Align `tags` and `aliases` with the taxonomy and URL structure of existing pages.
-
-### Body Structure
-
-- Do not add an `#` heading to the body. Use the frontmatter `title` as the page title.
-- Start with `## Overview` when useful, and briefly state the page's position, role, and main components.
-- Use `##` to divide topics and `###` for processing, configuration, constraints, and other details within a topic.
-- Make headings short noun phrases and keep one topic per section.
-- Prefer lists. Put facts or conclusions in top-level items and conditions, reasons, examples, and exceptions in nested items.
-- Keep one idea per list item. Split items that contain multiple conditions or processes.
-- Use a comparison table instead of a long list when comparing three or more related concepts or choices.
-- Use short paragraphs only when a causal explanation is necessary. Do not restate list content in prose.
-- Put each sentence of a paragraph on its own line, with a blank line between paragraphs.
-
-### Style
-
-- For Japanese content, use the plain form and do not mix it with polite `desu/masu` forms in the same page.
-- State content directly. Do not add introductions such as “This page explains...” or “The important point is...”.
-- Do not add summaries that merely restate the preceding content.
-- Keep technically necessary subjects explicit, but do not repeat a subject that is unambiguous from context.
-- Describe product and feature behavior directly, using forms equivalent to “does,” “can,” and “requires.” Avoid unnecessarily indirect wording.
-- Write technical facts neutrally. A light, informal tone is acceptable for personal observations or conjecture, but do not blur the distinction between fact and inference.
-- Omit the final period from single-sentence list items. Use periods in paragraphs and callout bodies.
-
-### Notation
-
-- For Japanese content, consistently use `、` and `。`; do not mix them with `，` and `．`.
-- Use ASCII digits. Follow official notation for product names, standards, parameter values, and units.
-- Use inline code for parameter names, identifiers, literals, commands, and file paths, such as `client_id`, `redirect_uri`, `CURRENT`, and `true`.
-- Do not insert unnecessary spaces between Japanese text and inline code.
-- Preserve official capitalization for product names, service names, protocol names, and API names. Use one name consistently for each subject.
-- Limit bold text to cautions and easily misunderstood distinctions. Use inline code, not bold text, for parameter names.
-- Except for UI labels and quotations, use established Japanese terms where they exist.
-
-### Evidence and Examples
-
-- Prioritize information needed for later decisions, including limits, prerequisites, exceptions, and update constraints.
-- Explain not only what is possible, but also why a process is necessary when that explanation is useful.
-- Put official references at the start of the relevant section as `Doc: [page name](URL)` or `API: [operation name](URL)`. Put only page-wide references in `## References` at the end.
-- Mark unverified content with `（要確認）`. Use a `> [!NOTE] 要確認` callout for a group of items that requires investigation.
-- Do not fill gaps in uncertain memory merely to make the prose flow. Mark anything that cannot be verified as unverified.
-- Place minimal command, request, and response examples immediately after their explanation. Retain the fields referenced by the text.
-- Add a language identifier to code blocks.
-- Use meaningful placeholders such as `<secret_ocid>` in examples. Never include real credentials or secret values.
-- State what a reader should learn from an image immediately before placing it.
+1. Research draft
+   - Establish the scope, whole map, mechanism, evidence, and open questions.
+   - Keep the page unpublished.
+2. Dialogue consolidation
+   - Answer questions against the existing page.
+   - Check the user's understanding before recording it as confirmed understanding.
+1. Publication review
+   - Check evidence, source freshness, internal links, frontmatter, private information, and unresolved claims.
+   - Keep unresolved claims marked with `（要確認）`.
+4. Publication
+   - Change publication state only after explicit user approval.
+   - Run the required Quartz build validation after the change.
 
 ## Commits and Pull Requests
 
@@ -133,48 +86,40 @@ This specification takes precedence.
 - Pull requests must describe the change, list validation performed, and link related issues.
 - Include screenshots when changing visible layout or theme behavior.
 
-## Security
+- Treat every tracked file under `content/` and `attachments/` as potentially public.
+- `draft: true` and an unpublished Quartz page are publication controls, not confidentiality controls.
+- Do not store private learning transcripts, personal identifiers, confidential URLs, internal-only source material, or sensitive screenshots in publishable paths.
+- Non-Markdown attachments may be emitted independently of the Markdown page that references them.
+- Store genuinely private working material only in a Git-ignored local path.
 
-- Do not commit secrets, private notes, or machine-specific Obsidian settings.
-- Do not store credentials, including API keys, tokens, cookies, Authorization headers, private keys, or passwords, or their values in `AGENTS.md`, `docs/codex/`, examples, commands, URLs, logs, or error excerpts.
-- Remove or replace sensitive material before recording research findings.
-- Keep raw logs and sensitive working data only in Git-ignored local paths.
-- If a secret may have been exposed, do not reproduce it. State that revocation or rotation is required.
+## Learning Notes and Skill Boundaries
 
-## Reusable Codex Knowledge
+Use dedicated Skills for learning workflows.
 
-Before a substantial investigation, read `docs/codex/README.md` and the knowledge files relevant to the task.
+| Skill | Responsibility |
+| --- | --- |
+| `quartz-research-note` | Research a topic, verify evidence, and create the initial learning note |
+| `quartz-learning-tutor` | Explain an existing note, check understanding through dialogue, and revise the note after confirmation |
 
-| Location                        | Record                                                   |
-| ------------------------------- | -------------------------------------------------------- |
-| `docs/codex/research-log.md`    | Reusable research findings, evidence, and open questions |
-| `docs/codex/troubleshooting.md` | Repeatable failure symptoms, causes, and resolutions     |
-| `docs/codex/decisions.md`       | Architectural, content, and workflow decisions           |
+The rules in this file are repository-wide invariants.
+Detailed research procedures, dialogue sequencing, comprehension checks, and note-update workflows belong in the corresponding Skill.
 
-- Record only repository-specific knowledge that can help later work.
-- Do not record chat transcripts or raw command output.
-- Update an existing entry rather than creating a duplicate for the same topic.
-- Separate verified facts from hypotheses, and link relevant repository paths or public sources.
-- Leave enough conditions and verification detail for another Codex run to reproduce the result.
-- At handoff, state whether reusable knowledge was recorded. If not, briefly explain why.
+### Learning Note Principles
 
-## Learning Support
-
-For conversations and writing about new concepts or technologies, build understanding in the following order.
-
-### Mechanism-Oriented Explanation
-
-- Explain the causal structure and design rationale before the procedure or conclusion.
-- Do not stop at surface-level how-to steps; also cover the underlying reason.
-- Do not pursue material outside the main topic. Offer it only as an optional direction for further exploration.
-
-### Structured Retention
-
-- Begin with a map of the whole, including components, classification axes, and position, before moving into details.
-- Use a comparison table when similar concepts appear, so their differences are explicit.
-- Treat a proposed framework as a hypothesis. If new information does not fit it, revise the framework itself.
-
-### Output, Retrieval, and Verification
-
-- After explaining an important concept, ask one question that lets the user paraphrase it in their own words.
-- Do not provide the answer until the user responds.
+- Present the overall map, causal structure, and design rationale before procedures or conclusions.
+- Explain one level below the surface-level how-to when that reason is relevant.
+- Put optional deeper topics under a clearly marked further-exploration section rather than expanding the main scope without limit.
+- Use a comparison table when similar concepts can be confused.
+- Treat explanatory frameworks, diagrams, and analogies as provisional models.
+- Revise the framework itself when verified information does not fit it.
+- Keep the note as a consolidated knowledge artifact.
+- Do not append chat transcripts, chronological question logs, or raw tutoring exchanges.
+- Distinguish verified facts, explanatory models or inferences, the user's confirmed understanding, and unresolved questions.
+- Do not describe a statement as the user's understanding until the user has expressed it in their own words and its technical accuracy has been checked.
+- Rewrite the relevant section after clarification instead of adding a duplicate explanation.
+- Preserve the original `date`.
+- Update `modified` whenever the page body or meaningful frontmatter changes.
+- Initial AI-created learning notes must remain unpublished unless the user explicitly requests otherwise.
+- Do not change `draft` or `publish` state without explicit user approval and without checking the active Quartz publication filter.
+- Interactive paraphrase questions belong to `quartz-learning-tutor`.
+- Do not stop unrelated research, validation, or content-maintenance tasks to ask a tutoring question.

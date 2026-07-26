@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>unshare --pid のプロセス生成ライフサイクル</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="1800"
+      data-height="600"
+      class="relative h-[600px] w-[1800px] overflow-hidden bg-transparent p-[44px]"
+      role="img"
+      aria-label="sudo unshare --pid sh では呼び出し元の sh は親 PID namespace に残る。最初に起動した whoami が子 PID namespace の PID 1 になり、その whoami が終了すると子 namespace の init process が終了する。続く whoami を作ろうとする fork は ENOMEM で失敗し、sh は Cannot fork と表示する。"
+    >
+      <section class="flex h-[512px] flex-col">
+        <section
+          class="grid h-[360px] grid-cols-[350px_72px_350px_72px_350px_72px_350px] justify-center"
+        >
+          <article
+            class="h-[360px] rounded-3xl bg-[#F8FAFC]"
+          >
+            <header
+              class="flex h-[78px] items-center justify-between rounded-t-3xl bg-[#0F172A] px-6 text-white"
+            >
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[20px] font-bold text-[#0F172A]"
+              >
+                1
+              </span>
+              <p class="text-[18px] font-bold text-[#CBD5E1]">親 PID namespace</p>
+            </header>
+            <div class="p-6">
+              <h2 class="text-[25px] leading-tight font-bold text-[#0F172A]">caller shell</h2>
+              <p
+                class="mt-4 rounded-xl bg-[#E2E8F0] px-4 py-3 font-mono text-[18px] leading-snug font-semibold text-[#0F172A]"
+              >
+                sudo unshare --pid sh
+              </p>
+              <p class="mt-4 text-[19px] leading-relaxed font-semibold text-[#334155]">
+                <code>sh</code> 自身は元の PID namespace に残る
+              </p>
+              <p class="mt-2 text-[18px] leading-relaxed font-medium text-[#64748B]">
+                新しい namespace は次に作る子へ適用される
+              </p>
+            </div>
+          </article>
+
+          <div class="flex h-full items-center justify-center" aria-hidden="true">
+            <svg class="h-[64px] w-[64px]" viewBox="0 0 64 64" fill="none">
+              <path d="M8 32H50" stroke="#64748B" stroke-width="5" stroke-linecap="round" />
+              <path
+                d="M39 20L52 32L39 44"
+                stroke="#64748B"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <article
+            class="h-[360px] rounded-3xl bg-[#F8FAFC]"
+          >
+            <header
+              class="flex h-[78px] items-center justify-between rounded-t-3xl bg-[#1D4ED8] px-6 text-white"
+            >
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[20px] font-bold text-[#1D4ED8]"
+              >
+                2
+              </span>
+              <p class="text-[18px] font-bold text-[#DBEAFE]">子 PID namespace</p>
+            </header>
+            <div class="p-6">
+              <h2 class="text-[25px] leading-tight font-bold text-[#0F172A]">
+                最初の <code>whoami</code>
+              </h2>
+              <p
+                class="mt-4 rounded-xl bg-[#DBEAFE] px-4 py-3 font-mono text-[18px] leading-snug font-bold text-[#1E40AF]"
+              >
+                whoami → PID 1
+              </p>
+              <p class="mt-4 text-[19px] leading-relaxed font-semibold text-[#334155]">
+                <code>sh</code> が作る最初の子として新しい namespace へ入る
+              </p>
+              <p class="mt-2 text-[18px] leading-relaxed font-medium text-[#64748B]">
+                最初のプロセスなので init process になる
+              </p>
+            </div>
+          </article>
+
+          <div class="flex h-full items-center justify-center" aria-hidden="true">
+            <svg class="h-[64px] w-[64px]" viewBox="0 0 64 64" fill="none">
+              <path d="M8 32H50" stroke="#64748B" stroke-width="5" stroke-linecap="round" />
+              <path
+                d="M39 20L52 32L39 44"
+                stroke="#64748B"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <article
+            class="h-[360px] rounded-3xl bg-[#F8FAFC]"
+          >
+            <header
+              class="flex h-[78px] items-center justify-between rounded-t-3xl bg-[#B45309] px-6 text-white"
+            >
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[20px] font-bold text-[#B45309]"
+              >
+                3
+              </span>
+              <p class="text-[18px] font-bold text-[#FEF3C7]">子 PID namespace</p>
+            </header>
+            <div class="p-6">
+              <h2 class="text-[25px] leading-tight font-bold text-[#0F172A]">
+                <code>whoami</code> が終了
+              </h2>
+              <p
+                class="mt-4 rounded-xl bg-[#FEF3C7] px-4 py-3 text-[18px] leading-snug font-bold text-[#92400E]"
+              >
+                PID 1 の終了
+              </p>
+              <p class="mt-4 text-[19px] leading-relaxed font-semibold text-[#334155]">
+                子 namespace の init process がいなくなる
+              </p>
+              <p class="mt-2 text-[18px] leading-relaxed font-medium text-[#64748B]">
+                この namespace には次のプロセスを作れない
+              </p>
+            </div>
+          </article>
+
+          <div class="flex h-full items-center justify-center" aria-hidden="true">
+            <svg class="h-[64px] w-[64px]" viewBox="0 0 64 64" fill="none">
+              <path d="M8 32H50" stroke="#64748B" stroke-width="5" stroke-linecap="round" />
+              <path
+                d="M39 20L52 32L39 44"
+                stroke="#64748B"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <article
+            class="h-[360px] rounded-3xl bg-[#F8FAFC]"
+          >
+            <header
+              class="flex h-[78px] items-center justify-between rounded-t-3xl bg-[#BE123C] px-6 text-white"
+            >
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[20px] font-bold text-[#BE123C]"
+              >
+                4
+              </span>
+              <p class="text-[18px] font-bold text-[#FFE4E6]">親 → 子 namespace</p>
+            </header>
+            <div class="p-6">
+              <h2 class="text-[25px] leading-tight font-bold text-[#0F172A]">
+                次の <code>fork(2)</code>
+              </h2>
+              <p
+                class="mt-4 rounded-xl bg-[#FFE4E6] px-4 py-3 font-mono text-[18px] leading-snug font-bold text-[#9F1239]"
+              >
+                fork(2) → ENOMEM
+              </p>
+              <p class="mt-4 text-[19px] leading-relaxed font-semibold text-[#334155]">
+                <code>sh</code> が2回目の <code>whoami</code> を作ろうとして失敗する
+              </p>
+              <p class="mt-2 font-mono text-[18px] leading-relaxed font-bold text-[#BE123C]">
+                sh: 2: Cannot fork
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <aside
+          class="mt-[18px] flex flex-1 items-center rounded-2xl border-2 border-[#CBD5E1] bg-[#F8FAFC] px-7"
+        >
+          <span class="rounded-full bg-[#6D28D9] px-5 py-2 text-[18px] font-bold text-white">
+            原因
+          </span>
+          <p class="ml-6 text-[21px] leading-relaxed font-semibold text-[#1E293B]">
+            <code>sh</code> のゾンビ回収漏れではなく、短命な最初の子が PID 1 になって終了したこと
+          </p>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

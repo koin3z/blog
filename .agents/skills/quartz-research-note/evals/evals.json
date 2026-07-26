@@ -1,0 +1,78 @@
+{
+  "skill_name": "quartz-research-note",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "OAuth 2.0のDPoPを調査して学習ノートを作成して",
+      "should_trigger": true,
+      "expected_output": "DPoPの成立理由、構成要素、proofとtokenの結び付き、検証フロー、制約を一次情報に基づいて整理した非公開の新規Quartzページ",
+      "expectations": [
+        "The agent inspects AGENTS.md, repository structure, and the active Quartz publication filter before writing.",
+        "The page uses normative OAuth sources, distinguishes verified facts from explanatory inference, and marks unresolved claims.",
+        "The page has date and modified values, remains unpublished, has no body H1, and is build-validated."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "KubernetesのServiceとIngressの全体像を調べてページにして",
+      "should_trigger": true,
+      "expected_output": "ServiceとIngressの責任境界、通信経路、実装依存部分、類似概念との比較を学習順に整理した初期ページ",
+      "expectations": [
+        "The note defines explicit comparison axes and does not collapse API resources, controllers, and data-plane behavior into one concept.",
+        "The agent chooses a natural path from the existing content taxonomy and asks only if multiple placements remain materially plausible.",
+        "Version-sensitive Kubernetes behavior is checked against official documentation for a bounded version or confirmation date."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Passkeyを学ぶための初期ノートを作って",
+      "should_trigger": true,
+      "expected_output": "Passkeyの位置付け、成立理由、WebAuthnとの境界、登録と認証の仕組み、同期や回復の制約を根拠付きで整理した初期ページ",
+      "expectations": [
+        "The page presents the whole map before procedural detail.",
+        "Standards and platform behavior are not treated as identical, and source scope is made explicit.",
+        "Optional deeper topics are separated from the main learning scope."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "このページのcode_verifierの説明が分からない",
+      "should_trigger": false,
+      "expected_output": "既存ノートに対する説明依頼として扱い、このSkillで新規調査ページを作成しない",
+      "expectations": [
+        "The quartz-research-note skill is not selected.",
+        "No new content page is created."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "私の理解が正しいか確認して",
+      "should_trigger": false,
+      "expected_output": "理解確認の対話として扱い、このSkillを使用しない",
+      "expectations": [
+        "The quartz-research-note skill is not selected.",
+        "The request is routed to the learning-tutor workflow when an existing note is in scope."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "今の説明を既存ノートへ反映して",
+      "should_trigger": false,
+      "expected_output": "対話結果の既存ノートへの統合として扱い、このSkillで新規ノートを作成しない",
+      "expectations": [
+        "The quartz-research-note skill is not selected.",
+        "The agent preserves the learning-note confirmation boundary."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Quartzのリンク解決のバグを修正して",
+      "should_trigger": false,
+      "expected_output": "Quartz本体のソフトウェア実装として扱い、このSkillを使用しない",
+      "expectations": [
+        "The quartz-research-note skill is not selected.",
+        "The agent follows the repository's code-change workflow instead."
+      ]
+    }
+  ]
+}

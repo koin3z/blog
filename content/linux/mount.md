@@ -1,7 +1,7 @@
 ---
 title: mount
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-24
 draft: false
 tags:
   - linux/filesystems
@@ -14,19 +14,16 @@ description: Linux のマウント、バインドマウント、mount namespace�
 
 Linux では、ディスクや疑似ファイルシステムをドライブ文字で区別せず、すべて `/` を起点とする1つのディレクトリツリーに配置する。
 
-![[attachments/mount-before-after.svg|676]]
-
 | 用語                 | 内容                                                 |
 | -------------------- | ---------------------------------------------------- |
 | ソース               | デバイス、ファイルシステム、または既存のディレクトリ |
 | マウントポイント     | ソースを接続するディレクトリ                         |
 | ファイルシステム種別 | `ext4`、`xfs`、`proc`、`tmpfs` など                  |
 | マウントオプション   | `ro`、`rw`、`nosuid`、`noexec` など                  |
-この記事全体で扱う概念の位置づけは次の通り。
 
-  
+ソース、マウントポイント、ディレクトリツリーの関係は次のとおり。
 
-![[attachments/mount-overview.svg|717]]
+![[mount-source-to-mountpoint.png|ソースをマウントポイントへ接続し、Linuxのディレクトリツリーから到達する関係|820]]
 
 ## マウント状態の確認
 
@@ -62,15 +59,9 @@ cat /proc/self/mountinfo
 
 バインドマウントは、既存のディレクトリツリーを別のパスにも公開するマウント。同じファイルへ複数のパスからアクセスでき、ファイルのコピーは発生しない。
 
-```text
-bind mount なし                    bind mount あり
+`source/HELLO`と`target/HELLO`が同じinodeとデータを参照する関係は次のとおり。
 
-source/HELLO                       source/HELLO ──┐
-target/  (空)                                       ├─ 同じ実体を参照
-                                    target/HELLO ──┘
-
-# source 側での変更 ⇄ target 側への変更が相互に反映される
-```
+![[bind-mount-shared-inode.png|bind mountで異なる2つのパスが同じinodeとデータを参照する関係|820]]
 
 ```bash
 mkdir source target
@@ -84,10 +75,7 @@ findmnt --target target
 sudo umount target
 ```
 
-
 この例では、`source/HELLO` と `target/HELLO` が同じファイルを参照する。`target` 側で行った変更は `source` 側にも反映される。仕組みとして見ると、両方のパスが同じ実体(inode)を指しているだけで、データそのものは1つしか存在しない。
-
-![[attachments/bind-mount-inode.svg|717]]
 
 ### コンテナでの利用
 
@@ -106,8 +94,6 @@ docker run -v /home/user/data:/app/data IMAGE
 ```
 
 どちらも、ホストの `/home/user/data` をコンテナ内の `/app/data` から参照可能にする。書き込み可能な bind mount ではコンテナからホスト側のファイルを変更できるため、不要な書き込みを防ぐ場合は `readonly` または `:ro` を指定する。
-
-![[attachments/docker-bind-mount.svg|717]]
 
 ## mount namespace
 
@@ -129,8 +115,6 @@ sudo unshare --mount /bin/bash
 
 新しい namespace 内で追加または削除したマウントは、原則として元の namespace には反映されない。ただし、`shared` などのマウント伝播設定によっては namespace 間で変更が伝播する。`unshare` は通常、意図しない伝播を防ぐため新しい namespace の伝播設定を `private` に変更する。
 
-![[attachments/mount-namespace-isolation.svg|717]]
-
 マウント操作と mount namespace の作成には、対象の user namespace における `CAP_SYS_ADMIN` が必要になる。
 
 ### PID namespace と `/proc`
@@ -138,9 +122,6 @@ sudo unshare --mount /bin/bash
 `/proc` はディスク上のデータではなく、カーネルがプロセスなどの情報を公開する疑似ファイルシステム。PID namespace だけを作成しても、既存の `/proc` を参照している限り、`ps` の表示は適切に分離されない。
 
 PID namespace と mount namespace を作成し、その PID namespace に対応する `proc` をマウントする必要がある。
-
-![[attachments/pid-namespace-proc.svg|717]]
-
 
 ```bash
 sudo unshare --pid --mount --fork --mount-proc /bin/bash
@@ -179,9 +160,9 @@ TARGET     SOURCE      FSTYPE
 /proc      proc        proc
 ```
 
-両者が対象とする範囲を重ねて見ると、次のようになる。
+`lsblk`が扱わない疑似ファイルシステムも、`findmnt`ではマウントとして確認できる。
 
-![[attachments/lsblk-vs-findmnt.svg|717]]
+![[lsblk-and-findmnt-scope.png|lsblkはブロックデバイスを、findmntはマウントの対応関係を示す比較|820]]
 
 `proc`、`devtmpfs`、`tmpfs`、`cgroup2` などはブロックデバイスではないため、通常は `lsblk` の対象にならない。バインドマウントも新しいブロックデバイスを作成しないため、`lsblk` ではなく `findmnt` で確認する。
 

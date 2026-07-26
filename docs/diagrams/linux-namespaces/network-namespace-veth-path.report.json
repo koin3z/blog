@@ -1,0 +1,336 @@
+{
+  "success": true,
+  "input": "network-namespace-veth-path.html",
+  "output": "network-namespace-veth-path.png",
+  "generatedAt": "2026-07-24T01:41:10.774Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1600,
+    "height": 800
+  },
+  "png": {
+    "width": 3200,
+    "height": 1600,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1647166,
+    "translucentPixels": 4777,
+    "opaquePixels": 3468057,
+    "transparentRatio": 0.321712,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 16,
+    "outerBandPixels": 152576,
+    "outerTransparentPixels": 152576,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1600,
+      "height": 800,
+      "scrollWidth": 1600,
+      "scrollHeight": 800
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "Host Network namespace の veth-host と demo Network namespace の veth-demo が1組の veth ペアとして直接接続される。現在の構成は Host と demo の直接通信だけを提供し、外部到達には IP forwarding、ルーティング、NAT、または bridge の追加設定が必要である。Linux 上の Docker Engine のデフォルト bridge は、ホスト側 veth を通常 docker0 へ接続する一例であり、すべての Docker 構成に共通しない。",
+    "directTextElements": [
+      {
+        "tag": "h2",
+        "text": "Host Network namespace",
+        "fontSize": 28,
+        "effectiveFontSize": 28
+      },
+      {
+        "tag": "span",
+        "text": "Host",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "veth の片端を保持する",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "この例では demo namespace と直接通信するための端点になる",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "veth-host",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "192.0.2.1/24",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "span",
+        "text": "同じ veth ペア",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "一方へ入ったパケットが",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "もう一方から出る",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "demo Network namespace",
+        "fontSize": 28,
+        "effectiveFontSize": 28
+      },
+      {
+        "tag": "span",
+        "text": "demo",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "veth-demo",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "192.0.2.2/24",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "ペアの片端を移動する",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "この端点は demo namespace のネットワークデバイスとして見える",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "この構成の到達範囲",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "Host ↔ demo の直接通信",
+        "fontSize": 23,
+        "effectiveFontSize": 23
+      },
+      {
+        "tag": "h2",
+        "text": "外部到達には別途設定が必要",
+        "fontSize": 23,
+        "effectiveFontSize": 23
+      },
+      {
+        "tag": "span",
+        "text": "IP forwarding",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "ルーティング",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "NAT",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "bridge",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "Docker の構成例",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "Linux Engine のデフォルト bridge では、ホスト側 veth を bridge（通常",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "docker0",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "）へ接続する",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "全構成に共通ではない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1600",
+      "dataHeight": "800",
+      "width": 1600,
+      "height": 800,
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 800,
+      "scrollWidth": 1600,
+      "scrollHeight": 800,
+      "viewportWidth": 1600,
+      "viewportHeight": 800,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 800,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 3200x1600",
+      "passed": true,
+      "evidence": "actual=3200x1600"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1647166, opaque=3468057"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=16px, transparent=152576/152576, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1647166/5120000, ratio=0.321712"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

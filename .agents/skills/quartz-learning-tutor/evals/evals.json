@@ -1,0 +1,122 @@
+{
+  "skill_name": "quartz-learning-tutor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "content/identity/oauth/pkce.mdを使ってcode_verifierの役割を教えて",
+      "should_trigger": true,
+      "expected_output": "既存ノート全体でのPKCEの位置、code interceptionという原因、照合制約、攻撃者がcodeだけでは交換できない結果を説明し、最後に因果関係を問うパラフレーズ質問を1問だけ出す",
+      "expectations": [
+        "The agent reads AGENTS.md and the complete target note before answering.",
+        "The answer stays within the note's question scope and distinguishes sourced facts from an explanatory model.",
+        "The turn ends after exactly one open causal paraphrase question and does not edit the note."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "このページのClusterIPの説明が分からない",
+      "should_trigger": true,
+      "expected_output": "現在の対象ページを特定し、ClusterIPが通信経路のどの境界を担うかを必要性と制約から説明する対話",
+      "expectations": [
+        "The agent resolves the current page from available context and asks only if multiple pages remain plausible.",
+        "The explanation locates ClusterIP within the page's whole map before describing behavior.",
+        "The agent asks no more than one paraphrase question."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "私の理解ではIngressは外部向けServiceですが、合っていますか",
+      "should_trigger": true,
+      "expected_output": "理解を正確・部分的・誤りのいずれかで判定し、Ingress API、controller、Serviceの責任境界を混同している箇所だけを修正する",
+      "expectations": [
+        "The response begins with one rubric verdict.",
+        "It separates the useful intuition from the incorrect resource or responsibility boundary.",
+        "If a retry is requested, it asks exactly one focused paraphrase question and gives no model answer."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "今確認した内容をノートへ反映して",
+      "should_trigger": true,
+      "expected_output": "現在の会話で確認済みの内容だけを既存セクションへ統合し、会話ログを残さず、modifiedと必要な検証を処理する",
+      "expectations": [
+        "The request is treated as edit authorization without asking for redundant approval.",
+        "Only technically confirmed dialogue content is attributed to the user's understanding; missing context is not invented.",
+        "The agent preserves date and publication state, inspects the diff, and reports validation."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "このページから復習問題を1問出して",
+      "should_trigger": true,
+      "expected_output": "対象ノートの中心的な因果関係、適用条件、比較、または失敗例を問う問題を1問だけ出し、解答を示さず待つ",
+      "expectations": [
+        "The question is derived from the complete target note.",
+        "The agent asks exactly one question and prefers causal reasoning over term recall.",
+        "The agent does not reveal the answer before the user responds."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "このページを自分が後から理解できる形に整理して",
+      "should_trigger": true,
+      "expected_output": "既存ページを全体像、必要性、因果関係、比較軸の順に再構成し、事実・モデル・確認済み理解・未解決を混同しない",
+      "expectations": [
+        "The agent treats the request as explicit authorization to update the existing page.",
+        "The result is a consolidated public-readable note, not a transcript or Q&A log.",
+        "The original date and publication state are preserved and modified is updated."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "このノートを公開する前にレビューして",
+      "should_trigger": true,
+      "expected_output": "frontmatter、公開フィルター、未確認情報、出典、重複、機密性、リンク、画像、Quartz記法を確認してbuild結果を報告し、公開状態は変更しない",
+      "expectations": [
+        "The agent runs the complete publication checklist and npx quartz build.",
+        "The report identifies remaining unverified claims and any validation limits.",
+        "The agent does not change draft or publish state without later explicit approval."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "DPoPを最初から調査して新しいページを作って",
+      "should_trigger": false,
+      "expected_output": "新規テーマの広範な調査と初期ページ作成としてquartz-research-noteへルーティングする",
+      "expectations": [
+        "The quartz-learning-tutor skill is not selected.",
+        "No tutoring paraphrase cycle is started."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "QuartzのWikilink処理を修正して",
+      "should_trigger": false,
+      "expected_output": "Quartz本体のコード変更として通常の実装ワークフローを使う",
+      "expectations": [
+        "The quartz-learning-tutor skill is not selected.",
+        "The request is handled as a code change."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "このMarkdownの誤字だけを直して",
+      "should_trigger": false,
+      "expected_output": "学習対話や理解確認を伴わない単純校正として扱う",
+      "expectations": [
+        "The quartz-learning-tutor skill is not selected.",
+        "No paraphrase or comprehension assessment is introduced."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "新しいTypeScriptコンポーネントを実装して",
+      "should_trigger": false,
+      "expected_output": "一般的なソフトウェア実装として扱う",
+      "expectations": [
+        "The quartz-learning-tutor skill is not selected.",
+        "No learning-note workflow is started."
+      ]
+    }
+  ]
+}

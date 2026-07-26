@@ -1,0 +1,264 @@
+{
+  "success": true,
+  "input": "service-ingress-request-path.html",
+  "output": "service-ingress-request-path.png",
+  "generatedAt": "2026-07-24T01:26:46.954Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 980,
+    "height": 480
+  },
+  "png": {
+    "width": 1960,
+    "height": 960,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1420189,
+    "translucentPixels": 3021,
+    "opaquePixels": 458390,
+    "transparentRatio": 0.754777,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 10,
+    "outerBandPixels": 58000,
+    "outerTransparentPixels": 58000,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 980,
+      "height": 480,
+      "scrollWidth": 980,
+      "scrollHeight": 480
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "外部クライアントからのHTTPまたはHTTPS通信がIngress controller、Serviceを経由して複数のPodへ届く経路と、Ingress resourceがcontrollerへ経路設定を反映する関係を示す図",
+    "directTextElements": [
+      {
+        "tag": "h2",
+        "text": "外部クライアント",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "HTTP / HTTPS",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "Kubernetes クラスター",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "Ingress resource",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "ホスト名・URLパスの規則",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "Ingress controller",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "経路を実装する",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "Service",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "安定した接続先",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "selectorに一致",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "Pod",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "h2",
+        "text": "Pod",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "h2",
+        "text": "Pod",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "div",
+        "text": "host / path で振り分け",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "設定を反映",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "980",
+      "dataHeight": "480",
+      "width": 980,
+      "height": 480,
+      "left": 0,
+      "top": 0,
+      "right": 980,
+      "bottom": 480,
+      "scrollWidth": 980,
+      "scrollHeight": 480,
+      "viewportWidth": 980,
+      "viewportHeight": 480,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 980,
+      "bottom": 480,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1960x960",
+      "passed": true,
+      "evidence": "actual=1960x960"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1420189, opaque=458390"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=10px, transparent=58000/58000, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1420189/1881600, ratio=0.754777"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

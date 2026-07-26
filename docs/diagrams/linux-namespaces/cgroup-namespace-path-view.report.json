@@ -1,0 +1,354 @@
+{
+  "success": true,
+  "input": "cgroup-namespace-path-view.html",
+  "output": "cgroup-namespace-path-view.png",
+  "generatedAt": "2026-07-24T01:39:44.680Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1600,
+    "height": 700
+  },
+  "png": {
+    "width": 3200,
+    "height": 1400,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1691258,
+    "translucentPixels": 4287,
+    "opaquePixels": 2784455,
+    "transparentRatio": 0.377513,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 14,
+    "outerBandPixels": 128016,
+    "outerTransparentPixels": 128016,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1600,
+      "height": 700,
+      "scrollWidth": 1600,
+      "scrollHeight": 700
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "同じcgroupの所属先とリソース制御を、ホストでは完全なcgroupパス、新しいCgroup namespaceではルートからの相対パスとして見ること、および既存の/sys/fs/cgroupはCgroup namespaceを作るだけでは自動的に新しいルートへ切り替わらないことを、左から右に示す図",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "1 · 実体",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "変更なし",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "同じ cgroup の状態",
+        "fontSize": 29,
+        "effectiveFontSize": 29
+      },
+      {
+        "tag": "p",
+        "text": "所属先",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "code",
+        "text": "/user.slice/",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "code",
+        "text": "user-1000.slice/",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "code",
+        "text": "session-3.scope",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "プロセスの所属先は変わらない",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "CPU・メモリ・I/O などの制御も cgroup 本体が担う",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "span",
+        "text": "表示を",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "span",
+        "text": "相対化",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "2 · 見え方",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "同じ実体",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ホスト側の表示",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "完全なパス",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "code",
+        "text": "0::/user.slice/",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "code",
+        "text": "user-1000.slice/session-3.scope",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "h2",
+        "text": "namespace 内の表示",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "span",
+        "text": "相対パス",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "code",
+        "text": "0::/",
+        "fontSize": 28,
+        "effectiveFontSize": 28
+      },
+      {
+        "tag": "p",
+        "text": "作成時の所属 cgroup が",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "新しい見かけ上のルート",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "mount は",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "span",
+        "text": "別の状態",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "3 · MOUNT の注意",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "h2",
+        "text": "既存の",
+        "fontSize": 27,
+        "effectiveFontSize": 27
+      },
+      {
+        "tag": "code",
+        "text": "/sys/fs/cgroup",
+        "fontSize": 27,
+        "effectiveFontSize": 27
+      },
+      {
+        "tag": "p",
+        "text": "Cgroup namespace を作るだけでは、自動的に新しいルートへ切り替わらない",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "cgroup filesystem の mount は、mount した側の Cgroup namespace に対応する",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "祖先を隠すには Mount namespace の分離と適切な mount を組み合わせる",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1600",
+      "dataHeight": "700",
+      "width": 1600,
+      "height": 700,
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 700,
+      "scrollWidth": 1600,
+      "scrollHeight": 700,
+      "viewportWidth": 1600,
+      "viewportHeight": 700,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1600,
+      "bottom": 700,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 3200x1400",
+      "passed": true,
+      "evidence": "actual=3200x1400"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1691258, opaque=2784455"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=14px, transparent=128016/128016, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1691258/4480000, ratio=0.377513"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

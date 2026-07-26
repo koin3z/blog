@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cgroup namespace が変えるパスの見え方</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="1600"
+      data-height="700"
+      class="relative h-[700px] w-[1600px] overflow-hidden bg-transparent px-16 py-14"
+      role="img"
+      aria-label="同じcgroupの所属先とリソース制御を、ホストでは完全なcgroupパス、新しいCgroup namespaceではルートからの相対パスとして見ること、および既存の/sys/fs/cgroupはCgroup namespaceを作るだけでは自動的に新しいルートへ切り替わらないことを、左から右に示す図"
+    >
+      <section
+        class="mx-auto grid max-w-[1420px] grid-cols-[350px_76px_500px_76px_350px] items-stretch gap-4"
+        aria-label="cgroupの実体、2つのパス表示、cgroup filesystemの注意点"
+      >
+        <article
+          class="flex h-[580px] flex-col rounded-3xl bg-[#0F172A] p-8 text-white"
+        >
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[17px] font-bold tracking-[0.12em] text-slate-300">1 · 実体</p>
+            <span class="rounded-full bg-white/15 px-3 py-1 text-[16px] font-bold">変更なし</span>
+          </div>
+          <h2 class="mt-5 text-[29px] leading-tight font-bold">同じ cgroup の状態</h2>
+          <div class="mt-7 rounded-2xl border border-slate-600 bg-slate-800 p-5">
+            <p class="text-[17px] font-bold text-slate-300">所属先</p>
+            <code class="mt-3 block text-[20px] leading-relaxed font-bold text-white">
+              /user.slice/<br />
+              user-1000.slice/<br />
+              session-3.scope
+            </code>
+          </div>
+          <div class="mt-6 grid gap-4">
+            <div class="flex items-start gap-3">
+              <span class="mt-2 h-3 w-3 shrink-0 rounded-full bg-[#38BDF8]"></span>
+              <p class="text-[19px] leading-relaxed font-medium">プロセスの所属先は変わらない</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="mt-2 h-3 w-3 shrink-0 rounded-full bg-[#38BDF8]"></span>
+              <p class="text-[19px] leading-relaxed font-medium">
+                CPU・メモリ・I/O などの制御も cgroup 本体が担う
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="flex h-[580px] flex-col items-center justify-center gap-3" aria-hidden="true">
+          <span class="text-center text-[16px] leading-snug font-bold text-slate-500"
+            >表示を<br />相対化</span
+          >
+          <svg viewBox="0 0 72 48" class="h-12 w-[72px]" fill="none">
+            <path d="M5 24h50" stroke="#64748B" stroke-width="5" stroke-linecap="round" />
+            <path d="M68 24 52 13v22l16-11Z" fill="#64748B" />
+          </svg>
+        </div>
+
+        <article
+          class="h-[580px] rounded-3xl border-2 border-slate-300 bg-white p-7"
+        >
+          <div class="flex items-center justify-between gap-3">
+            <p class="text-[17px] font-bold tracking-[0.12em] text-slate-500">2 · 見え方</p>
+            <span class="rounded-full bg-violet-100 px-3 py-1 text-[16px] font-bold text-[#6D28D9]"
+              >同じ実体</span
+            >
+          </div>
+          <div class="mt-5 grid gap-5">
+            <section class="rounded-2xl border border-blue-200 bg-blue-50 p-6">
+              <div class="flex items-center justify-between gap-3">
+                <h2 class="text-[25px] font-bold text-[#1D4ED8]">ホスト側の表示</h2>
+                <span class="rounded-lg bg-[#1D4ED8] px-3 py-1 text-[16px] font-bold text-white"
+                  >完全なパス</span
+                >
+              </div>
+              <code
+                class="mt-4 block rounded-xl bg-white px-4 py-3 text-[19px] leading-relaxed font-bold text-slate-800"
+              >
+                0::/user.slice/<br />
+                user-1000.slice/session-3.scope
+              </code>
+            </section>
+
+            <section class="rounded-2xl border border-violet-200 bg-violet-50 p-6">
+              <div class="flex items-center justify-between gap-3">
+                <h2 class="text-[25px] font-bold text-[#6D28D9]">namespace 内の表示</h2>
+                <span class="rounded-lg bg-[#6D28D9] px-3 py-1 text-[16px] font-bold text-white"
+                  >相対パス</span
+                >
+              </div>
+              <div class="mt-4 flex items-center gap-4">
+                <code
+                  class="rounded-xl bg-white px-5 py-3 text-[28px] leading-none font-bold text-slate-800"
+                  >0::/</code
+                >
+                <p class="text-[18px] leading-relaxed font-medium text-slate-700">
+                  作成時の所属 cgroup が<br />新しい見かけ上のルート
+                </p>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <div class="flex h-[580px] flex-col items-center justify-center gap-3" aria-hidden="true">
+          <span class="text-center text-[16px] leading-snug font-bold text-slate-500"
+            >mount は<br />別の状態</span
+          >
+          <svg viewBox="0 0 72 48" class="h-12 w-[72px]" fill="none">
+            <path d="M5 24h50" stroke="#64748B" stroke-width="5" stroke-linecap="round" />
+            <path d="M68 24 52 13v22l16-11Z" fill="#64748B" />
+          </svg>
+        </div>
+
+        <aside
+          class="flex h-[580px] flex-col rounded-3xl border-2 border-amber-300 bg-[#FFFBEB] p-8"
+        >
+          <div class="flex items-center gap-3 text-[#B45309]">
+            <svg viewBox="0 0 24 24" class="h-7 w-7 shrink-0" fill="none" aria-hidden="true">
+              <path
+                d="M12 3 2.8 20h18.4L12 3Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 9v5M12 17.5v.2"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p class="text-[17px] font-bold tracking-[0.1em]">3 · MOUNT の注意</p>
+          </div>
+          <h2 class="mt-5 text-[27px] leading-tight font-bold text-[#92400E]">
+            既存の
+            <code class="whitespace-nowrap">/sys/fs/cgroup</code>
+          </h2>
+          <div class="mt-6 rounded-2xl border border-amber-300 bg-white p-5">
+            <p class="text-[21px] leading-relaxed font-bold text-slate-900">
+              Cgroup namespace を作るだけでは、自動的に新しいルートへ切り替わらない
+            </p>
+          </div>
+          <div class="mt-6 grid gap-4">
+            <div class="flex items-start gap-3">
+              <span class="mt-2 h-3 w-3 shrink-0 rounded-sm bg-[#B45309]"></span>
+              <p class="text-[18px] leading-relaxed font-medium text-slate-700">
+                cgroup filesystem の mount は、mount した側の Cgroup namespace に対応する
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="mt-2 h-3 w-3 shrink-0 rounded-sm bg-[#B45309]"></span>
+              <p class="text-[18px] leading-relaxed font-medium text-slate-700">
+                祖先を隠すには Mount namespace の分離と適切な mount を組み合わせる
+              </p>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

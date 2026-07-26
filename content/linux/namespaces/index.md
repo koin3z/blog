@@ -1,7 +1,7 @@
 ---
 title: Linux namespace
 date: 2026-06-07
-modified: 2026-07-22
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -22,20 +22,22 @@ Linux namespace は、カーネルが管理するグローバルな資源を抽�
 
 ## 8種類の Namespace
 
-| Namespace | 分離・仮想化するもの                                               | 詳細                                        |
-| --------- | ------------------------------------------------------------------ | ------------------------------------------- |
-| Mount     | マウントポイントの一覧                                             | [Mount namespace](./mount-namespace.md)     |
-| PID       | プロセス ID 空間                                                   | [PID namespace](./pid-namespace.md)         |
-| Network   | ネットワークデバイス、プロトコルスタック、ルーティング、ポートなど | [Network namespace](./network-namespace.md) |
-| User      | UID、GID、capability など                                          | [User namespace](./user-namespace.md)       |
-| UTS       | ホスト名と NIS ドメイン名                                          | [UTS namespace](./uts-namespace.md)         |
-| IPC       | System V IPC と POSIX メッセージキュー                             | [IPC namespace](./ipc-namespace.md)         |
-| Cgroup    | cgroup 階層のルートの見え方                                        | [Cgroup namespace](./cgroup-namespace.md)   |
-| Time      | `CLOCK_MONOTONIC` と `CLOCK_BOOTTIME` のオフセット                 | [Time namespace](./time-namespace.md)       |
+| Namespace | 分離・仮想化するもの                                  | 詳細                                          |
+| --------- | ------------------------------------------- | ------------------------------------------- |
+| Mount     | マウントポイントの一覧                                 | [Mount namespace](./mount-namespace.md)     |
+| PID       | プロセス ID 空間                                  | [PID namespace](./pid-namespace.md)         |
+| Network   | ネットワークデバイス、プロトコルスタック、ルーティング、ポートなど           | [Network namespace](./network-namespace.md) |
+| User      | UID、GID、capability など                       | [User namespace](./user-namespace.md)       |
+| UTS       | ホスト名と NIS ドメイン名                             | [UTS namespace](./uts-namespace.md)         |
+| IPC       | System V IPC と POSIX メッセージキュー               | [IPC namespace](./ipc-namespace.md)         |
+| Cgroup    | cgroup 階層のルートの見え方                           | [Cgroup namespace](./cgroup-namespace.md)   |
+| Time      | `CLOCK_MONOTONIC` と `CLOCK_BOOTTIME` のオフセット | [Time namespace](./time-namespace.md)       |
 
 8種類の namespace は、それぞれ異なる資源を分離する独立した種別であり、互いに包含関係を持たない。
 
-![[attachments/linux-namespace-mindmap.png|760]]
+各 namespace が分離する対象を、次の図で俯瞰できる。
+
+![[linux-namespace-mindmap.png|8種類のLinux namespaceと分離対象|760]]
 
 ## Namespace を操作する方法
 

@@ -1,0 +1,240 @@
+{
+  "success": true,
+  "input": "mount-source-to-mountpoint.html",
+  "output": "mount-source-to-mountpoint.png",
+  "generatedAt": "2026-07-24T01:52:42.778Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 920,
+    "height": 320
+  },
+  "png": {
+    "width": 1840,
+    "height": 640,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 817063,
+    "translucentPixels": 1758,
+    "opaquePixels": 358779,
+    "transparentRatio": 0.693837,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 7,
+    "outerBandPixels": 34524,
+    "outerTransparentPixels": 34524,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 920,
+      "height": 320,
+      "scrollWidth": 920,
+      "scrollHeight": 320
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "/dev/sda1上のext4ファイルシステムをマウントすると、マウントポイントであるルートディレクトリを起点とするLinuxのディレクトリツリーから到達できることを示す図",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "ソース",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "/dev/sda1",
+        "fontSize": 23,
+        "effectiveFontSize": 23
+      },
+      {
+        "tag": "p",
+        "text": "ext4 ファイルシステム",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "mount",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "Linux のディレクトリツリー",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "/",
+        "fontSize": 26,
+        "effectiveFontSize": 26
+      },
+      {
+        "tag": "p",
+        "text": "マウントポイント",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "/dev",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "devtmpfs",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "/proc",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "proc",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "920",
+      "dataHeight": "320",
+      "width": 920,
+      "height": 320,
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 320,
+      "scrollWidth": 920,
+      "scrollHeight": 320,
+      "viewportWidth": 920,
+      "viewportHeight": 320,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 320,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1840x640",
+      "passed": true,
+      "evidence": "actual=1840x640"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=817063, opaque=358779"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=7px, transparent=34524/34524, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=817063/1177600, ratio=0.693837"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

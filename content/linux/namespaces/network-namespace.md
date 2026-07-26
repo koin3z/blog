@@ -1,7 +1,7 @@
 ---
 title: Network namespace
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -42,12 +42,9 @@ ping -c 1 127.0.0.1
 
 veth は常にペアで作られる仮想 Ethernet デバイスである。一方の端に入ったパケットが、もう一方の端から出る。片方を別の Network namespace に移動することで、2つの namespace を接続できる。
 
-```text
-host namespace                         demo namespace
+Host 側と demo 側の端点が1つの veth ペアを構成することと、外部到達には別の設定が必要であることを次の図で確認できる。
 
-veth-host  <========================>  veth-demo
-192.0.2.1/24                           192.0.2.2/24
-```
+![[network-namespace-veth-path.png|HostとdemoのNetwork namespaceを接続するvethペアと外部到達に必要な追加設定|780]]
 
 ```bash
 sudo ip netns add demo

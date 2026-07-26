@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quartz Research Note"
+  short_description: "根拠付きのQuartz向け初期学習ノートを調査・作成する"
+  default_prompt: "$quartz-research-note を使ってDPoPを調査し、このQuartz Vault向けの非公開初期学習ノートを作成してください。"

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network namespace と veth の通信経路</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="1600"
+      data-height="800"
+      class="relative h-[800px] w-[1600px] overflow-hidden bg-transparent p-[48px]"
+      role="img"
+      aria-label="Host Network namespace の veth-host と demo Network namespace の veth-demo が1組の veth ペアとして直接接続される。現在の構成は Host と demo の直接通信だけを提供し、外部到達には IP forwarding、ルーティング、NAT、または bridge の追加設定が必要である。Linux 上の Docker Engine のデフォルト bridge は、ホスト側 veth を通常 docker0 へ接続する一例であり、すべての Docker 構成に共通しない。"
+    >
+      <section class="flex h-[624px] flex-col">
+        <section class="grid h-[414px] grid-cols-[1fr_220px_1fr] gap-5">
+          <article
+            class="h-full overflow-hidden rounded-3xl bg-[#F8FAFC]"
+          >
+            <header class="flex h-[86px] items-center justify-between bg-[#1D4ED8] px-8 text-white">
+              <div class="flex items-center gap-4">
+                <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M7 9H17M7 13H13M7 17H10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <h2 class="text-[28px] leading-tight font-bold">Host Network namespace</h2>
+              </div>
+              <span class="rounded-full bg-white px-4 py-2 text-[18px] font-bold text-[#1D4ED8]">
+                Host
+              </span>
+            </header>
+            <div class="grid h-[328px] grid-cols-[1fr_244px] items-center gap-7 p-8">
+              <div>
+                <p class="text-[21px] leading-relaxed font-semibold text-[#1E293B]">
+                  veth の片端を保持する
+                </p>
+                <p class="mt-3 text-[18px] leading-relaxed font-medium text-[#475569]">
+                  この例では demo namespace と直接通信するための端点になる
+                </p>
+              </div>
+              <div class="rounded-2xl border-2 border-[#93C5FD] bg-white p-6 text-center">
+                <svg
+                  class="mx-auto h-12 w-12 text-[#1D4ED8]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 4V9M17 4V9M5 9H19V14C19 17.314 16.314 20 13 20H11C7.686 20 5 17.314 5 14V9Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 4H5M19 4H15"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <p class="mt-3 text-[25px] leading-tight font-bold text-[#0F172A]">veth-host</p>
+                <p class="mt-2 font-mono text-[19px] font-semibold text-[#1D4ED8]">192.0.2.1/24</p>
+              </div>
+            </div>
+          </article>
+
+          <div class="flex h-full flex-col items-center justify-center">
+            <span class="rounded-full bg-[#0F172A] px-5 py-2 text-[18px] font-bold text-white">
+              同じ veth ペア
+            </span>
+            <svg
+              class="mt-5 h-[96px] w-[210px]"
+              viewBox="0 0 210 96"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M24 48H186" stroke="#64748B" stroke-width="6" stroke-linecap="round" />
+              <path
+                d="M39 31L22 48L39 65"
+                stroke="#64748B"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M171 31L188 48L171 65"
+                stroke="#64748B"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class="mt-3 text-center text-[18px] leading-relaxed font-semibold text-[#475569]">
+              一方へ入ったパケットが
+              <br />
+              もう一方から出る
+            </p>
+          </div>
+
+          <article
+            class="h-full overflow-hidden rounded-3xl bg-[#F8FAFC]"
+          >
+            <header class="flex h-[86px] items-center justify-between bg-[#047857] px-8 text-white">
+              <div class="flex items-center gap-4">
+                <svg class="h-8 w-8 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M7 9H17M7 13H13M7 17H10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <h2 class="text-[28px] leading-tight font-bold">demo Network namespace</h2>
+              </div>
+              <span class="rounded-full bg-white px-4 py-2 text-[18px] font-bold text-[#047857]">
+                demo
+              </span>
+            </header>
+            <div class="grid h-[328px] grid-cols-[244px_1fr] items-center gap-7 p-8">
+              <div class="rounded-2xl border-2 border-[#6EE7B7] bg-white p-6 text-center">
+                <svg
+                  class="mx-auto h-12 w-12 text-[#047857]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 4V9M17 4V9M5 9H19V14C19 17.314 16.314 20 13 20H11C7.686 20 5 17.314 5 14V9Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 4H5M19 4H15"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <p class="mt-3 text-[25px] leading-tight font-bold text-[#0F172A]">veth-demo</p>
+                <p class="mt-2 font-mono text-[19px] font-semibold text-[#047857]">192.0.2.2/24</p>
+              </div>
+              <div>
+                <p class="text-[21px] leading-relaxed font-semibold text-[#1E293B]">
+                  ペアの片端を移動する
+                </p>
+                <p class="mt-3 text-[18px] leading-relaxed font-medium text-[#475569]">
+                  この端点は demo namespace のネットワークデバイスとして見える
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="mt-6 grid flex-1 grid-cols-[430px_1fr] gap-6">
+          <article
+            class="flex h-full items-center gap-5 rounded-2xl bg-[#0F172A] px-7 py-6 text-white"
+          >
+            <div
+              class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[#0F172A]"
+            >
+              <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M4 12H20M15 7L20 12L15 17M9 7L4 12L9 17"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[#93C5FD]">この構成の到達範囲</p>
+              <p class="mt-2 text-[23px] leading-snug font-bold">Host ↔ demo の直接通信</p>
+            </div>
+          </article>
+
+          <article
+            class="grid h-full grid-cols-[1fr_430px] items-center gap-7 rounded-2xl border-2 border-[#CBD5E1] bg-[#F8FAFC] px-7 py-5"
+          >
+            <div>
+              <h2 class="text-[23px] leading-tight font-bold text-[#0F172A]">
+                外部到達には別途設定が必要
+              </h2>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <span
+                  class="rounded-full bg-[#DBEAFE] px-4 py-2 text-[18px] font-bold text-[#1E40AF]"
+                >
+                  IP forwarding
+                </span>
+                <span
+                  class="rounded-full bg-[#D1FAE5] px-4 py-2 text-[18px] font-bold text-[#065F46]"
+                >
+                  ルーティング
+                </span>
+                <span
+                  class="rounded-full bg-[#FEF3C7] px-4 py-2 text-[18px] font-bold text-[#92400E]"
+                >
+                  NAT
+                </span>
+                <span
+                  class="rounded-full bg-[#EDE9FE] px-4 py-2 text-[18px] font-bold text-[#5B21B6]"
+                >
+                  bridge
+                </span>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-[#CBD5E1] bg-white px-5 py-4">
+              <p class="text-[18px] font-bold text-[#B45309]">Docker の構成例</p>
+              <p class="mt-2 text-[18px] leading-relaxed font-medium text-[#334155]">
+                Linux Engine のデフォルト bridge では、ホスト側 veth を bridge（通常
+                <span class="font-mono font-bold text-[#0F172A]">docker0</span>）へ接続する
+              </p>
+              <p class="mt-1 text-[18px] font-semibold text-[#BE123C]">全構成に共通ではない</p>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quartz Learning Tutor"
+  short_description: "既存のQuartz学習ノートで対話・理解確認・再構成を行う"
+  default_prompt: "$quartz-learning-tutor を使って、このQuartz学習ノートの疑問を説明し、理解確認後に更新案を整理してください。"

@@ -1,0 +1,216 @@
+{
+  "success": true,
+  "input": "bind-mount-shared-inode.html",
+  "output": "bind-mount-shared-inode.png",
+  "generatedAt": "2026-07-24T01:52:43.568Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 860,
+    "height": 280
+  },
+  "png": {
+    "width": 1720,
+    "height": 560,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 693833,
+    "translucentPixels": 1760,
+    "opaquePixels": 267607,
+    "transparentRatio": 0.720342,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 6,
+    "outerBandPixels": 27216,
+    "outerTransparentPixels": 27216,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 860,
+      "height": 280,
+      "scrollWidth": 860,
+      "scrollHeight": 280
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "bind mountではsourceとtargetの異なるパスが同じinodeとデータを参照し、ファイルのコピーは作られないことを示す図",
+    "directTextElements": [
+      {
+        "tag": "p",
+        "text": "元のパス",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "source/HELLO",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "別のパス",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "target/HELLO",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "h2",
+        "text": "同じ inode とデータ",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "変更は両方のパスから見える",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "コピーは作られない",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "860",
+      "dataHeight": "280",
+      "width": 860,
+      "height": 280,
+      "left": 0,
+      "top": 0,
+      "right": 860,
+      "bottom": 280,
+      "scrollWidth": 860,
+      "scrollHeight": 280,
+      "viewportWidth": 860,
+      "viewportHeight": 280,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 860,
+      "bottom": 280,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1720x560",
+      "passed": true,
+      "evidence": "actual=1720x560"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=693833, opaque=267607"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=6px, transparent=27216/27216, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=693833/963200, ratio=0.720342"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

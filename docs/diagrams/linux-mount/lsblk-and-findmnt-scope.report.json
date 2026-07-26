@@ -1,0 +1,384 @@
+{
+  "success": true,
+  "input": "lsblk-and-findmnt-scope.html",
+  "output": "lsblk-and-findmnt-scope.png",
+  "generatedAt": "2026-07-24T01:54:04.135Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 900,
+    "height": 350
+  },
+  "png": {
+    "width": 1800,
+    "height": 700,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 429576,
+    "translucentPixels": 468,
+    "opaquePixels": 829956,
+    "transparentRatio": 0.340933,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 7,
+    "outerBandPixels": 34804,
+    "outerTransparentPixels": 34804,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 900,
+      "height": 350,
+      "scrollWidth": 900,
+      "scrollHeight": 350
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "lsblkはブロックデバイスとパーティションの構成を、findmntはマウントポイントとソースの対応を示す。procのような疑似ファイルシステムはfindmntには現れるがlsblkの対象ではないことを示す図",
+    "directTextElements": [
+      {
+        "tag": "h2",
+        "text": "lsblk",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "span",
+        "text": "ブロックデバイス",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "sda",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "(disk)",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "├─sda1",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "(part)",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "/",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "├─sda15",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "(part)",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "/boot/efi",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "└─sda16",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "(part)",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "/boot",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "findmnt",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "span",
+        "text": "マウント",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "/",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "←",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/dev/sda1",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "ext4",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/boot/efi",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "←",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/dev/sda15",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "vfat",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/boot",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "←",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/dev/sda16",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "ext4",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "/proc",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "←",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "div",
+        "text": "proc",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "span",
+        "text": "proc",
+        "fontSize": 17,
+        "effectiveFontSize": 17
+      },
+      {
+        "tag": "code",
+        "text": "proc",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "はブロックデバイスではないため、通常は",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "code",
+        "text": "lsblk",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "に現れない",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "900",
+      "dataHeight": "350",
+      "width": 900,
+      "height": 350,
+      "left": 0,
+      "top": 0,
+      "right": 900,
+      "bottom": 350,
+      "scrollWidth": 900,
+      "scrollHeight": 350,
+      "viewportWidth": 900,
+      "viewportHeight": 350,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 900,
+      "bottom": 350,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1800x700",
+      "passed": true,
+      "evidence": "actual=1800x700"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=429576, opaque=829956"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=7px, transparent=34804/34804, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=429576/1260000, ratio=0.340933"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

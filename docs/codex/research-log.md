@@ -34,6 +34,78 @@ existing entry when the same question is revisited.
 
 ## Entries
 
+## 2026-07-23 — Deterministic HTML and Tailwind diagram rendering
+
+- Status: verified
+- Question: How can this repository generate editable technical diagrams as HTML while
+  delivering fixed-size PNG files with a genuinely transparent background?
+- Scope: Project-local skill design, Tailwind CSS browser compilation, Playwright capture,
+  reference-image interpretation, transparency and overflow validation, and offline rendering.
+- Evidence:
+  - `.agents/skills/diagram-generator-html-tailwind/`: skill instructions, design references,
+    editable templates, fixed Tailwind runtime, renderer, self-test, and evaluation cases.
+  - [SIOS Tech. Lab article](https://tech-lab.sios.jp/archives/51249): HTML and Tailwind as an
+    editable diagram source, reusable references, and browser-to-PNG conversion.
+  - [Tailwind CSS Play CDN](https://tailwindcss.com/docs/installation/play-cdn): browser runtime
+    behavior and its development-only positioning.
+  - [Playwright locator screenshot](https://playwright.dev/docs/api/class-locator#locator-screenshot):
+    element-only capture and transparent-page screenshot support.
+- Findings:
+  - Keep HTML as the editable source and deliver PNG plus a machine-readable inspection report.
+    A fixed `#diagram` root, matching `data-width` and `data-height`, `role="img"`, and a useful
+    `aria-label` make rendering and verification repeatable.
+  - Keep the CDN URL in editable HTML, but intercept it during rendering and serve a pinned,
+    checksummed Tailwind browser runtime from the skill. This preserves easy browser preview
+    without making verified PNG output depend on network availability.
+  - Verified rendering requires Playwright. The renderer fulfills the main document from memory,
+    applies a restrictive content-security policy, blocks service workers, HTTP requests, local
+    subresources, and WebSockets, and does not fall back to an uninspected Chrome screenshot.
+  - `omitBackground` and an RGBA file do not prove transparency. Inspect computed background
+    colors and images, canvas-covering descendants, the four PNG corners, the presence of both
+    transparent and opaque pixels, and the transparent ratio of an outer pixel band.
+  - Detect text clipping with text-range rectangles against clipping ancestors. Comparing every
+    text container's `scrollHeight` with `clientHeight` produces false positives from normal
+    line-box metrics.
+  - Treat an attached image as a layout reference. Extract its aspect ratio, grid, reading order,
+    repeated groups, connectors, information hierarchy, and whitespace before writing HTML, then
+    recreate the structure without embedding the raster source.
+  - Treat `#diagram` as a content-fit boundary rather than a transparent slide. Choose a flat
+    combination of nodes, thin connectors, direct labels, and modest corner radii; omit a
+    figure-wide title band, large shadows, gradients, and unused presentation whitespace unless
+    the requested meaning requires them.
+  - Keep CSS logical dimensions close to the intended display size. Increase PNG pixel density
+    with `--scale 2` instead of doubling the CSS canvas, and derive the canvas from the outer
+    bounds of the laid-out elements rather than a default 16:9 preset.
+  - Avoid treating white, gray, and Ink as a default diagram palette. Use one chromatic primary
+    hue with opaque tints by default; use balanced Blue, Teal, Amber, Violet, or Rose hues when
+    classifications, stages, states, responsibilities, or the reference composition justify
+    multiple colors. Keep white and Ink as functional text colors, and preserve labels, numbers,
+    positions, and shapes so color is never the only carrier of meaning.
+- Verification:
+  - Node.js 22.16.0 rendered the base template at 1× and 2× and passed automated checks for
+    blocked file loading and rejected opaque full-canvas backgrounds.
+  - Three evaluation diagrams passed the renderer's dimension, transparency, font-size,
+    accessibility, overflow, and resource checks, including a CI/CD diagram derived from an
+    attached composition reference.
+  - A compact command-group diagram, a hub-and-spoke diagram, a compact layer stack, and a
+    four-stage progression all passed the same checks with content-specific aspect ratios and
+    no figure-wide title, shadow, or gradient. The renderer self-test was updated to use the
+    compact base template and passed after the change.
+  - The four compact samples were rerendered with shared Blue, Teal, Amber, Violet, and selective
+    Rose tokens after monochrome feedback. All retained transparent outer bands, minimum
+    16–18px text, and zero reported clipping or overflow; corresponding strong/tint text pairs
+    have WCAG contrast ratios above 5:1 for dark surfaces and above 7.9:1 for tinted notes.
+  - Repository tests passed all 48 TypeScript tests. Targeted Prettier checks passed; the global
+    formatting check remains affected by unrelated pre-existing files.
+- Open questions:
+  - Font metrics can vary across operating systems because the skill deliberately uses local
+    Japanese font stacks instead of embedding a font. Revalidate line breaks when portability
+    across hosts matters.
+  - Recheck the pinned Tailwind runtime, its license, and browser compatibility before upgrading
+    from version 4.3.3.
+- Related:
+  - [Decision entry](decisions.md#2026-07-23--use-a-project-local-html-and-tailwind-diagram-skill)
+
 ## 2026-07-22 — Hive, open table formats, and Iceberg responsibility boundaries
 
 - Status: verified
@@ -455,11 +527,19 @@ existing entry when the same question is revisited.
   - `content/cloud/oracle/database/backup/oci-oracledb-backup-other-methods.md`: managed Object Storage, local FRA, Data Pump, and standby backup roles.
   - [Base Database Service backup and recovery](https://docs.oracle.com/en/cloud/paas/base-database/backup-recover/index.html): managed destination behavior, Object Storage schedule and retention, local storage, and unmanaged RMAN guidance.
   - [Configure automatic backups](https://docs.oracle.com/en/cloud/paas/base-database/backup-db/index.html): current destination availability conditions and on-demand backup behavior.
+  - [About Oracle Database Autonomous Recovery Service](https://docs.oracle.com/en-us/iaas/recovery-service/doc/about-recovery-service.html): current Zero Data Loss product naming, supported deployment locations, and Real-Time Protection as the premium option.
+  - [Zero Data Loss Autonomous Recovery Service](https://www.oracle.com/database/zero-data-loss-autonomous-recovery-service/): Data Guard redo transport, partial archived redo creation after an interrupted stream, and automatic gap fetching after restart.
   - [Recovery Service terminology](https://docs.oracle.com/en-us/iaas/recovery-service/doc/recovery-service-concepts.html): Level 0/1, real-time data protection, and Virtual Level 0 definitions.
+  - [Onboarding Oracle Database to Recovery Service](https://docs.oracle.com/en-us/iaas/recovery-service/doc/getting-started-recovery-service.html): current release, subnet, port, encryption, and Cloud Protect requirements.
+  - [Protecting on-premises databases using Cloud Protect](https://docs.oracle.com/en-us/iaas/recovery-service/doc/protecting-premises-databases-using-recovery-service.html): Fleet Agent, SQLcl `rcv` commands, OCI API authentication, SBT library, and RMAN restore workflow.
   - [RMAN backup to Object Storage](https://docs.oracle.com/en/cloud/paas/base-database/backup-rman/index.html): backup module, SBT, encryption, and required backup contents.
 - Findings:
   - Keep the moved backup page as the hub, preserve its former URL through an alias, and place implementation detail in three sibling notes.
-  - Treat RCV/ZRCV as shorthand for Recovery Service without/with the extra-cost real-time data protection feature, not as unrelated products.
+  - Treat RCV/ZRCV as shorthand for Recovery Service without/with the extra-cost real-time data protection feature, not as unrelated resource types. Current Oracle documentation names the product Oracle Database Zero Data Loss Autonomous Recovery Service and reserves the premium Zero Data Loss capability for Real-Time Protection.
+  - Real-Time Protection adds a second data path beside RMAN incremental backups. It continuously transfers redo using Data Guard redo transport, turns an interrupted incoming stream into a partial archived redo backup, and fetches missing archived logs after the stream restarts.
+  - Measure actual exposure with `DataLossExposure`; the `Protected` health threshold is less than 10 seconds with Real-Time Protection and less than 120 minutes without it. The threshold classifies health and is not a subsecond RPO guarantee.
+  - Cloud Protect is the onboarding and management path for on-premises Linux x86-64 databases, not a separate backup store. It uses the SQLcl-based Fleet Agent, OCI API authentication, `libra.so`, Recovery Service network endpoints, and RMAN for restore.
+  - The October 2025 Cloud Protect Version 1 host-restore limitation reported in Bryan Grenn's field test conflicts with the current Oracle overview's broader recovery wording. Verify relocation targets against the current support matrix rather than preserving the field-test limitation as a stable product rule.
   - Do not publish a static list of regions where Recovery Service is the only Console destination. Oracle changed the rollout conditions in 2025 and 2026, so direct readers to the current Console and documentation.
   - Managed Object Storage currently uses weekly Level 0, daily Level 1, and archived redo log backups at a minimum 60-minute frequency, with 7/15/30/45/60-day retention choices.
   - Treat Data Pump as a logical export and Data Guard as availability/replication; neither replaces a recoverable physical backup history.
@@ -467,6 +547,9 @@ existing entry when the same question is revisited.
   - All four backup notes, the Oracle index, and the two Codex knowledge files passed targeted Prettier checks.
   - `git diff --check` passed.
   - `npx quartz build` parsed 113 Markdown inputs and emitted 430 files successfully, including all three new detail pages.
+  - On 2026-07-24, the expanded ZRCV note, two editable diagram sources, two reports, and this research entry passed targeted Prettier checks and `git diff --check` with Node.js 22.16.0.
+  - Both diagrams passed the Playwright renderer's dimension, transparency, 16px minimum font, overflow, accessibility, and resource-isolation checks at 2× scale, and remained legible on white and `#0F172A` backgrounds.
+  - The Quartz build parsed 151 Markdown inputs and emitted 587 files. The generated ZRCV page references both PNG files at the same root-relative locations where the Assets emitter placed them.
 - Open questions: Database-service-specific behavior outside Base Database Service should be verified before expanding these notes to Autonomous, Exadata, or multicloud deployments.
 - Related:
   - [Decision entry](decisions.md#2026-07-15--split-the-oci-database-backup-note-by-reader-intent)

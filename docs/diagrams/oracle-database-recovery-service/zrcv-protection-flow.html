@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZRCV protection and recovery flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="980"
+      data-height="460"
+      class="relative h-[460px] w-[980px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="保護対象データベースからRMAN増分バックアップとリアルタイムREDOをRecovery Serviceへ送り、Virtual Level 0とREDOを組み合わせて指定時点へ復旧するZRCVの流れ"
+    >
+      <section class="relative h-full w-full" aria-label="ZRCVの保護と復旧">
+        <svg
+          class="absolute inset-0 h-full w-full text-[#64748B]"
+          viewBox="0 0 980 460"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M220 151H507" stroke="currentColor" stroke-width="3" />
+          <path d="m506 143 13 8-13 8z" fill="currentColor" />
+          <path d="M220 277H507" stroke="currentColor" stroke-width="3" />
+          <path d="m506 269 13 8-13 8z" fill="currentColor" />
+          <path d="M755 151h61" stroke="currentColor" stroke-width="3" />
+          <path d="m815 143 13 8-13 8z" fill="currentColor" />
+          <path d="M755 277h30c18 0 24-7 31-23" stroke="currentColor" stroke-width="3" />
+          <path d="m812 253 12-9 2 15z" fill="currentColor" />
+        </svg>
+
+        <section
+          class="absolute top-[24px] left-[24px] h-[414px] w-[196px] rounded-2xl border-2 border-[#1D4ED8] px-4 py-5"
+          aria-label="保護対象データベース"
+        >
+          <div class="rounded-xl bg-[#1D4ED8] px-4 py-4 text-white">
+            <p class="text-[16px] leading-none font-bold tracking-wide text-blue-100">
+              PROTECTED DATABASE
+            </p>
+            <h2 class="mt-3 text-[23px] leading-tight font-bold">保護対象DB</h2>
+          </div>
+          <article
+            class="mt-5 rounded-xl border-2 border-blue-300 bg-[#DBEAFE] px-4 py-4 text-[#1E3A8A]"
+          >
+            <p class="text-[18px] leading-snug font-bold">変更ブロック</p>
+            <p class="mt-2 text-[16px] leading-snug font-medium">Level 0 / Level 1</p>
+          </article>
+          <article
+            class="mt-4 rounded-xl border-2 border-blue-300 bg-[#DBEAFE] px-4 py-4 text-[#1E3A8A]"
+          >
+            <p class="text-[18px] leading-snug font-bold">REDO変更</p>
+            <p class="mt-2 text-[16px] leading-snug font-medium">生成と同時に転送</p>
+          </article>
+        </section>
+
+        <div
+          class="absolute top-[99px] left-[246px] w-[242px] rounded-xl border border-blue-300 bg-[#DBEAFE] px-4 py-3 text-center text-[#1E3A8A]"
+        >
+          <p class="text-[18px] leading-snug font-bold">RMAN増分バックアップ</p>
+          <p class="mt-1 text-[16px] leading-snug font-medium">バックアップ通信：TCP 8005</p>
+        </div>
+
+        <div
+          class="absolute top-[225px] left-[246px] w-[242px] rounded-xl border border-orange-300 bg-[#FFEDD5] px-4 py-3 text-center text-[#78350F]"
+        >
+          <p class="text-[18px] leading-snug font-bold">Data Guard REDO転送</p>
+          <p class="mt-1 text-[16px] leading-snug font-medium">SQL*Net：TCP 2484</p>
+        </div>
+
+        <section
+          class="absolute top-[24px] left-[519px] h-[414px] w-[236px] rounded-2xl border-2 border-[#6D28D9] px-4 py-5"
+          aria-label="Recovery Service"
+        >
+          <div class="rounded-xl bg-[#6D28D9] px-3 py-3 text-white">
+            <h2 class="text-[20px] leading-tight font-bold">Recovery Service</h2>
+            <p class="mt-1 text-[16px] leading-snug font-medium text-violet-100">
+              Oracle管理テナンシに分離
+            </p>
+          </div>
+
+          <article
+            class="mt-5 rounded-xl border-2 border-violet-300 bg-[#EDE9FE] px-4 py-4 text-[#4C1D95]"
+          >
+            <p class="text-[19px] leading-snug font-bold">増分を索引化</p>
+            <p class="mt-2 text-[16px] leading-snug font-medium">指定時点のVirtual Level 0を構成</p>
+          </article>
+
+          <article
+            class="mt-4 rounded-xl border-2 border-orange-300 bg-[#FFEDD5] px-4 py-4 text-[#78350F]"
+          >
+            <p class="text-[19px] leading-snug font-bold">REDOを継続受信</p>
+            <p class="mt-2 text-[16px] leading-snug font-medium">
+              完全または部分アーカイブREDOとして保護
+            </p>
+          </article>
+        </section>
+
+        <div
+          class="absolute top-[77px] left-[785px] rounded-lg border border-teal-300 bg-[#CCFBF1] px-3 py-2 text-center text-[16px] leading-snug font-bold text-[#134E4A]"
+        >
+          Virtual Level 0 + REDO
+        </div>
+
+        <article
+          class="absolute top-[124px] left-[824px] flex h-[186px] w-[132px] flex-col items-center justify-center rounded-2xl border-2 border-[#134E4A] bg-[#047857] px-4 text-center text-white"
+        >
+          <p class="text-[16px] leading-none font-bold text-teal-100">RESTORE</p>
+          <h2 class="mt-4 text-[22px] leading-tight font-bold">復旧</h2>
+          <p class="mt-4 text-[17px] leading-snug font-medium">最新</p>
+          <p class="mt-1 text-[17px] leading-snug font-medium">時刻</p>
+          <p class="mt-1 text-[17px] leading-snug font-medium">SCN</p>
+        </article>
+
+        <div
+          class="absolute top-[341px] left-[786px] w-[170px] rounded-xl border border-teal-300 bg-[#CCFBF1] px-3 py-3 text-center text-[#134E4A]"
+        >
+          <p class="text-[16px] leading-snug font-bold">実際の復旧点は</p>
+          <p class="text-[16px] leading-snug font-bold">DataLossExposureで確認</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

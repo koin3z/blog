@@ -35,6 +35,32 @@ one-off mistakes unless they reveal a repository-specific constraint.
 
 ## Entries
 
+## Wiki image embed disappears or points below `public/attachments`
+
+- Last verified: 2026-07-23
+- Applies to: Obsidian-style image embeds for files in the repository-root `attachments/`
+  directory.
+- Symptom: `npx quartz build` succeeds, but the generated page omits the image or emits an
+  `img` URL below `public/attachments/` while the file exists at the `public/` root.
+- Sanitized command or workflow: add an image under `attachments/`, embed it in a page under
+  `content/`, run a full Quartz build, and compare the generated `img src` with the emitted asset
+  path.
+- Cause: the Assets emitter treats `attachments/` as its source root and copies a flat file such
+  as `attachments/example.png` to `public/example.png`. Including `attachments/` in the Wiki link
+  makes the transformed URL retain a directory segment that the emitted asset does not have.
+- Resolution: keep published PNG files directly under `attachments/` and use a basename-only
+  embed such as `![[example.png|説明|780]]`. Keep editable HTML sources and inspection reports
+  outside `attachments/`, such as under `docs/diagrams/`, because every non-Markdown attachment is
+  copied to the public site.
+- Verification: a full build emitted `public/example.png`, and the basename-only embed generated
+  the matching relative `img src`, width, and alternative text.
+- Failed attempts: the prefixed form `![[attachments/example.png|780]]` did not match the emitted
+  path; a successful build alone did not detect the broken resource reference.
+- Workaround expiry/removal condition: revisit the basename-only rule if the Assets emitter begins
+  preserving the `attachments/` directory in public output or gains link-aware validation.
+- Related:
+  - [Decision entry](decisions.md#2026-07-23--use-a-project-local-html-and-tailwind-diagram-skill)
+
 ## GitHub Pages deployment fails after a successful build
 
 - Last verified: 2026-07-05

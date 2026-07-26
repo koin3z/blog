@@ -1,7 +1,7 @@
 ---
 title: User namespace
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -72,6 +72,10 @@ cat /proc/self/gid_map
 プロセスは新しい User namespace を作ると、その namespace 内で一式の capability を得る。ただし `execve(2)` の際に capability が再計算されるため、内側で UID 0 にマッピングしない場合などは capability を失うことがある。
 
 capability は、それを持つ User namespace が所有する資源に対して有効である。たとえば新しい User namespace を先に作り、その User namespace が所有する Mount namespace や Network namespace を作れば、内側の `CAP_SYS_ADMIN` や `CAP_NET_ADMIN` で一部の mount やネットワーク設定を行える。
+
+内側と外側の UID 対応と、capability が及ぶ資源の境界を次の図で確認できる。
+
+![[user-namespace-identity-authority.png|User namespaceのUID対応とcapabilityが及ぶ所有資源の範囲|780]]
 
 ```bash
 unshare --user --map-root-user --mount --net bash

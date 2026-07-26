@@ -1,7 +1,7 @@
 ---
 title: PID namespace
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -45,6 +45,10 @@ root
 # whoami
 sh: 2: Cannot fork
 ```
+
+最初の `whoami` が PID 1 になって終了し、次の `fork(2)` が失敗するまでの因果を次の図で追える。
+
+![[pid-namespace-unshare-lifecycle.png|unshare --pidで最初の子がPID 1となり次のforkが失敗する流れ|860]]
 
 `unshare(2)` の `CLONE_NEWPID` は、呼び出し元自身を新しい PID namespace に移動しない。**それ以降に作る子プロセス**を新しい namespace に入れる。
 

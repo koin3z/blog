@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サービス境界の構成要素</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="960"
+      data-height="600"
+      class="relative h-[600px] w-[960px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="中央のサービス境界と、認証、API、キュー、データ、監視、設定の6要素との関連を示す図"
+    >
+      <svg
+        class="absolute inset-0 h-full w-full text-[#64748B]"
+        viewBox="0 0 960 600"
+        fill="none"
+        aria-hidden="true"
+      >
+        <line x1="480" y1="300" x2="480" y2="61" stroke="currentColor" stroke-width="3" />
+        <line x1="480" y1="300" x2="129" y2="155" stroke="currentColor" stroke-width="3" />
+        <line x1="480" y1="300" x2="831" y2="155" stroke="currentColor" stroke-width="3" />
+        <line x1="480" y1="300" x2="129" y2="445" stroke="currentColor" stroke-width="3" />
+        <line x1="480" y1="300" x2="831" y2="445" stroke="currentColor" stroke-width="3" />
+        <line x1="480" y1="300" x2="480" y2="539" stroke="currentColor" stroke-width="3" />
+      </svg>
+
+      <article
+        class="absolute top-4 left-[375px] flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#5B21B6] bg-[#6D28D9] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">認証</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">利用者と権限を確認</p>
+      </article>
+
+      <article
+        class="absolute top-[110px] left-6 flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#1D4ED8] bg-[#2563EB] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">API</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">要求の入口を統一</p>
+      </article>
+
+      <article
+        class="absolute top-[110px] left-[726px] flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#065F46] bg-[#047857] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">キュー</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">非同期処理を分離</p>
+      </article>
+
+      <article
+        class="absolute top-[400px] left-6 flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#9A3412] bg-[#C2410C] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">データ</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">状態を永続化</p>
+      </article>
+
+      <article
+        class="absolute top-[400px] left-[726px] flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#9F1239] bg-[#BE123C] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">監視</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">稼働と異常を観測</p>
+      </article>
+
+      <article
+        class="absolute top-[494px] left-[375px] flex h-[90px] w-[210px] flex-col items-center justify-center rounded-xl border-2 border-[#3730A3] bg-[#4338CA] px-4 py-3 text-center text-white"
+      >
+        <h2 class="text-[20px] leading-tight font-bold">設定</h2>
+        <p class="mt-1.5 text-[18px] leading-snug font-medium">環境差を外部化</p>
+      </article>
+
+      <article
+        class="absolute top-[195px] left-[375px] flex h-[210px] w-[210px] flex-col items-center justify-center rounded-full border-2 border-[#3B82F6] bg-[#1E3A8A] px-5 py-4 text-center text-white"
+      >
+        <h2 class="text-[24px] leading-tight font-bold">サービス境界</h2>
+        <p class="mt-2.5 text-[18px] leading-snug font-medium">責任をまとめる単位</p>
+      </article>
+    </main>
+  </body>
+</html>

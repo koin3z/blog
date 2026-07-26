@@ -1,7 +1,7 @@
 ---
 title: Mount namespace
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -35,6 +35,10 @@ ls /tmp/ns-target
 util-linux の `unshare(1)` は、通常、新しい Mount namespace のマウントを再帰的に `private` にする。そのため、この例の bind mount は元の namespace からは見えず、シェルを終了して namespace への最後の参照がなくなると暗黙に unmount される。作成した `/tmp/ns-source` や `/tmp/ns-target` のディレクトリ自体は残る。
 
 ## マウント伝播
+
+mount / unmount イベントが namespace 境界を越える方向は、各 mount の伝播種別ごとに次の図で比較できる。
+
+![[mount-namespace-propagation.png|shared、private、slave、unbindableのマウント伝播方向|780]]
 
 Mount namespace を作れば、あらゆる変更が無条件に隔離されるわけではない。各 mount には伝播種別がある。
 

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Service と Ingress
 date: 2025-11-24
-modified: 2026-07-21
+modified: 2026-07-24
 draft: false
 tags:
   - containers/kubernetes
@@ -21,6 +21,10 @@ description: Kubernetes Service と Ingress の役割、公開範囲、選択条
 | -------- | --------------------------------------------------------------- | ------------------- | ------------------------------------------ |
 | Service  | 変化するPod群を論理的なネットワークエンドポイントとして公開する | ServiceのIPとポート | Service typeとクラスターのネットワーク実装 |
 | Ingress  | クラスター外からのHTTPまたはHTTPS通信をServiceへ振り分ける      | ホスト名とURLパス   | Ingress controller                         |
+
+外部からのHTTPまたはHTTPS通信と、Ingress resourceの設定がIngress controllerへ反映される関係は次のとおり。
+
+![[kubernetes-service-ingress-request-path.png|外部クライアントからIngress controller、Serviceを経由してPod群へ届く通信経路|980]]
 
 ## Service
 

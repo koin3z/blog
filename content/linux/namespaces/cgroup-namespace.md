@@ -1,7 +1,7 @@
 ---
 title: Cgroup namespace
 date: 2026-06-28
-modified: 2026-06-28
+modified: 2026-07-23
 draft: false
 tags:
   - linux/namespaces
@@ -39,6 +39,10 @@ Cgroup namespace を作成した時点で、作成プロセスが所属してい
 # namespace 内
 0::/
 ```
+
+同じ cgroup 制御の実体に対して、ホスト側の完全なパスと namespace 内の相対パスがどのように対応するかを次の図で確認できる。
+
+![[cgroup-namespace-path-view.png|Cgroup namespaceによるパスの相対化と変わらない制御実体|780]]
 
 表示は namespace のルートからの相対パスである。読み取り対象のプロセスがそのルートより外側にいる場合、`/proc/<pid>/cgroup` には `../` を含むパスが表示されることがある。
 

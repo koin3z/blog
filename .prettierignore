@@ -1,3 +1,4 @@
 public
 node_modules
 .quartz-cache
+.agents/skills/diagram-generator-html-tailwind/assets/vendor/tailwind-browser-4.3.3.js

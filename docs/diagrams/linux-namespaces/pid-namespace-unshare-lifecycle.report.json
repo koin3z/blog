@@ -1,0 +1,384 @@
+{
+  "success": true,
+  "input": "pid-namespace-unshare-lifecycle.html",
+  "output": "pid-namespace-unshare-lifecycle.png",
+  "generatedAt": "2026-07-24T01:41:11.671Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 1800,
+    "height": 600
+  },
+  "png": {
+    "width": 3600,
+    "height": 1200,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 1389591,
+    "translucentPixels": 1679,
+    "opaquePixels": 2928730,
+    "transparentRatio": 0.321665,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 12,
+    "outerBandPixels": 114624,
+    "outerTransparentPixels": 114624,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 1800,
+      "height": 600,
+      "scrollWidth": 1800,
+      "scrollHeight": 600
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "sudo unshare --pid sh では呼び出し元の sh は親 PID namespace に残る。最初に起動した whoami が子 PID namespace の PID 1 になり、その whoami が終了すると子 namespace の init process が終了する。続く whoami を作ろうとする fork は ENOMEM で失敗し、sh は Cannot fork と表示する。",
+    "directTextElements": [
+      {
+        "tag": "span",
+        "text": "1",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "親 PID namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "caller shell",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "sudo unshare --pid sh",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "code",
+        "text": "sh",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "自身は元の PID namespace に残る",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "新しい namespace は次に作る子へ適用される",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "2",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "子 PID namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "最初の",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "code",
+        "text": "whoami",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "whoami → PID 1",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "code",
+        "text": "sh",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "が作る最初の子として新しい namespace へ入る",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "最初のプロセスなので init process になる",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "3",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "子 PID namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "code",
+        "text": "whoami",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "h2",
+        "text": "が終了",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "PID 1 の終了",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "p",
+        "text": "子 namespace の init process がいなくなる",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "この namespace には次のプロセスを作れない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "4",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "親 → 子 namespace",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "次の",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "code",
+        "text": "fork(2)",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "fork(2) → ENOMEM",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "code",
+        "text": "sh",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "が2回目の",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "code",
+        "text": "whoami",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "を作ろうとして失敗する",
+        "fontSize": 19,
+        "effectiveFontSize": 19
+      },
+      {
+        "tag": "p",
+        "text": "sh: 2: Cannot fork",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "span",
+        "text": "原因",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "code",
+        "text": "sh",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "のゾンビ回収漏れではなく、短命な最初の子が PID 1 になって終了したこと",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "1800",
+      "dataHeight": "600",
+      "width": 1800,
+      "height": 600,
+      "left": 0,
+      "top": 0,
+      "right": 1800,
+      "bottom": 600,
+      "scrollWidth": 1800,
+      "scrollHeight": 600,
+      "viewportWidth": 1800,
+      "viewportHeight": 600,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 1800,
+      "bottom": 600,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 3600x1200",
+      "passed": true,
+      "evidence": "actual=3600x1200"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=1389591, opaque=2928730"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=12px, transparent=114624/114624, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=1389591/4320000, ratio=0.321665"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

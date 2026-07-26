@@ -1,0 +1,277 @@
+{
+  "success": true,
+  "input": "zrcv-redo-gap-recovery.html",
+  "output": "zrcv-redo-gap-recovery.png",
+  "generatedAt": "2026-07-24T04:08:32.089Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 920,
+    "height": 400
+  },
+  "png": {
+    "width": 1840,
+    "height": 800,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 602717,
+    "translucentPixels": 1029,
+    "opaquePixels": 868254,
+    "transparentRatio": 0.409454,
+    "cornerAlpha": [0, 0, 0, 0],
+    "outerBandSize": 8,
+    "outerBandPixels": 41984,
+    "outerTransparentPixels": 41984,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 920,
+      "height": 400,
+      "scrollWidth": 920,
+      "scrollHeight": 400
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "ZRCVのREDOストリームが中断したとき、受信済みREDOを部分アーカイブログとして保護し、再接続後に不足するアーカイブログを取得してギャップを解消する流れ",
+    "directTextElements": [
+      {
+        "tag": "div",
+        "text": "1",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "継続転送",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "生成されたREDOを受信",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "通常経路",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "2",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "ストリーム中断",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "DB障害または通信断",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "最終受信位置が境界",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "3",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "部分ログを作成",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "受信済みREDOを保護",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "受信済み変更まで復旧可能",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "div",
+        "text": "4",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "h2",
+        "text": "再接続とGap Fetch",
+        "fontSize": 20,
+        "effectiveFontSize": 20
+      },
+      {
+        "tag": "p",
+        "text": "不足アーカイブログを取得",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "ギャップ解消を確認",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "span",
+        "text": "監視",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      },
+      {
+        "tag": "p",
+        "text": "自動補完を前提に放置せず、HealthとDataLossExposureで保護状態を確認する",
+        "fontSize": 16,
+        "effectiveFontSize": 16
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "920",
+      "dataHeight": "400",
+      "width": 920,
+      "height": 400,
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 400,
+      "scrollWidth": 920,
+      "scrollHeight": 400,
+      "viewportWidth": 920,
+      "viewportHeight": 400,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 400,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1840x800",
+      "passed": true,
+      "evidence": "actual=1840x800"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=602717, opaque=868254"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=8px, transparent=41984/41984, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=602717/1472000, ratio=0.409454"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}
