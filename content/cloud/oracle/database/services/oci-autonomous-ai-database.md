@@ -1,7 +1,7 @@
 ---
 title: OCI Autonomous AI Database
 date: 2026-07-16
-modified: 2026-07-16
+modified: 2026-07-27
 draft: false
 tags:
   - cloud/oci/database
@@ -13,10 +13,14 @@ description: Autonomous AI Database の責任モデル、ワークロード、Se
 
 ## 概要
 
-- Autonomous AI Database は、Oracle が OS、Grid Infrastructure、DBMS、パッチ、バックアップ、基盤監視、障害修復を管理する Oracle AI Database サービス
+Doc: [Oracle Autonomous Database FAQ](https://www.oracle.com/database/technologies/datawarehouse-bigdata/adb-faqs.html)
+
+- **Oracle Autonomous AI Database**（公式資料では Autonomous Database、ADB とも表記）は、Oracle が OS、Grid Infrastructure、DBMS、パッチ、バックアップ、基盤監視、障害修復を管理する Oracle AI Database サービス
 - 利用者はデータ、スキーマ、SQL、Database user、IAM、ネットワーク、アプリケーションの性能と可用性を管理する
-- Serverless、Dedicated Exadata Infrastructure、Exadata Cloud@Customer から、分離、配置場所、保守統制の要件に合う基盤を選ぶ
+- 基盤選択は Serverless と Dedicated に大別できる
 - `Autonomous`は DBMS の運用モデルを表し、SQL、データモデル、権限、アプリケーション運用が不要になることを意味しない
+
+このページは OCI Public Cloud の Serverless／Dedicated と、Dedicated を顧客サイトへ配置する Exadata Cloud@Customer を扱う。Dedicated Region Cloud@Customer と Multicloud 配置は対象外とする。
 
 ## 責任モデル
 
@@ -33,26 +37,32 @@ Doc: [Autonomous AI Database Responsibility Model](https://docs.oracle.com/en/cl
 
 利用者は OS と`SYSDBA`へアクセスせず、`ADMIN`などの Database user を使う。OS ファイル、任意エージェント、未対応の初期化パラメータ、`SYS`操作、外部接続に依存するワークロードは、移行前に制約と代替方法を確認する。
 
-## ワークロード
+## Serverless のワークロード
 
 Doc: [Autonomous AI Database Serverless](https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/)
 
-| ワークロード                         | 主な用途                                                  |
-| ------------------------------------ | --------------------------------------------------------- |
-| Autonomous AI Transaction Processing | OLTP、混合ワークロード、アプリケーションバックエンド      |
+| ワークロード                               | 主な用途                                      |
+| ------------------------------------ | ----------------------------------------- |
+| Autonomous AI Transaction Processing | OLTP、混合ワークロード、アプリケーションバックエンド              |
 | Autonomous AI Lakehouse              | データウェアハウス、分析、Object Storage を含む Lakehouse |
-| Autonomous AI JSON Database          | JSON 中心のアプリケーション                               |
-| Autonomous APEX                      | APEX を使うローコードアプリケーション                     |
+| Autonomous AI JSON Database          | JSON 中心のアプリケーション                          |
+| APEX Service                         | APEX を使うローコードアプリケーション                     |
 
 ワークロード種別は、同じ Oracle AI Database の構成とサービス設定を用途別に最適化する。別のデータベースエンジンを選ぶ項目ではない。
 
-## 配置モデル
+Doc: [Create an Autonomous AI Database on Dedicated Exadata Infrastructure](https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbba/)
 
-| 配置モデル | 分離 | 配置場所 | 利用者が管理する上位リソース | 向く条件 |
-| --- | --- | --- | --- | --- |
-| Autonomous AI Database Serverless | Oracle 管理の共有基盤 | OCI リージョン | Database の Compute、Storage、Network | Database 単位で弾力的に利用し、基盤管理を減らす |
-| Autonomous AI Database on Dedicated Exadata Infrastructure | テナント専有 Exadata | OCI リージョン | Exadata、AVMC、ACD、Database の容量と保守ポリシー | 物理分離、複数 Database の統合、保守統制を両立する |
-| Autonomous AI Database on Exadata Cloud@Customer | 顧客専用 Exadata | 顧客データセンター | Dedicated と同様の階層に加えてサイトと接続 | データ所在と Autonomous 運用を両立する |
+Dedicated Exadata Infrastructure で選択できるワークロードは Autonomous AI Lakehouse と Autonomous AI Transaction Processing であり、Autonomous AI JSON Database と APEX Service は Dedicated のワークロード種別としてサポートされない。
+
+## 基盤の分離と配置場所
+
+| 運用・分離モデル                                                    | 分離             | 配置場所      | 利用者が管理する上位リソース                       | 向く条件                           |
+| ----------------------------------------------------------- | -------------- | --------- | ------------------------------------ | ------------------------------ |
+| Autonomous AI Database Serverless                           | Oracle 管理の共有基盤 | OCI リージョン | Database の Compute、Storage、Network   | Database 単位で弾力的に利用し、基盤管理を減らす   |
+| Autonomous AI Database on Dedicated Exadata Infrastructure  | テナント専有 Exadata | OCI リージョン | Exadata、AVMC、ACD、Database の容量と保守ポリシー | 物理分離、複数 Database の統合、保守統制を両立する |
+| Autonomous AI Database on Exadata Cloud@Customer（Dedicated） | 顧客専用 Exadata   | 顧客データセンター | Dedicated と同様の階層に加えてサイトと接続           | データ所在と Autonomous 運用を両立する      |
+
+Exadata Cloud@Customer は第三の自律レベルではなく、Dedicated のリソース階層と運用モデルを顧客データセンターへ配置する形態である。Public Cloud と Cloud@Customer では画面表記、バックアップ先、基盤保守の統制に差があるため、配置後の手順はそれぞれの公式資料で確認する。
 
 ## Serverless
 
@@ -85,7 +95,7 @@ Doc: [About Autonomous AI Database on Dedicated Exadata Infrastructure](https://
 
 ## Exadata Cloud@Customer
 
-Doc: [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/en-us/iaas/exadata/doc/eccadboverview.html)
+Doc: [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/en-us/iaas/exadata/doc/adb-intro-to-adb.html)
 
 - Autonomous の責任モデルを維持しながら、Exadata とデータを顧客データセンターへ配置する
 - 顧客は設置場所、電源、冷却、物理セキュリティ、クライアントネットワーク、OCI 制御プレーンへの接続を準備する
@@ -111,7 +121,7 @@ Doc: [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/
 
 ### 比較が必要な条件
 
-- OS、Grid Infrastructure、任意エージェント、`SYSDBA`、One-off patch が必要なら [[cloud/oracle/database/services/oci-base-database-service|Base Database Service]]または [[cloud/oracle/database/services/oci-exadata-database-service|Exadata Database Service]]と比較する
+- OS、Grid Infrastructure、任意エージェント、`SYSDBA`、または利用者が任意の One-off patch を選定・直接適用する必要があるなら [[cloud/oracle/database/services/oci-base-database-service|Base Database Service]]または [[cloud/oracle/database/services/oci-exadata-database-service|Exadata Database Service]]と比較する
 - 専有基盤が不要なら Serverless を最初に評価し、物理分離や Fleet 単位の保守統制が必要な場合に Dedicated を評価する
 - 単一 Database の拡張では足りず、水平分割やデータ所在が必要なら [[cloud/oracle/database/services/oci-globally-distributed-database|Globally Distributed Autonomous AI Database]]と比較する
 
@@ -125,5 +135,5 @@ Doc: [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/
 
 - [Autonomous AI Database Serverless](https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/)
 - [Autonomous AI Database on Dedicated Exadata Infrastructure](https://docs.oracle.com/en/cloud/paas/autonomous-database/dedicated/adbaa/about-autonomous-ai-database-on-dedicated-exadata.html)
-- [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/en-us/iaas/exadata/doc/eccadboverview.html)
+- [Autonomous AI Database on Exadata Cloud@Customer](https://docs.oracle.com/en-us/iaas/exadata/doc/adb-intro-to-adb.html)
 - [Autonomous AI Database Responsibility Model](https://docs.oracle.com/en/cloud/paas/autonomous-database/shared-responsibility-model.html)

@@ -236,12 +236,12 @@ Doc: [Recovering a Database](https://docs.oracle.com/en-us/iaas/recovery-service
 
 ### 復旧方式の分類
 
-| 復旧方式 | 復旧先 | 元Database | 用途 |
-| --- | --- | --- | --- |
-| In-place restore | バックアップ元として登録された既存Database | 指定時点の状態で上書きする | 障害、誤操作、論理破損から元Databaseを戻す |
-| Out-of-place restore | 新しいDB system、既存VM cluster内の新しいDatabase、または新しいAutonomous AI Database | 残せる | 復旧試験、複製、元resource喪失、別AD・別regionでの再作成 |
-| Peer restore | Data Guard association内のprimaryまたはstandby | 対象peerを上書きする | primaryとstandbyのbackupを相互利用する |
-| Cloud Protect RMAN restore | 利用者が準備したオンプレミスDatabase環境 | RMAN commandと構成による | 利用者がhost、storage、鍵、切替を管理する |
+| 復旧方式                       | 復旧先                                                                 | 元Database          | 用途                                   |
+| -------------------------- | ------------------------------------------------------------------- | ------------------ | ------------------------------------ |
+| In-place restore           | バックアップ元として登録された既存Database                                           | 指定時点の状態で上書きする      | 障害、誤操作、論理破損から元Databaseを戻す            |
+| Out-of-place restore       | 新しいDB system、既存VM cluster内の新しいDatabase、または新しいAutonomous AI Database | 残せる                | 復旧試験、複製、元resource喪失、別AD・別regionでの再作成 |
+| Peer restore               | Data Guard association内のprimaryまたはstandby                           | 対象peerを上書きする       | primaryとstandbyのbackupを相互利用する        |
+| Cloud Protect RMAN restore | 利用者が準備したオンプレミスDatabase環境                                            | RMAN commandと構成による | 利用者がhost、storage、鍵、切替を管理する           |
 
 In-place restoreは、元のDatabase resourceを復旧点の状態へ戻す。復旧試験で本番Databaseを上書きしたくない場合は、対応するserviceのout-of-place restoreを選ぶ。
 

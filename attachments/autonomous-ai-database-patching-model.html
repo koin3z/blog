@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autonomous AI Database patching model</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family:
+          "Avenir Next", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+          sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="m-0 overflow-hidden bg-transparent p-0 text-slate-900 antialiased">
+    <div id="tailwind-probe" class="hidden" aria-hidden="true"></div>
+    <main
+      id="diagram"
+      data-width="960"
+      data-height="560"
+      class="relative h-[560px] w-[960px] overflow-hidden bg-transparent"
+      role="img"
+      aria-label="Oracleがパッチを自動適用する共通点から、Serverlessの週次Early検証とRegular適用、Dedicatedの四半期ACD段階適用、Cloud at Customerの事前確認とサイト調整へ分かれる運用比較図"
+    >
+      <svg
+        class="absolute inset-0 h-full w-full text-[#64748B]"
+        viewBox="0 0 960 560"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M480 88v10H168v12" stroke="currentColor" stroke-width="3" />
+        <path d="M480 98v12" stroke="currentColor" stroke-width="3" />
+        <path d="M480 98h312v12" stroke="currentColor" stroke-width="3" />
+        <path d="m161 109 7 12 7-12z" fill="currentColor" />
+        <path d="m473 109 7 12 7-12z" fill="currentColor" />
+        <path d="m785 109 7 12 7-12z" fill="currentColor" />
+
+        <path d="M168 287v31" stroke="currentColor" stroke-width="3" />
+        <path d="m161 317 7 12 7-12z" fill="currentColor" />
+        <path d="M168 401v31" stroke="currentColor" stroke-width="3" />
+        <path d="m161 431 7 12 7-12z" fill="currentColor" />
+
+        <path d="M480 287v31" stroke="currentColor" stroke-width="3" />
+        <path d="m473 317 7 12 7-12z" fill="currentColor" />
+        <path d="M480 401v31" stroke="currentColor" stroke-width="3" />
+        <path d="m473 431 7 12 7-12z" fill="currentColor" />
+
+        <path d="M792 287v31" stroke="currentColor" stroke-width="3" />
+        <path d="m785 317 7 12 7-12z" fill="currentColor" />
+        <path d="M792 401v31" stroke="currentColor" stroke-width="3" />
+        <path d="m785 431 7 12 7-12z" fill="currentColor" />
+      </svg>
+
+      <article
+        class="absolute top-[14px] left-[315px] flex h-[74px] w-[330px] items-center justify-center rounded-xl bg-[#1E3A8A] px-5 text-center text-white"
+      >
+        <div>
+          <h2 class="text-[22px] leading-tight font-bold">Oracle がパッチを自動適用</h2>
+          <p class="mt-1 text-[18px] leading-tight font-medium">運用モデルごとに制御方法が変わる</p>
+        </div>
+      </article>
+
+      <section aria-labelledby="serverless-heading">
+        <header
+          class="absolute top-[120px] left-[28px] flex h-[66px] w-[280px] items-center rounded-xl bg-[#1D4ED8] px-5 text-white"
+        >
+          <div>
+            <h2 id="serverless-heading" class="text-[24px] leading-tight font-bold">Serverless</h2>
+            <p class="mt-1 text-[18px] leading-tight font-medium">週次サイクル</p>
+          </div>
+        </header>
+
+        <article
+          class="absolute top-[215px] left-[28px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#60A5FA] bg-[#DBEAFE] px-5 text-[#1E3A8A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Early</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">次回パッチで先行検証</p>
+          </div>
+        </article>
+
+        <div
+          class="absolute top-[294px] left-[180px] rounded-lg bg-[#DBEAFE] px-2.5 py-1 text-[18px] leading-tight font-bold text-[#1E3A8A]"
+        >
+          1週間
+        </div>
+
+        <article
+          class="absolute top-[329px] left-[28px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#60A5FA] bg-[#DBEAFE] px-5 text-[#1E3A8A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Regular</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">本番へ自動適用</p>
+          </div>
+        </article>
+
+        <article
+          class="absolute top-[443px] left-[28px] flex h-[89px] w-[280px] items-center rounded-xl border-2 border-[#60A5FA] bg-[#DBEAFE] px-5 text-[#1E3A8A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Rolling maintenance</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">
+              新規接続は継続・既存接続は5分 Drain
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section aria-labelledby="dedicated-heading">
+        <header
+          class="absolute top-[120px] left-[340px] flex h-[66px] w-[280px] items-center rounded-xl bg-[#6D28D9] px-5 text-white"
+        >
+          <div>
+            <h2 id="dedicated-heading" class="text-[24px] leading-tight font-bold">Dedicated</h2>
+            <p class="mt-1 text-[18px] leading-tight font-medium">四半期・ACD 単位</p>
+          </div>
+        </header>
+
+        <article
+          class="absolute top-[215px] left-[340px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#A78BFA] bg-[#EDE9FE] px-5 text-[#4C1D95]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">開発・テスト ACD</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">本番より先に更新</p>
+          </div>
+        </article>
+
+        <div
+          class="absolute top-[294px] left-[492px] rounded-lg bg-[#EDE9FE] px-2.5 py-1 text-[18px] leading-tight font-bold text-[#4C1D95]"
+        >
+          段階適用
+        </div>
+
+        <article
+          class="absolute top-[329px] left-[340px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#A78BFA] bg-[#EDE9FE] px-5 text-[#4C1D95]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">本番 ACD</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">予定した RU を適用</p>
+          </div>
+        </article>
+
+        <article
+          class="absolute top-[443px] left-[340px] flex h-[89px] w-[280px] items-center rounded-xl border-2 border-[#A78BFA] bg-[#EDE9FE] px-5 text-[#4C1D95]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">方式を選択</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">
+              Rolling または全体停止の Non-rolling
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section aria-labelledby="cloud-at-customer-heading">
+        <header
+          class="absolute top-[120px] left-[652px] flex h-[66px] w-[280px] items-center rounded-xl bg-[#047857] px-5 text-white"
+        >
+          <div>
+            <h2 id="cloud-at-customer-heading" class="text-[22px] leading-tight font-bold">
+              Cloud@Customer
+            </h2>
+            <p class="mt-1 text-[18px] leading-tight font-medium">Dedicated＋サイト調整</p>
+          </div>
+        </header>
+
+        <article
+          class="absolute top-[215px] left-[652px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#2DD4BF] bg-[#CCFBF1] px-5 text-[#134E4A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Precheck</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">約2週間前・約24時間前</p>
+          </div>
+        </article>
+
+        <div
+          class="absolute top-[294px] left-[804px] rounded-lg bg-[#CCFBF1] px-2.5 py-1 text-[18px] leading-tight font-bold text-[#134E4A]"
+        >
+          保守前
+        </div>
+
+        <article
+          class="absolute top-[329px] left-[652px] flex h-[72px] w-[280px] items-center rounded-xl border-2 border-[#2DD4BF] bg-[#CCFBF1] px-5 text-[#134E4A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Custom action</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">15〜120分のサイト側準備</p>
+          </div>
+        </article>
+
+        <article
+          class="absolute top-[443px] left-[652px] flex h-[89px] w-[280px] items-center rounded-xl border-2 border-[#2DD4BF] bg-[#CCFBF1] px-5 text-[#134E4A]"
+        >
+          <div>
+            <h3 class="text-[22px] leading-tight font-bold">Rolling maintenance</h3>
+            <p class="mt-1 text-[18px] leading-tight font-medium">
+              Service を継続・処理能力は一時減
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

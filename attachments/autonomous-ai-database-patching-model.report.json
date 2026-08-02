@@ -1,0 +1,343 @@
+{
+  "success": true,
+  "input": "autonomous-ai-database-patching-model.html",
+  "output": "autonomous-ai-database-patching-model.png",
+  "generatedAt": "2026-07-27T07:07:50.667Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 1
+  },
+  "contract": {
+    "width": 960,
+    "height": 560
+  },
+  "png": {
+    "width": 960,
+    "height": 560,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 251879,
+    "translucentPixels": 2726,
+    "opaquePixels": 282995,
+    "transparentRatio": 0.468525,
+    "cornerAlpha": [0, 0, 0, 0],
+    "outerBandSize": 6,
+    "outerBandPixels": 18096,
+    "outerTransparentPixels": 18096,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 960,
+      "height": 560,
+      "scrollWidth": 960,
+      "scrollHeight": 560
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "Oracleがパッチを自動適用する共通点から、Serverlessの週次Early検証とRegular適用、Dedicatedの四半期ACD段階適用、Cloud at Customerの事前確認とサイト調整へ分かれる運用比較図",
+    "directTextElements": [
+      {
+        "tag": "h2",
+        "text": "Oracle がパッチを自動適用",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "運用モデルごとに制御方法が変わる",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "Serverless",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "週次サイクル",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Early",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "次回パッチで先行検証",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "1週間",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Regular",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "本番へ自動適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Rolling maintenance",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "新規接続は継続・既存接続は5分 Drain",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "Dedicated",
+        "fontSize": 24,
+        "effectiveFontSize": 24
+      },
+      {
+        "tag": "p",
+        "text": "四半期・ACD 単位",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "開発・テスト ACD",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "本番より先に更新",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "段階適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "本番 ACD",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "予定した RU を適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "方式を選択",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "Rolling または全体停止の Non-rolling",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "Cloud@Customer",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "Dedicated＋サイト調整",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Precheck",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "約2週間前・約24時間前",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "保守前",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Custom action",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "15〜120分のサイト側準備",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h3",
+        "text": "Rolling maintenance",
+        "fontSize": 22,
+        "effectiveFontSize": 22
+      },
+      {
+        "tag": "p",
+        "text": "Service を継続・処理能力は一時減",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "960",
+      "dataHeight": "560",
+      "width": 960,
+      "height": 560,
+      "left": 0,
+      "top": 0,
+      "right": 960,
+      "bottom": 560,
+      "scrollWidth": 960,
+      "scrollHeight": 560,
+      "viewportWidth": 960,
+      "viewportHeight": 560,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 960,
+      "bottom": 560,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 960x560",
+      "passed": true,
+      "evidence": "actual=960x560"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=251879, opaque=282995"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=6px, transparent=18096/18096, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=251879/537600, ratio=0.468525"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "success": true,
+  "input": "autonomous-ai-database-workload-auto-replay.html",
+  "output": "autonomous-ai-database-workload-auto-replay.png",
+  "generatedAt": "2026-07-27T07:20:01.135Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 960,
+    "height": 365
+  },
+  "png": {
+    "width": 1920,
+    "height": 730,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 692670,
+    "translucentPixels": 1526,
+    "opaquePixels": 707404,
+    "transparentRatio": 0.494199,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 8,
+    "outerBandPixels": 42144,
+    "outerTransparentPixels": 42144,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 960,
+      "height": 365,
+      "scrollWidth": 960,
+      "scrollHeight": 365
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "Regularの本番DatabaseでWorkload Auto Replayを有効化し、指定時間のWorkloadをCaptureする。EarlyのRefreshable Cloneへの次回週次パッチ適用後に自動Replayし、Status、History、Replay Reportを確認する。機能を無効化するまで週次で繰り返す流れ",
+    "directTextElements": [
+      {
+        "tag": "div",
+        "text": "Refreshable Cloneを作成しただけでは開始しない",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "事前設定",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "機能を有効化",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "Target OCIDで1対1に紐づけ",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "REGULAR",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "本番Capture",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "指定時間のWorkloadを記録",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "EARLY",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "Patchを待つ",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "Targetに次回週次Patchを先行適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "EARLY",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "自動Replay",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "Timing・並行性・依存を再現",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "確認",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "差分を確認",
+        "fontSize": 21,
+        "effectiveFontSize": 21
+      },
+      {
+        "tag": "p",
+        "text": "Status・History・Replay Report",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "無効化するまで毎週繰り返す",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "960",
+      "dataHeight": "365",
+      "width": 960,
+      "height": 365,
+      "left": 0,
+      "top": 0,
+      "right": 960,
+      "bottom": 365,
+      "scrollWidth": 960,
+      "scrollHeight": 365,
+      "viewportWidth": 960,
+      "viewportHeight": 365,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 960,
+      "bottom": 365,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1920x730",
+      "passed": true,
+      "evidence": "actual=1920x730"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=692670, opaque=707404"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=8px, transparent=42144/42144, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=692670/1401600, ratio=0.494199"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "success": true,
+  "input": "autonomous-ai-database-early-regular-timeline.html",
+  "output": "autonomous-ai-database-early-regular-timeline.png",
+  "generatedAt": "2026-07-27T14:32:17.059Z",
+  "renderer": {
+    "name": "playwright",
+    "launchMode": "system-chrome",
+    "playwrightSource": "codex-runtime",
+    "tailwindVersion": "4.3.3",
+    "scale": 2
+  },
+  "contract": {
+    "width": 920,
+    "height": 340
+  },
+  "png": {
+    "width": 1840,
+    "height": 680,
+    "bitDepth": 8,
+    "colorType": 6,
+    "interlace": 0,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "transparentPixels": 653536,
+    "translucentPixels": 796,
+    "opaquePixels": 596868,
+    "transparentRatio": 0.522327,
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "outerBandSize": 7,
+    "outerBandPixels": 35084,
+    "outerTransparentPixels": 35084,
+    "outerTransparentRatio": 1
+  },
+  "staticAudit": {
+    "issues": [],
+    "externalResources": [],
+    "tailwindRuntimeDeclared": true,
+    "tailwindRuntimeDeclarations": 1
+  },
+  "domAudit": {
+    "status": "passed",
+    "issues": [],
+    "issueCodes": [],
+    "canvas": {
+      "width": 920,
+      "height": 340,
+      "scrollWidth": 920,
+      "scrollHeight": 340
+    },
+    "backgrounds": {
+      "html": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "body": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      },
+      "root": {
+        "color": "rgba(0, 0, 0, 0)",
+        "hasImage": false
+      }
+    },
+    "role": "img",
+    "ariaLabel": "週NにEarlyの検証DatabaseへPatch Pを先行適用し、1週間の検証、Workload Replay、Service Requestを経て、問題がなければ週N+1にRegularの本番Databaseへ適用候補となる通常サイクル。1週間は利用者がRegularを延期できる期間ではなく、Critical security fixは通常順序外で適用される",
+    "directTextElements": [
+      {
+        "tag": "div",
+        "text": "EARLY",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "週N：Patch P",
+        "fontSize": 23,
+        "effectiveFontSize": 23
+      },
+      {
+        "tag": "p",
+        "text": "検証環境へ先行適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "1週間",
+        "fontSize": 25,
+        "effectiveFontSize": 25
+      },
+      {
+        "tag": "p",
+        "text": "検証／Replay／SR",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "div",
+        "text": "REGULAR",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "h2",
+        "text": "週N+1：Patch P",
+        "fontSize": 23,
+        "effectiveFontSize": 23
+      },
+      {
+        "tag": "p",
+        "text": "問題がなければ本番適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "aside",
+        "text": "問題を報告すると、Oracleが修正、無効化、Regularの一時停止を判断する",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      },
+      {
+        "tag": "aside",
+        "text": "Critical security fixは通常順序外：利用可能になり次第適用",
+        "fontSize": 18,
+        "effectiveFontSize": 18
+      }
+    ],
+    "overflowElements": [],
+    "clippedElements": [],
+    "clippedText": [],
+    "coveringBackgrounds": [],
+    "ancestorBackgrounds": [],
+    "unsupportedVisualEffects": [],
+    "externalOverlays": [],
+    "imageIssues": [],
+    "motionEffects": {
+      "findings": [],
+      "activeAnimationCount": 0
+    },
+    "preCapture": {
+      "dataWidth": "920",
+      "dataHeight": "340",
+      "width": 920,
+      "height": 340,
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 340,
+      "scrollWidth": 920,
+      "scrollHeight": 340,
+      "viewportWidth": 920,
+      "viewportHeight": 340,
+      "pageScrollX": 0,
+      "pageScrollY": 0,
+      "activeAnimationCount": 0
+    },
+    "postCapture": {
+      "left": 0,
+      "top": 0,
+      "right": 920,
+      "bottom": 340,
+      "pageScrollX": 0,
+      "pageScrollY": 0
+    }
+  },
+  "diagnostics": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "blockedRequests": [],
+    "requestFailures": [],
+    "unexpectedPages": [],
+    "tailwindFulfilled": 1,
+    "warnings": []
+  },
+  "checks": [
+    {
+      "text": "PNG dimensions are 1840x680",
+      "passed": true,
+      "evidence": "actual=1840x680"
+    },
+    {
+      "text": "PNG has a decoded alpha channel",
+      "passed": true,
+      "evidence": "colorType=6, bitDepth=8, interlace=0"
+    },
+    {
+      "text": "PNG contains both fully transparent and fully opaque pixels",
+      "passed": true,
+      "evidence": "alphaMin=0, alphaMax=255, transparent=653536, opaque=596868"
+    },
+    {
+      "text": "All four PNG corners are fully transparent",
+      "passed": true,
+      "evidence": "cornerAlpha=[0,0,0,0]"
+    },
+    {
+      "text": "At least 90% of the outer PNG band is transparent",
+      "passed": true,
+      "evidence": "band=7px, transparent=35084/35084, ratio=1"
+    },
+    {
+      "text": "At least 5% of the full PNG is transparent",
+      "passed": true,
+      "evidence": "transparent=653536/1251200, ratio=0.522327"
+    },
+    {
+      "text": "Static HTML contract passes",
+      "passed": true,
+      "evidence": "role, aria-label, probe, and resource rules passed"
+    },
+    {
+      "text": "Computed DOM, accessibility, font-size, and transparency checks pass",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No text or element extends outside the diagram canvas",
+      "passed": true,
+      "evidence": "passed"
+    },
+    {
+      "text": "No unexpected resource, console, or page errors occurred",
+      "passed": true,
+      "evidence": "{\"blockedRequests\":[],\"consoleErrors\":[],\"pageErrors\":[],\"requestFailures\":[],\"unexpectedPages\":[],\"tailwindFulfilled\":1}"
+    }
+  ]
+}
