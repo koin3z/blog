@@ -42,15 +42,15 @@ OracleのREST APIリファレンス、管理ガイド、Oracle公式サンプル
 Identity Domainsには、MFAを検証する名前の似た二つのAPIがある。
 独自ログイン画面からIdentity DomainsのSSOセッションまで作る場合は、**Authenticate API**を使う。
 
-| 比較項目           | Authenticate API                                          | On-Demand MFA API                                                  |
-| ------------------ | --------------------------------------------------------- | ------------------------------------------------------------------ |
-| 主なエンドポイント | `/sso/v1/sdk/authenticate`                                | `/mfa/v1/requests`                                                 |
-| 目的               | ポリシー評価を含むログイン全体の状態遷移                  | 識別済みユーザーの認証要素を単独で検証                             |
-| 認可               | `Signin`スコープを持つクライアントのAccess Token          | `Authenticator Client`または`MFA Client`スコープを持つAccess Token |
-| 対応要素           | FIDO、PUSH、TOTP、SMS、EMAIL                              | PUSH、TOTP、SMS、EMAIL                                             |
-| FIDO               | 対応                                                      | `method`の対応値に含まれない                                       |
-| 成功後             | `authnToken`または`requestState`からSSOセッションを作れる | 要素検証の成功だけを返し、SSOセッションを作らない                  |
-| 状態               | 応答の`nextOp`と`requestState`で進む                      | `requestId`と`requestState`で検証要求を追跡                        |
+| 比較項目      | Authenticate API                            | On-Demand MFA API                                        |
+| --------- | ------------------------------------------- | -------------------------------------------------------- |
+| 主なエンドポイント | `/sso/v1/sdk/authenticate`                  | `/mfa/v1/requests`                                       |
+| 目的        | ポリシー評価を含むログイン全体の状態遷移                        | 識別済みユーザーの認証要素を単独で検証                                      |
+| 認可        | `Signin`スコープを持つクライアントのAccess Token          | `Authenticator Client`または`MFA Client`スコープを持つAccess Token |
+| 対応要素      | FIDO、PUSH、TOTP、SMS、EMAIL                    | PUSH、TOTP、SMS、EMAIL                                      |
+| FIDO      | 対応                                          | `method`の対応値に含まれない                                       |
+| 成功後       | `authnToken`または`requestState`からSSOセッションを作れる | 要素検証の成功だけを返し、SSOセッションを作らない                               |
+| 状態        | 応答の`nextOp`と`requestState`で進む               | `requestId`と`requestState`で検証要求を追跡                       |
 
 On-Demand MFA APIの対応要素は、[`POST /mfa/v1/requests`](https://docs.oracle.com/en/cloud/paas/iam-domains-rest-api/op-mfa-v1-requests-post.html)に列挙されている。
 OTPの検証と再送は[`PATCH /mfa/v1/requests/{requestId}`](https://docs.oracle.com/en/cloud/paas/iam-domains-rest-api/op-mfa-v1-requests-requestid-patch.html)を使い、プッシュ承認は[`GET /mfa/v1/requests/{requestId}`](https://docs.oracle.com/en/cloud/paas/iam-domains-rest-api/op-mfa-v1-requests-requestid-get.html)で確認する。
